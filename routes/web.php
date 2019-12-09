@@ -33,10 +33,9 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('editarusuario/{usuario}', 'UserController@edit')->name('admin.editarusuario.editar');
     Route::post('guardarusuarioeditado/{usuario?}', 'UserController@update')->name('admin.actualizarusuarioeditado.guardar');
     Route::delete('borrarusuario/{usuario}', 'UserController@destroy')->name('admin.borrarusuario.borrar');
-    
+
 
 });
-
 
 
 // Rutas correspondientes a los permisos
@@ -80,7 +79,7 @@ Route::get('encuesta/{slug?}', ['as' => 'encuesta', 'uses' => 'EncuestaControlle
 if ($options['register'] ?? true) {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
-    
+
 }
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');

@@ -63,7 +63,7 @@
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        @if ($encuesta->preguntasEncuestas == null)
+                                                        @if ($encuesta->preguntasEncuestas != null)
                                                             <a href="{{ route('encuesta', [$encuesta->uuid]) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a>
                                                         @else
                                                             Sin preguntas
@@ -87,7 +87,9 @@
                                                                                         <div class="progress">
                                                                                             @foreach ($pregunta->respuesta as $respuesta)
                                                                                                 <div class="progress-bar color_{{$respuesta->id}} progress-bar-striped progress-bar-animated" data-id="{{$respuesta->id}}" role="progressbar" style="width: {{ ($respuesta->votada / $encuesta->votada) * 100 }}%" aria-valuenow="{{ ($respuesta->votada / $encuesta->votada) * 100 }}" aria-valuemin="0" aria-valuemax="100">{{$respuesta->respuesta}}
-                                                                                                    - @if($respuesta->tipo == 2) {{ round(($respuesta->votada *100 ) / $pregunta->respuesta->count(), 2) }}% @else {{ ($respuesta->votada / $encuesta->votada) * 100 }}% @endif
+                                                                                                    - @if($respuesta->tipo == 2 && $respuesta->votada == 2) {{ round(($respuesta->votada * 100 ) / ($pregunta->respuesta->count() + $respuesta->votada - 1), 2) }}%
+                                                                                                    @elseif($respuesta->tipo == 2 && $respuesta->votada == 1) {{ round(($respuesta->votada * 100 ) / ($pregunta->respuesta->count() + $respuesta->votada), 2) }}%
+                                                                                                    @else {{ ($respuesta->votada / $encuesta->votada) * 100 }}% @endif
                                                                                                 </div>
                                                                                             @endforeach
                                                                                         </div>
