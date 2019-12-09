@@ -10,7 +10,7 @@
 			</div>
 			<div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
 				<i class="icofont icofont-user-suited"></i>
-			<h1 class="counter">{{ $usuarios }}</h1>
+                <h1 class="counter">{{ $profesores }}</h1>
 				<p>Número de profesores</p>
 			</div>
 			<div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
@@ -20,7 +20,7 @@
 			</div>
 			<div class="single-facts text-center col-md-3 col-sm-6 col-12 mb-30">
 				<i class="icofont icofont-users-social"></i>
-				<h1 class="counter plus">{{ $usuarios }}</h1>
+				<h1 class="counter">{{ $alumnos }}</h1>
 				<p>Estudiantes actuales</p>
 			</div>
 		</div>

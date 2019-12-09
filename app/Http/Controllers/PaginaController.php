@@ -30,8 +30,11 @@ class PaginaController extends Controller
     {
         // Se muestran los cursos
         $permisos = Permiso::all();
+        $profesores = User::all()->where('tipousuario', 1)->count();
+        $alumnos = User::all()->where('tipousuario', 2)->count();
         $usuarios = User::all();
-        return view('bienvenido')->with('permisos', $permisos)->with('usuarios', $usuarios);
+        //return view('bienvenido')->with('permisos', $permisos)->with('usuarios', $usuarios)->with('profesores', $profesores);
+        return view('bienvenido', compact('permisos', 'usuarios', 'profesores', 'alumnos'));
     }
 
     /**

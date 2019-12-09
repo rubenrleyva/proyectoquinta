@@ -63,33 +63,37 @@
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('encuesta', [$encuesta->uuid]) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a>
+                                                        @if ($encuesta->preguntasEncuestas == null)
+                                                            <a href="{{ route('encuesta', [$encuesta->uuid]) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a>
+                                                        @else
+                                                            Sin preguntas
+                                                        @endif
                                                     </td>
                                                 </tr>
-                                                @if ($encuesta->votada > 0)                                          
+                                                @if ($encuesta->votada > 0)
                                                     <div id="encuesta{{ $encuesta->id }}" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">{{ $encuesta->titulo }}</h5>
                                                                 </div>
-                                                                <div class="modal-body"> 
+                                                                <div class="modal-body">
                                                                     <div class="card-body">
                                                                         <div class="row">
-                                                                            <div class="col-md-12">  
+                                                                            <div class="col-md-12">
                                                                                 @foreach ($encuesta->preguntasEncuestas as $valor => $pregunta)
                                                                                     <div class="progress-group mb-2">
                                                                                         {{$pregunta->pregunta}}
                                                                                         <div class="progress">
                                                                                             @foreach ($pregunta->respuesta as $respuesta)
-                                                                                                <div class="progress-bar color_{{$respuesta->id}} progress-bar-striped progress-bar-animated" data-id="{{$respuesta->id}}" role="progressbar" style="width: {{ ($respuesta->votada / $encuesta->votada) * 100 }}%" aria-valuenow="{{ ($respuesta->votada / $encuesta->votada) * 100 }}" aria-valuemin="0" aria-valuemax="100">{{$respuesta->respuesta}} 
+                                                                                                <div class="progress-bar color_{{$respuesta->id}} progress-bar-striped progress-bar-animated" data-id="{{$respuesta->id}}" role="progressbar" style="width: {{ ($respuesta->votada / $encuesta->votada) * 100 }}%" aria-valuenow="{{ ($respuesta->votada / $encuesta->votada) * 100 }}" aria-valuemin="0" aria-valuemax="100">{{$respuesta->respuesta}}
                                                                                                     - @if($respuesta->tipo == 2) {{ round(($respuesta->votada *100 ) / $pregunta->respuesta->count(), 2) }}% @else {{ ($respuesta->votada / $encuesta->votada) * 100 }}% @endif
                                                                                                 </div>
                                                                                             @endforeach
-                                                                                        </div> 
-                                                                                    </div>                                                                                
-                                                                                @endforeach                                        
-                                                                            </div>                                                                
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>

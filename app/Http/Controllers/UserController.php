@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
@@ -71,9 +71,9 @@ class UserController extends Controller
         }else{
             $tipo = "alumnos";
         }
-            
+
         // elegimos el nombre del archivo y su ubicación
-        $path = 'img/'.$itpo.'/'.Str::random(30).'.'.'jpg';;
+        $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';;
 
         // le pasamos la imagen, el tamaño y guardamos
         Image::make($request->file('foto'))
@@ -87,7 +87,7 @@ class UserController extends Controller
         ]);
 
         }
-        
+
         if($request['tipousuario'] == 1){
 
             User::create([
@@ -129,7 +129,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.mostrarusuarios')->with('respuesta', 'El usuario '.$request['name'].' ha sido creado.');
-        
+
     }
 
     /**
@@ -153,7 +153,7 @@ class UserController extends Controller
     {
         // Buscamos al usuario
         $usuario = User::find($id);
-        
+
         // Si el usuario conectado es el administrador.
         if (auth()->user()->tipousuario == 1) {
              // retornamos la vista a la creación usuarios.
@@ -178,7 +178,7 @@ class UserController extends Controller
                 ]);
             if ($usuario->email != $request->get('email')) {
                 $this->validate($request, [
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 ]);
             }elseif($request->get('password') != null){
                 $this->validate($request, [
@@ -219,7 +219,7 @@ class UserController extends Controller
             $usuario->localidad = $request['localidad'];
             $usuario->codigopostal = $request['codigopostal'];
             $usuario->tipousuario = $request['tipousuario'];
-            
+
             if($request['tipousuario'] == 2){
                 $usuario->clasespracticas = $request['clasespracticas'];
                 $usuario->matricula = $request['matricula'];
@@ -231,7 +231,7 @@ class UserController extends Controller
                 $usuario->teorico = null;
                 $usuario->practico = null;
             }
-            
+
             $usuario->update();
             // damos una respuesta de los sucedido.
             $respuesta = 'El usuario '.$request['name'].' ha sido creado.';
@@ -241,7 +241,7 @@ class UserController extends Controller
             // retornamos la ruta al inicio privado con un mensaje de advertencia.
             return redirect()->route('inicio')->with('respuesta', 'No puedes editar los usuarios, selecciona una opción de tú menú.');
         }
-        
+
         // retornamos la ruta de muestra de usuarios.
         return redirect()->route('admin.mostrarusuarios')->with('respuesta', $respuesta);
     }

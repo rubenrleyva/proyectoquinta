@@ -40,7 +40,7 @@ class PreguntaEncuestaController extends Controller
         if (auth()->user()->tipousuario != 1) {
 
             return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes crear encuestas, selecciona una opción de tú menú.');
-        } 
+        }
         $encuesta = Encuesta::find($id);
         $preguntas = PreguntaEncuesta::all()->where('id_encuesta', $id);
         // retornamos la vista a la creación Usuarios.
@@ -55,20 +55,20 @@ class PreguntaEncuestaController extends Controller
      */
     public function store_deprecated(Request $request)
     {
-        
+
         // Si el usuario conectado es administrador.
         if (auth()->user()->tipousuario != 1) {
 
             $mensaje = 'No puedes crear preguntas, selecciona una opción de tú menú.';
-        
+
         }else{
             $numero = 1;
-            
+
             $filtro = Arr::except($request, ['_token']);
             foreach ($filtro->request as $valor) {
-                
+
                 if($numero == 1){
-                    
+
                     $pregunta = PreguntaEncuesta::create([
                         'id_encuesta' => $request['id'],
                         'numero' => $valor
@@ -80,7 +80,7 @@ class PreguntaEncuestaController extends Controller
                     $pregunta->pregunta = $valor;
                     $pregunta->update();
                     $numero = 1;
-                }    
+                }
             }
             $mensaje = 'Las preguntas han sido creadas.';
         }
@@ -95,12 +95,12 @@ class PreguntaEncuestaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {
         // Si el usuario conectado es administrador.
         if (auth()->user()->tipousuario != 1) {
 
             $mensaje = 'No puedes crear preguntas, selecciona una opción de tú menú.';
-        
+
         }else{
 
             $pregunta =  PreguntaEncuesta::where(['numero' => $request['numero'], 'id_encuesta' => $request['id']])->first();
@@ -147,20 +147,20 @@ class PreguntaEncuestaController extends Controller
      */
     public function edit($id)
     {
-        
+
         // Si el usuario conectado no es administrador lo sacamos avisando.
         if (auth()->user()->tipousuario != 1) {
 
             return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes editar las preguntas, selecciona una opción de tú menú.');
-        } 
-        
+        }
+
         // $encuesta = Encuesta::find($id);
-       
+
         //$preguntas = PreguntaEncuesta::all()->where('id_encuesta', $id);
         $pregunta = PreguntaEncuesta::find($id);
         $encuesta = Encuesta::find($pregunta->id_encuesta);
         $respuestas = RespuestaEncuestas::all()->where('id_pregunta', $id);
-        
+
         // retornamos la vista a la creación Usuarios.
         return view('admin.crearpreguntaencuesta')->with('encuesta', $encuesta)->with('pregunta', $pregunta)->with('respuestas', $respuestas);
     }
@@ -171,15 +171,15 @@ class PreguntaEncuestaController extends Controller
      * @param  \App\PreguntaEncuesta  $preguntaEncuesta
      * @return \Illuminate\Http\Response
      */
-    public function edit_deprecated($id)
+    public function deprecated_edit($id)
     {
         // Si el usuario conectado no es administrador lo sacamos avisando.
         if (auth()->user()->tipousuario != 1) {
 
             return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes editar las preguntas, selecciona una opción de tú menú.');
-        } 
+        }
         $encuesta = Encuesta::find($id);
-        
+
         // retornamos la vista a la creación Usuarios.
         return view('admin.crearpreguntaencuesta')->with('encuesta', $encuesta)->with('preguntas', $preguntas);
     }
@@ -193,12 +193,12 @@ class PreguntaEncuestaController extends Controller
      */
     public function update(Request $request)
     {
-    
+
         // Si el usuario conectado es administrador.
         if (auth()->user()->tipousuario != 1) {
-            
+
             $mensaje = 'No puedes crear preguntas, selecciona una opción de tú menú.';
-            
+
         }else{
 
             $pregunta =  PreguntaEncuesta::where(['id' => $request['id_pregunta'], 'id_encuesta' => $request['id']])->first();
@@ -213,7 +213,7 @@ class PreguntaEncuestaController extends Controller
                     'id_encuesta' => $request['id'],
                     'numero' => $request['numero'],
                     'tipo' => $request['tipo'],
-                ]);                       
+                ]);
             }else{
                 $pregunta =  PreguntaEncuesta::where(['numero' => $request['numero']])->first();
                 if($pregunta == null){
@@ -221,7 +221,7 @@ class PreguntaEncuestaController extends Controller
                     $this->validate($request, [
                         'numero' => ['required', 'unique:pregunta_encuestas']
                     ]);
-                    
+
                     $pregunta->numero = $request['numero'];
                     $pregunta->pregunta = $request['pregunta'];
                     $pregunta->tipo = $request['tipo'];
@@ -237,7 +237,7 @@ class PreguntaEncuestaController extends Controller
                         $pregunta->tipo = $request['tipo'];
                         $pregunta->update();
                     }
-                }  
+                }
             }
 
             $numero = 1;
@@ -246,12 +246,12 @@ class PreguntaEncuestaController extends Controller
             $filtro = Arr::except($request, ['_token']);
             dd($filtro);
             foreach ($filtro->request as $valor) {
-                
-                if($numero == 1){  
-                    
+
+                if($numero == 1){
+
                     $numeroPreguntaEncuesta = $valor;
                     $numero++;
-                    
+
                 }else{
                     if(isset($nuevaPregunta)){
                         $nuevaPregunta->pregunta = $valor;
@@ -262,7 +262,7 @@ class PreguntaEncuestaController extends Controller
                         $pregunta->update();
                     }
                     $numero--;
-                }    
+                }
             }
             $mensaje = 'Las preguntas han sido creadas.';
         }
@@ -284,15 +284,15 @@ class PreguntaEncuestaController extends Controller
         if (auth()->user()->tipousuario != 1) {
 
             $mensaje = 'No puedes crear preguntas, selecciona una opción de tú menú.';
-        
+
         }else{
             $numero = 1;
             $numeroPreguntaEncuesta = 0;
             $preguntas = PreguntaEncuesta::all()->where('id_encuesta', $request['id']);
             $filtro = Arr::except($request, ['_token']);
             foreach ($filtro->request as $valor) {
-                
-                if($numero == 1){  
+
+                if($numero == 1){
                     $pregunta =  PreguntaEncuesta::where(['numero' => $valor ,'id_encuesta' => $request['id']])->first();
                     if($pregunta == null){
                         $nuevaPregunta = PreguntaEncuesta::create([
@@ -302,7 +302,7 @@ class PreguntaEncuestaController extends Controller
                     }
                     $numeroPreguntaEncuesta = $valor;
                     $numero++;
-                    
+
                 }else{
                     if(isset($nuevaPregunta)){
                         $nuevaPregunta->pregunta = $valor;
@@ -313,7 +313,7 @@ class PreguntaEncuestaController extends Controller
                         $pregunta->update();
                     }
                     $numero--;
-                }    
+                }
             }
             $mensaje = 'Las preguntas han sido creadas.';
         }
