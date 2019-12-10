@@ -38,6 +38,8 @@
 							<p>Aquí podrás ver los títulos que existen en el sistema.</p>
 						@elseif (Request::is('encuestas'))
 							<p>Aquí podrás ver las encuestas que existen en el sistema.</p>
+						@elseif (Request::is('clasespracticas'))
+							<p>Aquí podrás ver las clases prácticas que existen en el sistema.</p>
 						@elseif (Request::is('examenes'))
 							<p>Aquí podrás ver los exámenes que existen en el sistema.</p>
 						@endif	
@@ -53,6 +55,7 @@
 					|| Request::is('permisos')
 					|| Request::is('titulos')
 					|| Request::is('encuestas')
+					|| Request::is('clasespracticas')
 					|| Request::is('examenes'))
 						<!-- Opciones -->
 					<div class="gallery-filter-quintamarcha text-center">
