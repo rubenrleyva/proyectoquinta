@@ -34,6 +34,11 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::post('guardarusuarioeditado/{usuario?}', 'UserController@update')->name('admin.actualizarusuarioeditado.guardar');
     Route::delete('borrarusuario/{usuario}', 'UserController@destroy')->name('admin.borrarusuario.borrar');
 
+    // Rutas correspondientes a las clases prácticas
+    Route::get('clasespracticas', 'ClaseController@index')->name('admin.mostrarclases');
+    Route::get('crearclase', 'ClaseController@create')->name('admin.crearclase');
+    Route::post('guardarclase/{clase?}', 'ClaseController@store')->name('admin.guardarclase.guardar');
+    Route::post('guardarclaseeditado/{clase?}', 'ClaseController@update')->name('admin.guardarclaseeditado.guardar')->middleware('auth');
 
 });
 

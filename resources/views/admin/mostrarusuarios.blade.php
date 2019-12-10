@@ -29,6 +29,7 @@
                                             <th class="sorting align-middle">Código Postal</th>
                                             <th class="sorting align-middle">Matrícula</th>
                                             <th class="sorting align-middle">Email</th>
+                                            <th class="sorting align-middle">Clases prácticas</th>
                                             <th class="sorting align-middle">Teórico</th>
                                             <th class="sorting align-middle">Práctico</th>
                                             <th class="sorting align-middle">Fecha de Inscripción</th>
@@ -54,6 +55,7 @@
                                                     @endif 
                                                 </td>   
                                                 <td>{{ $usuario->email }}</td>
+                                                <td>{{ $usuario->clasespracticas }}</td>
                                                 <td>
                                                   @if ($usuario->teorico == 1)
                                                       Aprobado

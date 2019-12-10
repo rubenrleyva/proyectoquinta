@@ -37,7 +37,7 @@ class EncuestaController extends Controller
 
         $preguntasEncuesta = PreguntaEncuesta::find(1);
         $encuestas = Encuesta::all();
-       
+        
         return view('admin.crearencuesta');
     }
 

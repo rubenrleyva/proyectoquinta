@@ -60,6 +60,7 @@
 						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarpermisos') }}">permisos</a>
 						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarusuarios') }}">títulos</a>
 						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarencuestas') }}">encuestas</a>
+						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarclases') }}">clases</a>
 						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarusuarios') }}">exámenes</a>
 					</div>
 					@endif

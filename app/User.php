@@ -51,5 +51,15 @@ class User extends Authenticatable
         return $this->belongsTo(Foto::class);
     }
 
+    /**
+     * Función que nos devuelve la clase.
+     * @return class Los datos de las clases prácticas del usuario.
+     
+    *public function clase()
+    *{
+     *   return $this->hasMany(Clase::class);
+    *}
+    */
+
     
 }

@@ -166,9 +166,9 @@ function coloresEstadistica(){
 }
 
 /**
-	 * Función encargada de mostrar un popover de borrado.
-	 * @param  {number} valor El Id de la imagen a borrar.
-	 */
+ * Función encargada de mostrar un popover de borrado.
+ * @param  {number} valor El Id de la imagen a borrar.
+ */
 function borrarFoto(valor) {
 
     // Añadimos lo que queremos que tenga el popup
@@ -180,6 +180,37 @@ function borrarFoto(valor) {
         content: popupElement,
         html: true
     });
+}
+
+/**
+ * Función encargada de mostrar un popover de borrado.
+ */
+function precios() {
+
+    var sumaPrecio = 0;
+    var sumaPrecioIva = 0;
+
+    $(".precio").each(function () {
+
+        var value = $(this).text();
+        
+        if (!isNaN(value) && value.length != 0) {
+            sumaPrecio += parseFloat(value);
+        }
+    });
+
+    $('#nuevo').text(sumaPrecio);  
+
+    $(".precioiva").each(function () {
+
+        var value = $(this).text();
+        
+        if (!isNaN(value) && value.length != 0) {
+            sumaPrecioIva += parseFloat(value);
+        }
+    });
+
+    $('#nuevoiva').text(sumaPrecioIva);  
 }
 
 /**
