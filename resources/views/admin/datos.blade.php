@@ -40,6 +40,8 @@
 							<p>Aquí podrás ver las encuestas que existen en el sistema.</p>
 						@elseif (Request::is('clasespracticas'))
 							<p>Aquí podrás ver las clases prácticas que existen en el sistema.</p>
+						@elseif (Request::is('fotos'))
+							<p>Aquí podrás ver las fotos que existen en el sistema.</p>
 						@elseif (Request::is('examenes'))
 							<p>Aquí podrás ver los exámenes que existen en el sistema.</p>
 						@endif	
@@ -56,15 +58,17 @@
 					|| Request::is('titulos')
 					|| Request::is('encuestas')
 					|| Request::is('clasespracticas')
+					|| Request::is('fotos')
 					|| Request::is('examenes'))
 						<!-- Opciones -->
 					<div class="gallery-filter-quintamarcha text-center">
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarusuarios') }}">usuarios</a>
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarpermisos') }}">permisos</a>
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarusuarios') }}">títulos</a>
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarencuestas') }}">encuestas</a>
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarclases') }}">clases</a>
-						<a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.mostrarusuarios') }}">exámenes</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">usuarios</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarpermisos') }}">permisos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">títulos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarencuestas') }}">encuestas</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarclases') }}">clases</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarfotos') }}">fotos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">exámenes</a>
 					</div>
 					@endif
 				</div>

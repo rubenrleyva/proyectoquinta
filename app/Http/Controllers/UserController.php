@@ -66,25 +66,26 @@ class UserController extends Controller
         // Si la foto existe
         if($request->file('foto')){
 
-        if($request['tipousuario'] == 1){
-            $tipo = "profesores";
-        }else{
-            $tipo = "alumnos";
-        }
+            if($request['tipousuario'] == 1){
+                $tipo = "profesores";
+            }else{
+                $tipo = "estudiantes";
+            }
 
-        // elegimos el nombre del archivo y su ubicación
-        $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';;
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';;
 
-        // le pasamos la imagen, el tamaño y guardamos
-        Image::make($request->file('foto'))
-        ->resize(189, 188, function ($constraint) {
-            $constraint->upsize();
-        })->save($path, 80);
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make($request->file('foto'))
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
 
-        // creamos una nueva foto y le pasamos la URL
-        $foto = Foto::create([
-            'url_foto' => $path,
-        ]);
+            // creamos una nueva foto y le pasamos la URL
+            $foto = Foto::create([
+                'url_foto' => $path,
+                'tipo_foto' => $tipo,
+            ]);
 
         }
 

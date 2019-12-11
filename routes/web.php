@@ -34,11 +34,19 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::post('guardarusuarioeditado/{usuario?}', 'UserController@update')->name('admin.actualizarusuarioeditado.guardar');
     Route::delete('borrarusuario/{usuario}', 'UserController@destroy')->name('admin.borrarusuario.borrar');
 
-    // Rutas correspondientes a las clases prácticas
+    // Rutas de uso para las clases prácticas
     Route::get('clasespracticas', 'ClaseController@index')->name('admin.mostrarclases');
     Route::get('crearclase', 'ClaseController@create')->name('admin.crearclase');
     Route::post('guardarclase/{clase?}', 'ClaseController@store')->name('admin.guardarclase.guardar');
-    Route::post('guardarclaseeditado/{clase?}', 'ClaseController@update')->name('admin.guardarclaseeditado.guardar')->middleware('auth');
+    Route::post('guardarclaseeditado/{clase?}', 'ClaseController@update')->name('admin.guardarclaseeditado.guardar');
+
+    // Rutas de uso para las fotos
+    Route::get('fotos', 'FotoController@index')->name('admin.mostrarfotos');
+    Route::get('crearfoto', 'FotoController@create')->name('admin.crearfoto');
+    Route::post('guardarfoto/{foto?}', 'FotoController@store')->name('admin.guardarfoto.guardar');
+    Route::get('editarfoto/{foto}', 'FotoController@edit')->name('admin.editarfoto.editar');
+    Route::post('guardarfotoeditado/{foto?}', 'FotoController@update')->name('admin.guardarfotoeditado.guardar');
+    Route::delete('borrarfoto/{foto}', 'FotoController@destroy')->name('admin.borrarfoto.borrar');
 
 });
 

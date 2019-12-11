@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Foto;
+use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class FotoController extends Controller
 {
@@ -15,7 +18,11 @@ class FotoController extends Controller
      */
     public function index()
     {
-        //
+        // Recogemos todas las fotos del sistema.
+        $fotos = Foto::all();
+        
+        // Retornamos la vista de dichas fotos.
+        return view('admin.mostrarfotos', compact('fotos'));
     }
 
     /**
@@ -25,7 +32,8 @@ class FotoController extends Controller
      */
     public function create()
     {
-        //
+        // retornamos la vista a la creación Usuarios.
+        return view('admin.crearfoto');
     }
 
     /**
@@ -36,7 +44,32 @@ class FotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Recogemos todas las fotos del sistema.
+        $fotos = Foto::all();
+
+        
+        // Si la foto existe
+        if($request->file('foto')){
+
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
+
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make($request->file('foto'))
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
+
+            // creamos una nueva foto y le pasamos la URL
+            $foto = Foto::create([
+                'url_foto' => $path,
+                'tipo_foto' => $request['tipofoto'],
+            ]);
+
+        }
+
+        // Retornamos la vista de dichas fotos.
+        return view('admin.mostrarfotos', compact('fotos'));
     }
 
     /**
@@ -56,9 +89,12 @@ class FotoController extends Controller
      * @param  \App\Foto  $foto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Foto $foto)
+    public function edit($id)
     {
-        //
+
+        $foto = Foto::find($id);
+        
+        return view('admin.crearfoto', compact('foto', $foto));
     }
 
     /**
@@ -70,7 +106,33 @@ class FotoController extends Controller
      */
     public function update(Request $request, Foto $foto)
     {
-        //
+        $fotos = Foto::all();
+
+        // Si la foto existe
+        if($request->file('foto')){
+            
+            if($foto->url_foto != "img/sin-foto.png"){
+                // eliminamos el archivo.
+                Storage::disk('public')->delete($foto->url_foto);
+            }
+            
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
+
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make($request->file('foto'))
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
+
+            $foto->url_foto = $path;
+            $foto->tipo_foto = $request['tipofoto'];
+            $foto->update();
+
+        }
+
+        // Retornamos la vista de dichas fotos.
+        return view('admin.mostrarfotos', compact('fotos'));
     }
 
     /**
@@ -79,34 +141,32 @@ class FotoController extends Controller
      * @param  \App\Foto  $foto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($usuario)
+    public function destroy($id)
     {
 
-        $foto = Foto::find($usuario->foto->id);
+        $usuario = User::all()->where('foto_id', $id);
+        
+        $foto = Foto::find($id);
+        $fotos = Foto::all();
 
-        if($foto){
-
+        if($foto && (!$usuario->isEmpty())){
+            
             // eliminamos el archivo.
-            Storage::disk('public')->delete($foto->id);
+            Storage::disk('public')->delete($foto->url_foto);
 
-            $foto->url_foto = "";
+            // le asignamos una imagen mientras tanto
+            $foto->url_foto = "img/sin-foto.png";
             $foto->update();
+            $respuesta = "Inserta otra foto";
 
-        // si la foto no tiene url
-        if($foto->url_foto == ""){
-
-          // la respuesta será que la ha borrado.
-          $respuesta = "La foto se ha borrado, elige otra.";
-
-        // en caso contrario.
         }else{
 
-          // indicamos que no foto no ha sido guardada.
-          $respuesta = "La foto no se ha borrado.";
-        }
-      }
+            $foto->delete();
+            $respuesta = "Foto eliminada";
 
-      // Retornamos a la pantalla de editar el Ayuntamiento con un mensaje.
-      return redirect()->route('admin.editarusuario.editar', $usuario)->with('respuestafotos',$respuesta);
+        }
+
+        // Retornamos la vista de dichas fotos.
+        return view('admin.mostrarfotos', compact('fotos'));
     }
 }

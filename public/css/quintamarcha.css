@@ -8,3 +8,13 @@
 .pricing-price h2 {
     font-size: 26px!important;
 }
+
+.fotos {
+    width: 75px;
+    height: 75px;
+}
+
+.botones-menu {
+    width: 145px;
+    margin-left: 0px!important;
+}

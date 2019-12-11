@@ -14,9 +14,13 @@
                 <div class="card-body">
                     <div class="dataTables_wrapper dt-bootstrap4">
                       <a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.crearusuario') }}">Crear usuario</a>
+                      <div class="gallery-filter text-center">
+                        <button class="active" data-filter=".estudiantes">Estudiantes</button>
+                        <button data-filter=".profesores">Profesores</button>
+                    </div>
                         <div class="row">
                             <div class="col-12 table-responsive">
-                              <table id="usotabla" class="table w-100 table-striped table-bordered dt-responsive nowrap text-center" role="grid">
+                              <table id="usotabla" class="profesores table w-100 table-striped table-bordered dt-responsive nowrap text-center" role="grid">
                                     <thead class="thead-dark">
                                         <tr role="row">
                                             <th class="sorting_asc align-middle">ID</th>
