@@ -1,8 +1,8 @@
-/*-------------------------- 
+/*--------------------------
 	Testimonial Style
 --------------------------*/
 .testimonial-area {
-  background: rgba(0, 0, 0, 0) url("../../img/section-bg/testimonial.jpg") repeat scroll 0 0;
+  background: rgba(0, 0, 0, 0) url("../../img/slider/2.jpg") repeat scroll 0 0;
   -webkit-background-size: cover;
   background-size: cover;
 }
