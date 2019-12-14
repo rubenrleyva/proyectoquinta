@@ -13,11 +13,8 @@
 
 // Controlamos la página principal.
 Route::get('/', 'PaginaController@index');
-Route::get('/infopermisos', 'PaginaController@infopermisos');
-
-Route::get('/contacto', function () {
-    return view('bienvenido');
-});
+Route::get('/contacto', 'PaginaController@contacto');
+Route::get('/info-permisos', 'PaginaController@permisos');
 
 
 Route::get('/inicio', function () {
@@ -48,16 +45,18 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::post('guardarfotoeditado/{foto?}', 'FotoController@update')->name('admin.guardarfotoeditado.guardar');
     Route::delete('borrarfoto/{foto}', 'FotoController@destroy')->name('admin.borrarfoto.borrar');
 
+    // Rutas correspondientes a los permisos
+    Route::get('permisos', 'PermisoController@index')->name('admin.mostrarpermisos');
+    Route::get('crearpermiso', 'PermisoController@create')->name('admin.crearpermiso');
+    Route::post('guardarpermiso/{permiso?}', 'PermisoController@store')->name('admin.guardarpermiso.guardar');
+    Route::get('editarpermiso/{permiso}', 'PermisoController@edit')->name('admin.editarpermiso.editar');
+    Route::post('guardarpermisoeditado/{permiso?}', 'PermisoController@update')->name('admin.guardarpermisoeditado.guardar');
+    Route::delete('borrarpermiso/{permiso?}', 'PermisoController@destroy')->name('admin.borrarpermiso.borrar');
+
 });
 
 
-// Rutas correspondientes a los permisos
-Route::get('permisos', 'PermisoController@index')->name('admin.mostrarpermisos')->middleware('auth');
-Route::get('crearpermiso', 'PermisoController@create')->name('admin.crearpermiso')->middleware('auth');
-Route::post('guardarpermiso/{permiso?}', 'PermisoController@store')->name('admin.guardarpermiso.guardar')->middleware('auth');
-Route::get('editarpermiso/{permiso}', 'PermisoController@edit')->name('admin.editarpermiso.editar')->middleware('auth');
-Route::post('guardarpermisoeditado/{permiso?}', 'PermisoController@update')->name('admin.guardarpermisoeditado.guardar')->middleware('auth');
-Route::delete('borrarpermiso/{permiso}', 'PermisoController@destroy')->name('admin.borrarpermiso.borrar')->middleware('auth');
+
 
 // Rutas correspondientes a las encuestas I
 Route::get('encuestas', 'EncuestaController@index')->name('admin.mostrarencuestas')->middleware('auth');
@@ -99,4 +98,4 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

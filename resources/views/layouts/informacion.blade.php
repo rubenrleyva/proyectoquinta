@@ -45,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-	@else
+	@elseif(Request::is('info-permisos'))
 		<div class="container">
 			<!-- Sección de título -->
 			<div class="row">
@@ -72,9 +72,9 @@
 			<div class="gallery-item b col-12 text-center bg-light">
 				<p>El permiso B autoriza para conducir los siguientes vehículos:</p>
 				<p class="text-justify">
-					Automóviles cuya masa máxima autorizada no exceda de 3.500 kg que estén diseñados y construidos para el transporte de no más de 8 pasajeros además del conductor.	
+					Automóviles cuya masa máxima autorizada no exceda de 3.500 kg que estén diseñados y construidos para el transporte de no más de 8 pasajeros además del conductor.
 					Conjuntos de vehículos acoplados compuestos por un vehículo tractor de los que autoriza a conducir el permiso de la clase B y un remolque cuya masa máxima autorizada exceda de 750 kg, siempre que la masa máxima autorizada del conjunto no exceda de 4.250 kg, sin perjuicio de las disposiciones que las normas de aprobación de tipo establezcan para estos vehículos.
-					Triciclos y cuatriciclos de motor.	
+					Triciclos y cuatriciclos de motor.
 				</p>
 			</div>
 			<div class="gallery-item am col-12 text-center bg-light">
@@ -82,7 +82,7 @@
 					El permiso A.M autoriza para conducir los siguientes vehículos:
 				</p>
 				<p class="text-justify-center">
-					Ciclomotores de dos o tres ruedas y cuatriciclos ligeros	
+					Ciclomotores de dos o tres ruedas y cuatriciclos ligeros
 				</p>
 			</div>
 			<div class="gallery-item a1a2 col-12 text-center bg-light">
@@ -91,7 +91,7 @@
 				</p>
 				<p class="text-justify">
 					A1: motocicletas con una cilindrada máxima de 125 cm³ y potencia máxima de 11 kW.
-					A2: motocicletas con una potencia máxima de 35 kW.	
+					A2: motocicletas con una potencia máxima de 35 kW.
 				</p>
 			</div>
 			<div class="gallery-item btp col-12 text-center bg-light">
@@ -100,7 +100,7 @@
 				</p>
 				<p class="text-justify">
 					A1: motocicletas con una cilindrada máxima de 125 cm³ y potencia máxima de 11 kW.
-					A2: motocicletas con una potencia máxima de 35 kW.	
+					A2: motocicletas con una potencia máxima de 35 kW.
 				</p>
 			</div>
 			<div class="gallery-item c1cd1d col-12 text-center bg-light">
@@ -109,7 +109,7 @@
 				</p>
 				<p class="text-justify">
 					A1: motocicletas con una cilindrada máxima de 125 cm³ y potencia máxima de 11 kW.
-					A2: motocicletas con una potencia máxima de 35 kW.	
+					A2: motocicletas con una potencia máxima de 35 kW.
 				</p>
 			</div>
 			<div class="gallery-item e col-12 text-center bg-light">
@@ -118,7 +118,7 @@
 				</p class="text-justify">
 				<p>
 					A1: motocicletas con una cilindrada máxima de 125 cm³ y potencia máxima de 11 kW.
-					A2: motocicletas con una potencia máxima de 35 kW.	
+					A2: motocicletas con una potencia máxima de 35 kW.
 				</p>
 			</div>
 		</div>

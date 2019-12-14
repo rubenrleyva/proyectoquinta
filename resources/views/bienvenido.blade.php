@@ -60,7 +60,7 @@
             @include('layouts.caracteristicas')
             @include('layouts.datos')
             @include('layouts.informacion')
-            {{-- @include('layouts.videos') --}} 
+            {{-- @include('layouts.videos') --}}
             @include('layouts.imagenes')
             @include('layouts.comentarios')
             @include('layouts.profesores')
@@ -74,7 +74,7 @@
             @include('layouts.contacto')
             @include('layouts.whatsapp')
             @include('layouts.pie')
-        @elseif (Request::is('infopermisos'))
+        @elseif (Request::is('info-permisos'))
             @include('layouts.cabecera')
             @include('layouts.slider')
             @include('layouts.informacion')
@@ -119,7 +119,7 @@
         <!-- Main JS
         ============================================ -->
         <script src="js/main.js"></script>
-        <!-- Aquí cargamos los script de las tablas cuando nos hagan falta 
+        <!-- Aquí cargamos los script de las tablas cuando nos hagan falta
         ============================================ -->
         @stack('scripts')
     </body>
