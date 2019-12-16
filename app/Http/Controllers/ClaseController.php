@@ -84,38 +84,19 @@ class ClaseController extends Controller
             $numeroClase = $numeroClases;
         }
 
-        // Si el alumno dispone de bono de clases
-        if($alumno->clasespracticas > 0){
+        // creamos la clase con los precios que nos pasan
+        Clase::create([
+            'clase_numero' => $numeroClase + 1,
+            'id_alumno' => $request['alumno'],
+            'id_profesor' => auth()->user()->id,
+            'comentarios' => $request['comentarios'],
+        ]);
 
-            // creamos la clase con precios a 0
-            Clase::create([
-                'clase_numero' => $numeroClase + 1,
-                'id_alumno' => $request['alumno'],
-                'id_profesor' => auth()->user()->id,
-                'comentarios' => $request['comentarios'],
-                'precio' => 0,
-                'precioiva' => 0,
-            ]);
+        // le restamos al bono una clase.
+        $alumno->clasespracticas = $alumno->clasespracticas - 1;
 
-            // le restamos al bono una clase.
-            $alumno->clasespracticas = $alumno->clasespracticas - 1;
-
-            // actualizamos los datos del alumno.
-            $alumno->update();
-
-        // en caso contrario
-        }else{
-
-            // creamos la clase con los precios que nos pasan
-            Clase::create([
-                'clase_numero' => $numeroClase + 1,
-                'id_alumno' => $request['alumno'],
-                'id_profesor' => auth()->user()->id,
-                'comentarios' => $request['comentarios'],
-                'precio' => $request['precio'],
-                'precioiva' => $request['precioiva'],
-            ]);
-        }
+        // actualizamos los datos del alumno.
+        $alumno->update();
 
         // Retornamos a una vista pasándole un mensaje.
         return redirect()->route('admin.mostrarclases')->with('respuesta', 'La clase ha sido creada.');

@@ -19,8 +19,6 @@ class CreateClasesTable extends Migration
             $table->integer('id_alumno');
             $table->integer('id_profesor');
             $table->string('comentarios');
-            $table->float('precio');
-            $table->float('precioiva');
             $table->timestamps();
         });
     }

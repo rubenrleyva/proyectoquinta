@@ -212,29 +212,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="clasespracticas" class="col-md-4 col-form-label text-md-right text-center">{{ __('Clases Prácticas') }}</label>
-
-                                <div class="col-md-6">
-                                    <select id="clasespracticas" name="clasespracticas" class="form-control @error('clasespracticas') is-invalid @enderror">
-                                        <option value='0' @if ((isset($usuario) && $usuario->clasespracticas == 0)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>0</option>
-                                        <option value='1' @if ((isset($usuario) && $usuario->clasespracticas == 1)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>1</option>
-                                        <option value='2' @if ((isset($usuario) && $usuario->clasespracticas == 2)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>2</option>
-                                        <option value='3' @if ((isset($usuario) && $usuario->clasespracticas == 3)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>3</option>
-                                        <option value='4' @if ((isset($usuario) && $usuario->clasespracticas == 4)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>4</option>
-                                        <option value='5' @if ((isset($usuario) && $usuario->clasespracticas == 5)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>5</option>
-                                        <option value='10' @if ((isset($usuario) && $usuario->clasespracticas == 10)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>10</option>
-                                        <option value='15' @if ((isset($usuario) && $usuario->clasespracticas == 15)){{ old('clasespracticas', 'selected') }}@else{{old('clasespracticas', 'selected')}}@endif>15</option>
-                                    </select>
-
-                                    @error('clasespracticas')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="teorico" class="col-md-4 col-form-label text-md-right text-center">{{ __('Teórico') }}</label>
 
                                 <div class="col-md-6">

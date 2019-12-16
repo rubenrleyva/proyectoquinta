@@ -75,8 +75,8 @@ class FotoController extends Controller
 
             // creamos una nueva foto
             $foto = Foto::create([
-                'url_foto' => $path,
-                'tipo_foto' => $request['tipofoto'],
+                'url_foto' => $request['alumno'],
+                'preciopermiso' => $request['tipofoto'],
                 'texto' => $request['texto'],
             ]);
 

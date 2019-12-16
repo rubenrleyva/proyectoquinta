@@ -53,6 +53,12 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::post('guardarpermisoeditado/{permiso?}', 'PermisoController@update')->name('admin.guardarpermisoeditado.guardar');
     Route::delete('borrarpermiso/{permiso?}', 'PermisoController@destroy')->name('admin.borrarpermiso.borrar');
 
+    // Rutas correspondientes a los pagos
+    Route::get('pagos', 'PagoController@index')->name('admin.mostrarpagos');
+    Route::get('crearpago', 'PagoController@create')->name('admin.crearpago');
+    Route::post('guardarpago/{pago?}', 'PagoController@store')->name('admin.guardarpago.guardar');
+    Route::get('editarpago/{pago}', 'PagoController@edit')->name('admin.editarpago.editar');
+
 });
 
 

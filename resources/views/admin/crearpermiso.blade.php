@@ -172,12 +172,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="precioiva" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio con IVA') }}</label>
+                            <label for="precioferta" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio Oferta') }}</label>
 
                             <div class="col-md-6">
-                                <input id="precioiva" type="number" step="any" class="form-control @error('precioiva') is-invalid @enderror" name="precioiva" value="@if (isset($permiso)){{ old('precioiva', $permiso->precioiva) }}@else{{ old('precioiva') }}@endif" required autocomplete="precioiva">
+                                <input id="precioferta" type="number" step="any" class="form-control @error('precioferta') is-invalid @enderror" name="precioferta" value="@if (isset($permiso)){{ old('precioferta', $permiso->precioferta) }}@else{{ old('precioferta') }}@endif" autocomplete="precioferta">
 
-                                @error('precioiva')
+                                @error('precioferta')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -186,12 +186,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="precioferta" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio Oferta') }}</label>
+                            <label for="precioiva" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio con IVA') }}</label>
 
                             <div class="col-md-6">
-                                <input id="precioferta" type="number" step="any" class="form-control @error('precioferta') is-invalid @enderror" name="precioferta" value="@if (isset($permiso)){{ old('precioferta', $permiso->precioferta) }}@else{{ old('precioferta') }}@endif" autocomplete="precioferta">
+                                <input id="precioiva" type="number" step="any" class="form-control @error('precioiva') is-invalid @enderror" name="precioiva" value="@if (isset($permiso)){{ old('precioiva', $permiso->precioiva) }}@else{{ old('precioiva') }}@endif" required autocomplete="precioiva">
 
-                                @error('precioferta')
+                                @error('precioiva')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

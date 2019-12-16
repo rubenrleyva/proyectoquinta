@@ -83,11 +83,45 @@ function usuarios() {
 }
 
 /**
- * Función encargada de aumentar el IVA en función al precio sin IVA.
+ * Función encargada de aumentar el IVA en función al precio sin IVA para permisos.
  */
 function precioIva() {
-    $('input[name=precio]').change(function () {
+    $('input[name=precioferta]').change(function () {
         $("#precioiva").val($(this).val() * 1.21);
+    });
+}
+
+/**
+ * Función encargada de aumentar el IVA en función al precio sin IVA para permisos.
+ */
+function precioIvaPagos() {
+
+    var permiso = 0;
+    var clases = 0;
+
+    $('select[name=numeroclases]').change(function () {
+
+        clases = 0;
+        
+        clases = $(this).val() * $('input[name=precioclases]').val();
+
+        juntos = clases + parseFloat(permiso);
+
+        $("#precio").val(juntos);
+        $("#precioiva").val(juntos * 1.21);
+    });
+
+    $('select[name=concepto]').change(function () {
+     
+        permiso = 0;
+        
+        permiso = $(this).find(':selected').data('precio');
+
+        juntos = clases + parseFloat(permiso);
+        $("#precioclases").val(0);
+        $("#numeroclases").val($(this).find(':selected').data('clase'));
+        $("#precio").val(juntos);
+        $("#precioiva").val(juntos * 1.21);
     });
 }
 
@@ -190,7 +224,7 @@ function precios() {
     var sumaPrecio = 0;
     var sumaPrecioIva = 0;
 
-    $(".precio").each(function () {
+    $(".precioferta").each(function () {
 
         var value = $(this).text();
         

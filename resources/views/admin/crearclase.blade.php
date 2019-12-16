@@ -113,7 +113,6 @@
     <script>
         $(window).on("load", function() {
             usuarios();
-            precioIva();
         });
     </script>
 @endpush

@@ -122,7 +122,7 @@ class UserController extends Controller
                 'localidad' => $request['localidad'],
                 'codigopostal' => $request['codigopostal'],
                 'matricula' => $request['matricula'],
-                'clasespracticas' => $request['clasespracticas'],
+                'clasespracticas' => 0,
                 'tipousuario' => $request['tipousuario'],
                 'teorico' => $request['teorico'],
                 'id_foto' => $foto->id,
