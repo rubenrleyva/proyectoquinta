@@ -33,7 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('trabajo')->nullable();
             $table->string('comentario')->nullable();
-            $table->unsignedInteger('foto_id')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->unsignedInteger('id_foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

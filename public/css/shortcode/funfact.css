@@ -1,8 +1,8 @@
-/*-------------------------- 
+/*--------------------------
 	Funfact Style
 --------------------------*/
 .funfact-area {
-  background: rgba(0, 0, 0, 0) url("../../img/section-bg/funfact.jpg") no-repeat scroll center center;
+  background: rgba(0, 0, 0, 0) url("../../img/slider/1.jpg") no-repeat scroll center center;
   -webkit-background-size: cover;
   background-size: cover;
 }

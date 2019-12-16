@@ -6,10 +6,15 @@
     <div class="row-fluid">
         <div class="col-12">
             <div class="card">
-              @if (session()->has('respuesta'))
-                <div class="alert alert-success wow fadeInLeft text-center">
-                {{ session('respuesta') }}
-                </div>
+                @if (session()->has('respuesta'))
+                    <div class="alert alert-success wow fadeInLeft text-center">
+                    {{ session('respuesta') }}
+                    </div>
+                @endif
+                @if (session()->has('respuesta-negativa'))
+                    <div class="alert alert-danger wow fadeInLeft text-center">
+                    {{ session('respuesta-negativa') }}
+                    </div>
                 @endif
                 <div class="card-body">
                     <div class="dataTables_wrapper dt-bootstrap4">
@@ -35,7 +40,8 @@
                                             <th class="sorting align-middle">Precio con IVA</th>
                                             <th class="sorting align-middle">¿En oferta?</th>
                                             <th class="sorting align-middle">Fecha de creación</th>
-                                            <th class="sorting align-middle">Opciones</th>
+                                            <th class="sorting align-middle">Editar</th>
+                                            <th class="sorting align-middle">Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,11 +66,13 @@
                                                         Si
                                                     @else
                                                         No
-                                                    @endif 
+                                                    @endif
                                                 </td>
                                                 <td>{{ $permiso->created_at->formatLocalized(' %d %B %H:%M') }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.editarpermiso.editar', $permiso ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>
+                                                </td>
+                                                <td>
                                                     <form id="borrarregistro" action="{{ route('admin.borrarpermiso.borrar', ['permiso'=>$permiso->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
                                                         @csrf
                                                         @method('DELETE')

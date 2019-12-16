@@ -87,6 +87,8 @@ class UserController extends Controller
                 'tipo_foto' => $tipo,
             ]);
 
+
+
         }
 
         if($request['tipousuario'] == 1){
@@ -102,8 +104,8 @@ class UserController extends Controller
                 'telefono' => $request['telefono'],
                 'localidad' => $request['localidad'],
                 'codigopostal' => $request['codigopostal'],
+                'id_foto' => $foto->id,
                 'tipousuario' => $request['tipousuario'],
-                'foto_id' => $foto->id,
             ]);
 
         }else{
@@ -123,8 +125,8 @@ class UserController extends Controller
                 'clasespracticas' => $request['clasespracticas'],
                 'tipousuario' => $request['tipousuario'],
                 'teorico' => $request['teorico'],
+                'id_foto' => $foto->id,
                 'practico' => $request['practico'],
-                'foto_id' => $foto->id,
             ]);
 
         }

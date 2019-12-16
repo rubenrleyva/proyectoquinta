@@ -21,7 +21,7 @@ class User extends Authenticatable
         'dni', 'domicilio', 'fechanacimiento',
         'telefono', 'localidad', 'codigopostal',
         'matricula', 'clasespracticas', 'tipousuario',
-        'teorico', 'practico', 'foto_id'
+        'teorico', 'practico', 'id_foto'
     ];
 
     /**
@@ -48,18 +48,18 @@ class User extends Authenticatable
      */
     public function foto()
     {
-        return $this->belongsTo(Foto::class);
+        return $this->hasOne('App\Foto', 'id', 'id_foto');
     }
 
     /**
      * Función que nos devuelve la clase.
      * @return class Los datos de las clases prácticas del usuario.
-     
+
     *public function clase()
     *{
      *   return $this->hasMany(Clase::class);
     *}
     */
 
-    
+
 }

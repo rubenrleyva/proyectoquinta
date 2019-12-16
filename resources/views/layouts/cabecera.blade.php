@@ -29,7 +29,7 @@
 								<li class="active"><a href="/">autoescuela</a></li>
 								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
 									<ul>
-										<li><a href="{{ url('/infopermisos') }}">Permisos</a></li>
+										<li><a href="{{ url('/info-permisos') }}">Permisos</a></li>
 										<li><a href="header-2.html">Titulos</a></li>
 									</ul>
 								</li>
@@ -39,17 +39,17 @@
 								<li><a href="/">autoescuela</a></li>
 								<li><a class="active" href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
 									<ul>
-										<li><a href="{{ url('/infopermisos') }}">Permisos</a></li>
+										<li><a href="{{ url('/info-permisos') }}">Permisos</a></li>
 										<li><a href="header-2.html">Titulos</a></li>
 									</ul>
 								</li>
 								<li><a href="{{ url('/contacto') }}">contacto</a></li>
 								<li><a href="{{ route('login') }}">mi autoescuela</a></li>
-							@elseif (Request::is('infopermisos'))
+							@elseif (Request::is('info-permisos'))
 								<li><a href="/">autoescuela</a></li>
 								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
 									<ul>
-										<li><a class="active" href="{{ url('/infopermisos') }}">Permisos</a></li>
+										<li><a class="active" href="{{ url('/info-permisos') }}">Permisos</a></li>
 										<li><a href="header-2.html">Titulos</a></li>
 									</ul>
 								</li>

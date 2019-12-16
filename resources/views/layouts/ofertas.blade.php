@@ -18,18 +18,27 @@
 					<div class="col-lg-3 col-md-6 col-12 mb-30">
 						<div class="single-pricing text-center">
 							<div class="pricing-head">
-								<h4>Permiso {{ $permiso->tipopermiso}}+{{ $permiso->clases}}</h4>
+                                <h4>{{ $permiso->descripcion}}
+                                    @if ($permiso->clases > 0)
+                                        {{ $permiso->clases }}
+                                    @endif
+                                </h4>
 							</div>
 							<div class="pricing-price">
 								<h2>{{ $permiso->precioferta }} €</h2>
 							</div>
 							<ul class="pricing-details">
-								<li>Completo.</li>
+                                <li>Completo.</li>
+                                {{-- <li>
+                                    @if ($permiso->clases > 0)
+                                        {{ $permiso->clases }} clases prácticas
+                                    @endif
+                                </li> --}}
 								<li>{{ $permiso->clases}} clases prácticas.</li>
 							</ul>
-							<a href="#" class="pricing-action">Elegir</a>
+							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $permiso->descripcion}}." class="pricing-action">Elegir (Contacta)</a>
 						</div>
-					</div>	
+					</div>
 				@endif
 			@endforeach
 		</div>

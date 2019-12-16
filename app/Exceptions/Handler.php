@@ -46,6 +46,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+
+        if ($exception instanceof NotFoundHttpException) {
+
+            if(Auth::guest()){
+
+                // Retornamos la vista que muestra las encuestas con una respuesta.
+                return redirect()->route('inicio')->with('respuesta-negativa', 'La página que busca no existe');
+
+            }else{
+
+                // Retornamos la vista que muestra las encuestas con una respuesta.
+                return redirect()->route('bienvenido')->with('respuesta-negativa', 'La página que busca no existe');
+
+            }
+
+        }
         return parent::render($request, $exception);
     }
 }

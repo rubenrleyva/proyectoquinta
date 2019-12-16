@@ -9,35 +9,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
+/**
+ * Clase Controlador encaregada de controlar las fotos que realiza la autoescuela.
+ * Versión 0.8 14/12/2019
+ */
 class FotoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Función encargada de mostrar la lista de fotos de la autoescuela.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Recogemos todas las fotos del sistema.
+        // Recogemos el valor de todas las fotos del sistema.
         $fotos = Foto::all();
-        
+
         // Retornamos la vista de dichas fotos.
         return view('admin.mostrarfotos', compact('fotos'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Función encargada de mostrar la pantalla de creación de fotos.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        // retornamos la vista a la creación Usuarios.
+        // Retornamos la vista de creación de una nueva foto.
         return view('admin.crearfoto');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Función encargada de guardar una nueva foto.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -47,33 +51,43 @@ class FotoController extends Controller
         // Recogemos todas las fotos del sistema.
         $fotos = Foto::all();
 
-        
         // Si la foto existe
         if($request->file('foto')){
 
             // elegimos el nombre del archivo y su ubicación
             $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
 
-            // le pasamos la imagen, el tamaño y guardamos
-            Image::make($request->file('foto'))
-            ->resize(189, 188, function ($constraint) {
-                $constraint->upsize();
-            })->save($path, 80);
+            // si la foto es para un estudiante o profesor
+            if(($request['tipofoto'] == "profesores") || ($request['tipofoto'] == "estudiantes")){
+                // le pasamos la imagen, el tamaño y guardamos
+                Image::make($request->file('foto'))
+                ->resize(189, 188, function ($constraint) {
+                    $constraint->upsize();
+                })->save($path, 80);
 
-            // creamos una nueva foto y le pasamos la URL
+            // en caso contrario
+            }else{
+
+                // guardamos la foto sin procesarla
+                Image::make($request->file('foto'))->save($path, 80);
+            }
+
+
+            // creamos una nueva foto
             $foto = Foto::create([
                 'url_foto' => $path,
                 'tipo_foto' => $request['tipofoto'],
+                'texto' => $request['texto'],
             ]);
 
         }
 
-        // Retornamos la vista de dichas fotos.
-        return view('admin.mostrarfotos', compact('fotos'));
+        // Retornamos la vista que muestra todas las fotos del sistema
+        return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', 'La foto ha sido añadida.');
     }
 
     /**
-     * Display the specified resource.
+     * Función encargada de mostrar una única foto
      *
      * @param  \App\Foto  $foto
      * @return \Illuminate\Http\Response
@@ -84,89 +98,141 @@ class FotoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Función encargada de mostrar la pantalla de edición de fotos.
      *
-     * @param  \App\Foto  $foto
+     * @param  \App\Foto  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-
+        // Buscamos la foto en cuestión
         $foto = Foto::find($id);
-        
+
+        // Retornamos la vista que de edición de la foto.
         return view('admin.crearfoto', compact('foto', $foto));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Función encargada de guardar en la base de datos la foto editada.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Foto  $foto
+     * @param  \App\Foto  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Foto $foto)
+    public function update(Request $request, $id)
     {
-        $fotos = Foto::all();
+
+        // Buscamos la foto en el sistema.
+        $foto = Foto::find($id);
 
         // Si la foto existe
-        if($request->file('foto')){
-            
-            if($foto->url_foto != "img/sin-foto.png"){
-                // eliminamos el archivo.
-                Storage::disk('public')->delete($foto->url_foto);
+        if($foto){
+
+            // comprobamos que nos llega una foto.
+            if($request->file('foto')){
+
+                // si la foto es diferente a no tener foto.
+                if($foto->url_foto != "img/sin-foto.png"){
+
+                    // eliminamos la foto anterior.
+                    Storage::disk('public')->delete($foto->url_foto);
+                }
+
+                // elegimos el nombre del archivo y su ubicación
+                $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
+
+
+                // si la foto es para un estudiante o profesor
+                if(($request['tipofoto'] == "profesores") || ($request['tipofoto'] == "estudiantes")){
+                    // le pasamos la imagen, el tamaño y guardamos
+                    Image::make($request->file('foto'))
+                    ->resize(189, 188, function ($constraint) {
+                        $constraint->upsize();
+                    })->save($path, 80);
+
+                // en caso contrario
+                }else{
+
+                    // guardamos la foto sin procesarla
+                    Image::make($request->file('foto'))->save($path, 80);
+                }
+
+                // actualizamos el lugar de guardado de la foto.
+                $foto->url_foto = $path;
+
+                // actualizamos el tipo de foto.
+                $foto->tipo_foto = $request['tipofoto'];
+                $foto->texto = $request['texto'];
+
+                // actualizamos la foto.
+                $foto->update();
+
             }
-            
-            // elegimos el nombre del archivo y su ubicación
-            $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
 
-            // le pasamos la imagen, el tamaño y guardamos
-            Image::make($request->file('foto'))
-            ->resize(189, 188, function ($constraint) {
-                $constraint->upsize();
-            })->save($path, 80);
+            // damos una respuesta
+            $respuesta = 'La imagen ha sido editada';
 
-            $foto->url_foto = $path;
-            $foto->tipo_foto = $request['tipofoto'];
-            $foto->update();
+        // en caso contrario
+        }else{
 
+            // damos una respuesta
+            $respuesta = 'La imagen no existe en el sistema';
         }
 
+        // Recogemos el valor de todas las encuestas del sistema.
+        $fotos = Foto::all();
+
         // Retornamos la vista de dichas fotos.
-        return view('admin.mostrarfotos', compact('fotos'));
+        return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', $respuesta);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Función encargada de borrar una foto.
      *
-     * @param  \App\Foto  $foto
+     * @param  \App\Foto  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
 
+        // Buscamos el usuario de dicha foto.
         $usuario = User::all()->where('foto_id', $id);
-        
-        $foto = Foto::find($id);
-        $fotos = Foto::all();
 
+        // Busamos la foto en el sistema.
+        $foto = Foto::find($id);
+
+        // Comprobamos que la foto existe y que el usuario no está vacío.
         if($foto && (!$usuario->isEmpty())){
-            
-            // eliminamos el archivo.
+
+            // eliminamos el archivo del sistema.
             Storage::disk('public')->delete($foto->url_foto);
 
             // le asignamos una imagen mientras tanto
             $foto->url_foto = "img/sin-foto.png";
+
+            // actualizamos la foto.
             $foto->update();
-            $respuesta = "Inserta otra foto";
+
+            // damos una respuesta.
+            $respuesta = "Inserta otra fotografía";
 
         }else{
 
+            // eliminamos el archivo del sistema.
+            Storage::disk('public')->delete($foto->url_foto);
+
+            // eliminamos la foto del sistema.
             $foto->delete();
-            $respuesta = "Foto eliminada";
+
+            // damos una respuesta.
+            $respuesta = "Fotografía eliminada del sistema";
 
         }
 
-        // Retornamos la vista de dichas fotos.
-        return view('admin.mostrarfotos', compact('fotos'));
+        // Recogemos el valor de todas las encuestas del sistema.
+        $fotos = Foto::all();
+
+        // Retornamos la vista que muestra todas las fotos junto con una respuesta.
+        return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', $respuesta);
     }
 }

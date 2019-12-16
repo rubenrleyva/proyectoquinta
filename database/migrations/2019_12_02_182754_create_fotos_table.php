@@ -17,6 +17,7 @@ class CreateFotosTable extends Migration
             $table->bigIncrements('id');
             $table->string('tipo_foto');
             $table->string('url_foto')->unique();
+            $table->string('texto')->nullable();
             $table->timestamps();
         });
     }
