@@ -13,6 +13,11 @@
                     @endif
                         @csrf
                         <div class="form-group row">
+                            <div class="col-md-12">
+                                <img class="rounded mx-auto d-block" id="preview" src="" alt="" />
+                            </div> 
+                        </div>
+                        <div class="form-group row">
                             @if (!isset($usuario) || !file_exists($usuario->foto->url_foto))
                                 @if (session()->has('respuestafotos'))
                                     <div class="alert alert-success text-center">
@@ -20,7 +25,7 @@
                                     </div>
                                 @endif
                                 <label for="file" class="col-md-4 col-form-label text-md-right text-center">Añade una foto: </label>
-                                <input type="file" name="foto" class="foto {{ $errors->has('foto') ? ' is-invalid' : '' }} btn btn-primary btn-sx text-uppercase" value="Insertar una imagen" accept="image/*" required/>
+                                <input type="file" id="imagen" name="foto" class="foto {{ $errors->has('foto') ? ' is-invalid' : '' }} btn btn-primary btn-sx text-uppercase" value="Insertar una imagen" accept="image/*" required/>
                                 @if ($errors->has('foto'))
                                     <br>
                                     <strong style="color: red;">{{ $errors->first('foto') }}</strong>
@@ -31,22 +36,6 @@
                                     <i class="icofont icofont-close"></i>
                                 </div>
                             @endif 
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="tipousuario" class="col-md-4 col-form-label text-md-right text-center">{{ __('Tipo Usuario') }}</label>
-                            <div class="col-md-6">
-                                <select id="tipousuario" name="tipousuario" class="form-control @error('tipousuario') is-invalid @enderror" required>
-                                    <option value='2' @if ((isset($usuario) && $usuario->tipousuario == 2)){{ old('tipousuario', 'selected') }}@else{{old('tipousuario', 'selected')}}@endif>Alumno</option>     
-                                    <option value='1' @if ((isset($usuario) && $usuario->tipousuario == 1)){{ old('tipousuario', 'selected') }}@else{{old('tipousuario', 'selected')}}@endif>Profesor</option>
-                                </select>
-
-                                @error('tipousuario')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -277,7 +266,10 @@
     <script src="/js/quintamarcha.js"></script>
     <script>
         $(window).on("load", function() {
-            usuarios();
+            //usuarios();
+            $("#imagen").change(function () {
+                previewFoto(this);
+            });
             @if (isset($usuario->foto->url_foto))
                 borrarFoto('{{route('admin.borrarfoto.borrar', $usuario)}}');
             @endif

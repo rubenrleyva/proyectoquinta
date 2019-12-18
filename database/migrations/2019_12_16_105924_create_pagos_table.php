@@ -17,6 +17,7 @@ class CreatePagosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('id_usuario');
             $table->string('concepto');
+            $table->string('numeropago');
             $table->float('precioclases')->nullable();
             $table->integer('clases');
             $table->float('precio')->nullable();

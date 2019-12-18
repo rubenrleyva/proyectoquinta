@@ -61,7 +61,7 @@ function usuarios_deprecated(){
 
 /**
  * Función encargada de activar o desactivar opciones en la creación o edición de usuarios.
- */
+ 
 function usuarios() {
     
     $("#datosextra").hide();
@@ -80,7 +80,7 @@ function usuarios() {
             $("#practico").removeAttr('required');
         }
     });
-}
+}*/
 
 /**
  * Función encargada de aumentar el IVA en función al precio sin IVA para permisos.
@@ -245,6 +245,21 @@ function precios() {
     });
 
     $('#nuevoiva').text(sumaPrecioIva);  
+}
+
+/**
+ * Función encargada de la preview de la foto
+ * @param {foto} input 
+ */
+function previewFoto(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result); 
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 /**

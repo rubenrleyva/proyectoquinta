@@ -270,7 +270,6 @@
     <script src="/js/quintamarcha.js"></script>
     <script>
         $(window).on("load", function() {
-            usuarios();
             precioIva();
         });
     </script>

@@ -46,10 +46,10 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request);
+   
         // Buscamos el alumno
-        $alumno = User::find($request['alumno']);
+        $alumno = User::find($request['id']);
+        $pagos = Pago::all()->where('id_usuario', $request['alumno'])->count();
 
         // Validamos algunos datos.
        $this->validate($request, [
@@ -66,7 +66,8 @@ class PagoController extends Controller
 
         // Creamos un nuevo pago.
         Pago::create([
-            'id_usuario' => $request['alumno'],
+            'id_usuario' => $request['id'],
+            'numeropago' => $pagos + 1,
             'concepto' => $request['concepto'],
             'precioclases' => $request['preciopermiso'],
             'clases' => $request['numeroclases'],
@@ -76,7 +77,7 @@ class PagoController extends Controller
         ]);
 
         // Actualizamos las clases prácticas del alumno.
-        $alumno->clasespracticas = $alumno->clasespracticas + $request['clases'];
+        $alumno->clasespracticas = $alumno->clasespracticas + $request['numeroclases'];
 
         // Guardamos los cambios
         $alumno->update();
@@ -102,21 +103,61 @@ class PagoController extends Controller
      * @param  \App\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pago $pago)
+    public function edit($id)
     {
-        //
+        $permisos = Permiso::all();
+        $usuario = User::find($id);
+
+        // Retornamos los valores y se los pasamos a una vista.
+        return view('admin.crearpago', compact('usuario', 'permisos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pago $pago)
+    public function update(Request $request)
     {
-        //
+        dd($request['id']);
+        // Buscamos el alumno
+        $alumno = User::find($request['id']);
+        $pagos = Pago::all()->where('id_usuario', $request['alumno'])->count();
+
+        // Validamos algunos datos.
+       $this->validate($request, [
+            'concepto' => ['required', 'string', 'max:255'],
+            'precio' => ['required', 'string', 'max:255'],
+            'precioiva' => ['required', 'string', 'max:255'],
+        ]);
+
+        if($request['pagado']){
+            $pagado = 1;
+        }else{
+            $pagado = 0;
+        }
+
+        // Creamos un nuevo pago.
+        Pago::create([
+            'id_usuario' => $request['id'],
+            'numeropago' => $pagos + 1,
+            'concepto' => $request['concepto'],
+            'precioclases' => $request['preciopermiso'],
+            'clases' => $request['numeroclases'],
+            'precio' => $request['precio'],
+            'precioiva' => $request['precioiva'],
+            'pagado' => $pagado,
+        ]);
+
+        // Actualizamos las clases prácticas del alumno.
+        $alumno->clasespracticas = $alumno->clasespracticas + $request['numeroclases'];
+
+        // Guardamos los cambios
+        $alumno->update();
+
+        // Retornamos la vista que muestra las encuestas junto con un mensaje.
+        return redirect()->route('admin.mostrarpagos')->with('respuesta', 'El pago ha sido guardado.');
     }
 
     /**

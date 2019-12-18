@@ -16,7 +16,7 @@ class CreatePermisosTable extends Migration
         Schema::create('permisos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tipopermiso');
-            $table->string('descripcion')->unique();
+            $table->string('descripcion');
             $table->string('texto1')->nullable();
             $table->string('texto2')->nullable();
             $table->string('texto3')->nullable();

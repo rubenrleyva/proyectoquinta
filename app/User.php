@@ -53,6 +53,16 @@ class User extends Authenticatable
 
     /**
      * Función que nos devuelve la clase.
+     * @return class Los datos delpago del usuario.
+     */
+    public function pago()
+    {
+        return $this->belongsTo('App\Clase');
+    }
+    
+
+    /**
+     * Función que nos devuelve la clase.
      * @return class Los datos de las clases prácticas del usuario.
 
     *public function clase()

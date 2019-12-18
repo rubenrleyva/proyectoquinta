@@ -24,8 +24,8 @@
                                             <th class="sorting align-middle">Alumno</th>
                                             <th class="sorting align-middle">Profesor</th>
                                             <th class="sorting align-middle">Comentarios</th>
-                                            <th class="sorting align-middle">Precio</th>
-                                            <th class="sorting align-middle">Precio IVA</th>
+                                            {{-- <th class="sorting align-middle">Precio</th>
+                                            <th class="sorting align-middle">Precio IVA</th> --}}
                                             <th class="sorting align-middle">Fecha de realización</th>
                                         </tr>
                                     </thead>
@@ -38,8 +38,8 @@
                                                     <td>{{ $clase->usuarioAlumno->name }} {{ $clase->usuarioAlumno->apellidos }}</td>
                                                     <td>{{ $clase->usuarioProfesor->name }} {{ $clase->usuarioProfesor->apellidos }}</td>
                                                     <td>{{ $clase->comentarios }}</td>
-                                                    <td class ="precio">{{ $clase->precio }} €</td>
-                                                    <td class ="precioiva">{{ $clase->precioiva }} €</td>
+                                                    {{-- <td class ="precio">{{ $clase->precio }} €</td>
+                                                    <td class ="precioiva">{{ $clase->precioiva }} €</td> --}}
                                                     <td>{{ $clase->created_at->formatLocalized(' %d %B %H:%M') }}</td>
                                                 </tr>
                                             @endforeach

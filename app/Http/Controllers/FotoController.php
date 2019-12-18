@@ -72,11 +72,10 @@ class FotoController extends Controller
                 Image::make($request->file('foto'))->save($path, 80);
             }
 
-
             // creamos una nueva foto
             $foto = Foto::create([
-                'url_foto' => $request['alumno'],
-                'preciopermiso' => $request['tipofoto'],
+                'url_foto' => $path,
+                'tipo_foto' => $request['tipofoto'],
                 'texto' => $request['texto'],
             ]);
 
@@ -142,17 +141,24 @@ class FotoController extends Controller
                 $path = 'img/'.$request['tipofoto'].'/'.Str::random(30).'.'.'jpg';;
 
 
-                // si la foto es para un estudiante o profesor
-                if(($request['tipofoto'] == "profesores") || ($request['tipofoto'] == "estudiantes")){
+                // si la foto es para un estudiante
+                if($request['tipofoto'] == "estudiantes"){
                     // le pasamos la imagen, el tamaño y guardamos
                     Image::make($request->file('foto'))
                     ->resize(189, 188, function ($constraint) {
                         $constraint->upsize();
                     })->save($path, 80);
 
-                // en caso contrario
-                }else{
+                // si la foto es para un profesor
+                }else if($request['tipofoto'] == "profesores"){
 
+                    // le pasamos la imagen, el tamaño y guardamos
+                    Image::make($request->file('foto'))
+                    ->resize(370, 327, function ($constraint) {
+                        $constraint->upsize();
+                    })->save($path, 80);
+                    
+                }else{
                     // guardamos la foto sin procesarla
                     Image::make($request->file('foto'))->save($path, 80);
                 }

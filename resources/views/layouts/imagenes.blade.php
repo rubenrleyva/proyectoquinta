@@ -1,6 +1,6 @@
 <!-- Area de galería de imágenes
 ============================================ -->
-<div id="gallery-area" class="gallery-area bg-gray pt-90 pb-60">
+<div id="gallery-area" class="gallery-area bg pt-90 pb-60">
 	<div class="container">
 		<!-- Sección título. -->
 		<div class="row">

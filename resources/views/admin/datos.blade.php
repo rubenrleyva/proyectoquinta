@@ -90,3 +90,12 @@
 		</div>
 	</div>
 </div>
+<!-- Area de pie de página
+============================================ -->
+<div class="footer-area overlay overlay-black overlay-70">
+	<div class="container">
+		<div class="footer-bottom text-center col-12">
+			<p class="copyright">Copyright Autoescuela QuintaMarcha -<i class="fa fa-copyright"></i> Desde el 2005 - Todos los derechos reservados - Desarrollado por <a href="https://rubenrleyva.dev/" target="_blank" >RubenRLeyva.dev</a> </p>
+		</div>
+	</div>
+</div>

@@ -64,8 +64,8 @@ class ClaseController extends Controller
         // Comprobamos que son válidos los datos introducidos.
         $this->validate($request, [
             'comentarios' => ['required', 'string', 'max:255'],
-            'precio' => ['required'],
-            'precioiva' => ['required'],
+            //'precio' => ['required'],
+            //'precioiva' => ['required'],
         ]);
 
         // Contamos el número de clases que tiene el alumno.

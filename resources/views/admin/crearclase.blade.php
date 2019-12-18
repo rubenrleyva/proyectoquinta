@@ -19,7 +19,10 @@
                             <div class="col-md-6">
                                 <select id="alumno" name="alumno" class="form-control @error('alumno') is-invalid @enderror">
                                     @foreach ($usuarios as $usuario)
-                                        <option value='{{ $usuario->id }}'>{{ $usuario->name }}</option>
+                                    @if ($usuario->clasespracticas > 0)
+                                        <option value='{{ $usuario->id }}'>{{ $usuario->name }}</option>          
+                                    @endif
+                                        
                                     @endforeach  
                                 </select>
 
@@ -59,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="precio" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio sin IVA') }}</label>
 
                             <div class="col-md-6">
@@ -85,7 +88,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row col-md-offset-1">
                             <div class="col-md-4 offset-md-4 text-center mb-1">

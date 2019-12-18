@@ -23,9 +23,10 @@
                                             <th class="sorting align-middle">Número de pago</th>
                                             <th class="sorting align-middle">Alumno</th>
                                             <th class="sorting align-middle">Concepto</th>
+                                            <th class="sorting align-middle">Número de clases</th>
                                             <th class="sorting align-middle">Cantidad</th>
-                                            <th class="sorting align-middle">Fecha de realización</th>
                                             <th class="sorting align-middle">Pagado</th>
+                                            <th class="sorting align-middle">Fecha de realización</th>
                                             <th class="sorting align-middle">Editar</th>
                                             <th class="sorting align-middle">Borrar</th>
                                         </tr>
@@ -35,10 +36,16 @@
                                             @foreach ($pagos as $pago)
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $pago->id }}</td>
-                                                    <td>{{ $pago->usuario->count() }}</td>
+                                                    <td>{{ $pago->numeropago}}</td>
                                                     <td>{{ $pago->usuario->name }} </td>
                                                     <td>{{ $pago->concepto }} </td>
+                                                    <td>{{ $pago->clases }} </td>
                                                     <td>{{ $pago->precioiva }}€</td>
+                                                    @if ($pago->pagado)
+                                                        <td>Pagado</td>
+                                                    @else
+                                                        <td>No pagado</td>
+                                                    @endif  
                                                     <td>{{ $pago->created_at->formatLocalized(' %d %B %H:%M') }}</td>
                                                     <td> - </td>
                                                     <td> - </td>

@@ -15,14 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('apellidos');
-            $table->string('dni');
-            $table->string('domicilio');
-            $table->date('fechanacimiento');
-            $table->string('telefono');
-            $table->string('localidad');
-            $table->string('codigopostal');
+            $table->string('name')->nullable();
+            $table->string('apellidos')->nullable();
+            $table->string('dni')->nullable();
+            $table->string('domicilio')->nullable();
+            $table->date('fechanacimiento')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('codigopostal')->nullable();
             $table->string('matricula')->nullable();
             $table->integer('clasespracticas')->nullable();
             $table->integer('teorico')->nullable();
@@ -31,11 +31,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('tipousuario');
             $table->string('password');
-            $table->string('trabajo')->nullable();
             $table->string('comentario')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
-            $table->unsignedInteger('id_foto')->nullable();
+            $table->integer('id_foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

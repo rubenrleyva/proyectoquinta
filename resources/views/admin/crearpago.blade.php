@@ -12,28 +12,59 @@
                         <form name="crearpago" method="POST" action="{{ route('admin.guardarpago.guardar') }}">
                     @endif
                         @csrf
+                        @if ($usuario)
+                            <div class="form-group row">
+                                <label for="id" class="col-md-4 col-form-label text-md-right text-center">{{ __('ID alumno') }}</label>
 
-                        <div class="form-group row">
-                            <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Alumno') }}</label>
-                            <div class="col-md-6">
-                                <select id="alumno" name="alumno" class="form-control @error('alumno') is-invalid @enderror" selected required>
-                                @foreach ($alumnos as $alumno)
-                                    <option value='{{ $alumno->id }}'>{{ $alumno->name }}</option>         
-                                @endforeach 
-                                </select>
+                                <div class="col-md-6">
+                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" value="{{ $usuario->id }}" name="id" autocomplete="id" readonly>
+
+                                @error('id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                
+                            </div>
+                            <div class="form-group row">
+                                <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Alumno') }}</label>
+
+                                <div class="col-md-6">
+                                <input id="alumno" type="text" class="form-control @error('alumno') is-invalid @enderror" value="{{ $usuario->name }} {{ $usuario->apellidos }}" name="alumno" autocomplete="alumno" readonly>
+
                                 @error('alumno')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                </div>
+                                
                             </div>
-                        </div>
+                        @else
+                            <div class="form-group row">
+                                <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Alumno') }}</label>
+                                <div class="col-md-6">
+                                    <select id="alumno" name="alumno" class="form-control @error('alumno') is-invalid @enderror" selected required>
+                                    @foreach ($alumnos as $alumno)
+                                        <option value='{{ $alumno->id }}'>{{ $alumno->name }}</option>            
+                                    @endforeach 
+                                    </select>
+                                    @error('alumno')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        @endif
+                        
 
                         <div class="form-group row">
                             <label for="concepto" class="col-md-4 col-form-label text-md-right text-center">{{ __('Concepto') }}</label>
                             <div class="col-md-6">
                                 <select id="concepto" name="concepto" class="form-control @error('concepto') is-invalid @enderror" selected>
-                                    <option value='0'>Clases prácticas</option>      
+                                    <option value='Clases prácticas'>Clases prácticas</option>      
                                 @foreach ($permisos as $permiso)
                                     <option value='{{ $permiso->descripcion }}' data-precio='{{ $permiso->precio }}' data-clase='{{ $permiso->clases }}'>{{ $permiso->descripcion }} con {{ $permiso->clases }} clases por {{ $permiso->precio }} €</option>         
                                 @endforeach 
@@ -149,7 +180,6 @@
     <script src="/js/quintamarcha.js"></script>
     <script>
         $(window).on("load", function() {
-            usuarios();
             precioIvaPagos();
         });
     </script>

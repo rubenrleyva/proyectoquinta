@@ -14,7 +14,11 @@
 	@elseif (Request::is('permisos'))
 		<title>Quintamarcha - Permisos</title>
 	@elseif (Request::is('permisos/*'))
-		<title>Quintamarcha - Crear permisos</title>
+		<title>Quintamarcha - Crear permiso</title>
+	@elseif (Request::is('clasespracticas'))
+		<title>Quintamarcha - Clases</title>
+	@elseif (Request::is('clases/*'))
+		<title>Quintamarcha - Crear clase</title>
 	@endif
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,8 +122,8 @@
 	@include('admin.cabecera')
 	@include('admin.slider')
 	@include('admin.datos')
-	@include('layouts.whatsapp')
-	@include('layouts.pie')
+	{{-- @include('layouts.whatsapp')
+	@include('layouts.pie') --}}
 </div>
 <!-- Final del body principal -->
 

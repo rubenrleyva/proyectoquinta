@@ -18,3 +18,7 @@
     width: 145px;
     margin-left: 0px!important;
 }
+
+.sombra {
+    text-shadow: 5px 5px 5px black;
+}
