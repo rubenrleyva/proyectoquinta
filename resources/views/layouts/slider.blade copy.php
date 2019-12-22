@@ -1,6 +1,6 @@
 @if (Request::is('/'))
 	<!-- Area de Slider
-    ============================================ -->
+	============================================ -->
 	<div id="hero-area" class="hero-slider-area">
 		<div id="hero-slider" class="nivoSlider slider-image">
 			<img src="img/slider/1.jpg" alt="main slider" title="#htmlcaption1"/>

@@ -59,19 +59,19 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Clase');
     }
-    
+
 
     /**
      * Función que nos devuelve la clase.
      * @return class Los datos de las clases prácticas del usuario.
-
-    *public function clase()
-    *{
-     *   return $this->hasMany(Clase::class);
-    *}
     */
+    public function clase()
+    {
+        return $this->hasMany('App\Clase', 'id_alumno', 'id');
+    }
 
-    
+
+
 
 
 }

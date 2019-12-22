@@ -43,13 +43,13 @@
                                                             No procede
                                                         @else
                                                             {{ $usuario->matricula }}
-                                                        @endif 
-                                                    </td>   
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $usuario->email }}</td>
                                                     <td><button type="button" class="btn color wow fadeInLeft" data-toggle="modal" data-target="#usuario{{ $usuario->dni }}"><i class="icofont icofont-eye"></i></button></td>
                                                     <td><a href="{{ route('admin.editarusuario.editar', $usuario ) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a></td>
-                                                    <td>                           
-                                                        <form id="borrarregistro" action="{{ route('admin.borrarusuario.borrar', ['usuario'=>$usuario->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
+                                                    <td>
+                                                        <form name="borrarregistro" action="{{ route('admin.borrarusuario.borrar', ['usuario'=>$usuario->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn color wow fadeInLeft"><i class="icofont icofont-close"></i></button>
@@ -57,59 +57,78 @@
                                                     </td>
                                                 </tr>
                                                 <div id="usuario{{ $usuario->dni }}" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <div class="card-body">
-                                                                        <div class="container-fluid">                                                 
-                                                                            <div class="row mb-3">
-                                                                                <img src="{{ $usuario->foto->url_foto }}" class="rounded mx-auto d-block">
-                                                                            </div>
-                                                                            <div class="card">
-                                                                                <div class="card-body">
-                                                                                    <div class="row">
-                                                                                        <label for="name" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Nombre:') }}</label>
-                                                                                        <label for="name" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->name }}</label>
-                                                                                        <label for="apellidos" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Apellidos:') }}</label>
-                                                                                        <label for="apellidos" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->apellidos }}</label>
-                                                                                    </div>              
-                                                                                    <div class="row">
-                                                                                        <label for="dni" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('DNI:') }}</label>
-                                                                                        <label for="dni" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->dni }}</label>
-                                                                                        <label for="domicilio" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Domicilio:') }}</label>
-                                                                                        <label for="domicilio" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->domicilio }}</label>
-                                                                                    </div>      
-                                                                                    <div class="row">
-                                                                                        <label for="fechanacimiento" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Fecha de nacimiento:') }}</label>
-                                                                                        <label for="fechanacimiento" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->fechanacimiento }}</label>
-                                                                                        <label for="telefono" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Teléfono:') }}</label>
-                                                                                        <label for="telefono" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->telefono }}</label>
-                                                                                    </div>               
-                                                                                    <div class="row">
-                                                                                        <label for="matricula" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Matrícula:') }}</label>
-                                                                                        <label for="matricula" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->matricula }}</label>
-                                                                                        <label for="clasespracticas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases prácticas:') }}</label>
-                                                                                        <label for="clasespracticas" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->clasespracticas }}</label>
-                                                                                    </div>        
-                                                                                </div>                                                                   
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="card-body">
+                                                                    <div class="container-fluid">
+                                                                        <div class="row mb-3">
+                                                                            <img src="{{ $usuario->foto->url_foto }}" class="rounded mx-auto d-block">
+                                                                        </div>
+                                                                        <div class="card">
+                                                                            <div class="card-body">
+                                                                                <div class="row">
+                                                                                    <label for="name" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Nombre:') }}</label>
+                                                                                    <label for="name" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->name }}</label>
+                                                                                    <label for="apellidos" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Apellidos:') }}</label>
+                                                                                    <label for="apellidos" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->apellidos }}</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <label for="dni" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('DNI:') }}</label>
+                                                                                    <label for="dni" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->dni }}</label>
+                                                                                    <label for="domicilio" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Domicilio:') }}</label>
+                                                                                    <label for="domicilio" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->domicilio }}</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <label for="fechanacimiento" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Fecha de nacimiento:') }}</label>
+                                                                                    <label for="fechanacimiento" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->fechanacimiento }}</label>
+                                                                                    <label for="telefono" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Teléfono:') }}</label>
+                                                                                    <label for="telefono" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->telefono }}</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <label for="matricula" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Matrícula:') }}</label>
+                                                                                    <label for="matricula" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->matricula }}</label>
+                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases prácticas:') }}</label>
+                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->clasespracticas }}</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases restantes:') }}</label>
+                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->clasespracticas }}</label>
+                                                                                    <label for="clasesrealizadas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases realizadas:') }}</label>
+                                                                                    <label for="clasesrealizadas" class="col-md-3 col-form-label text-md-left text-center">{{  $usuario->clase->count() }}</label>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <label for="clasespracticas" class="col-md-12 col-form-label text-center font-weight-bold">{{ __('Clases Prácticas:') }}</label>
+                                                                                    @if ($usuario->clase->count() < 1)
+                                                                                        <p for="clasespracticas" class="col-md-12 col-form-label text-center">{{ __('Sin clases prácticas realizadas.') }}</p>
+                                                                                    @else
+                                                                                        @foreach ($usuario->clase as $clase)
+                                                                                            <label for="clasenumero" class="col-md-1 col-form-label text-md-right text-center font-weight-bold">{{ $clase->clase_numero }}</label>
+                                                                                            <label for="clasecomentario" class="col-md-11 col-form-label text-md-left text-center">{{ $clase->comentarios }}</label>
+                                                                                        @endforeach
+                                                                                    @endif
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="form-group row col-md-offset-1">
-                                                                        <div class="col-md-4 offset-md-4 text-center mb-1">
-                                                                            <a class="btn color col-form-label text-md-right text-center font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a>  
-                                                                        </div>
-                                                                        <div class="col-md-4 offset-md-4 text-center">
+                                                                </div>
+                                                                <div class="form-group row col-md-offset-1">
+                                                                    <div class="col-md-4 offset-md-4 text-center mb-1">
+                                                                        <a class="btn color col-form-label text-md-right text-center font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a>
+                                                                    </div>
+                                                                    <div class="col-md-4 offset-md-4 text-center">
+                                                                        @if ($usuario->clasespracticas > 0)
                                                                             <a class="btn color col-form-label text-md-right text-center font-weight-bold" href="{{ route('admin.crearclase', $usuario) }}">Añade clase</a>
-                                                                        </div>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn color" data-dismiss="modal">Cerrar</button>
-                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn color" data-dismiss="modal">Cerrar</button>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                             @endif
                                         @endforeach
                                     </tbody>
@@ -128,9 +147,7 @@
   <script src="/js/quintamarcha.js"></script>
   <script>
     $(window).on("load", function() {
-
       tabla();
-
     });
   </script>
 @endpush

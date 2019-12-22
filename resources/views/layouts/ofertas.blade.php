@@ -12,10 +12,10 @@
 				<i class="icofont icofont-traffic-light"></i>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row multiple-items">
 			@foreach($permisos as $permiso)
 				@if ($permiso->oferta == 1)
-					<div class="col-lg-3 col-md-6 col-12 mb-30">
+					<div class="col-lg-3 col-md-6 col-12 mb-30 ">
 						<div class="single-pricing text-center">
 							<div class="pricing-head">
                                 <h4>{{ $permiso->descripcion}}
@@ -29,11 +29,6 @@
 							</div>
 							<ul class="pricing-details">
                                 <li>Completo.</li>
-                                {{-- <li>
-                                    @if ($permiso->clases > 0)
-                                        {{ $permiso->clases }} clases prácticas
-                                    @endif
-                                </li> --}}
 								<li>{{ $permiso->clases}} clases prácticas.</li>
 							</ul>
 							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $permiso->descripcion}}." class="pricing-action">Elegir (Contacta)</a>

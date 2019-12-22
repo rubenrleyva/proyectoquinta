@@ -200,24 +200,17 @@ class FotoController extends Controller
      */
     public function destroy($id)
     {
-
         // Buscamos el usuario de dicha foto.
-        $usuario = User::all()->where('foto_id', $id);
+        $usuario = User::find($id);
 
         // Busamos la foto en el sistema.
-        $foto = Foto::find($id);
+        $foto = Foto::find($usuario->id_foto);
 
         // Comprobamos que la foto existe y que el usuario no está vacío.
-        if($foto && (!$usuario->isEmpty())){
+        if($foto && $usuario){
 
             // eliminamos el archivo del sistema.
             Storage::disk('public')->delete($foto->url_foto);
-
-            // le asignamos una imagen mientras tanto
-            $foto->url_foto = "img/sin-foto.png";
-
-            // actualizamos la foto.
-            $foto->update();
 
             // damos una respuesta.
             $respuesta = "Inserta otra fotografía";
@@ -238,7 +231,8 @@ class FotoController extends Controller
         // Recogemos el valor de todas las encuestas del sistema.
         $fotos = Foto::all();
 
+        return redirect()->back()->with('fotos', $fotos)->with('respuesta', $respuesta);
         // Retornamos la vista que muestra todas las fotos junto con una respuesta.
-        return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', $respuesta);
+        //return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', $respuesta);
     }
 }

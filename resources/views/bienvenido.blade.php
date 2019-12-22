@@ -62,7 +62,7 @@
             @include('layouts.informacion')
             {{-- @include('layouts.videos') --}}
             @include('layouts.imagenes')
-            {{-- @include('layouts.comentarios')-- }}
+            @include('layouts.comentarios')
             {{-- @include('layouts.profesores') --}}
             @include('layouts.ofertas')
             @include('layouts.preguntas')

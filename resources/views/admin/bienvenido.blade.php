@@ -50,17 +50,17 @@
 		<!-- Estilo de color
 		============================================ -->
 		<link rel="stylesheet" href="/../css/color/color-3.css">
-		<!-- Tabla CSS 
+		<!-- Tabla CSS
 		============================================ -->
 		<link rel="stylesheet" href="/css/jquery.dataTables.min.css">
-		<!-- Tabla CSS 
+		<!-- Tabla CSS
 		============================================ -->
 		<link rel="stylesheet" href="/css/quintamarcha.css">
 		<!-- Modernizer JS
 		============================================ -->
 		<script type="text/javascript" src="/js/vendor/modernizr-2.8.3.min.js"></script>
 
-		
+
 	@else
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
@@ -88,20 +88,20 @@
 		<!-- Estilo de color
 		============================================ -->
 		<link href="css/color/color-3.css" rel="stylesheet">
-		<!-- Tabla CSS 
+		<!-- Tabla CSS
 		============================================ -->
 		<link rel="stylesheet" href="css/jquery.dataTables.min.css">
-		<!-- Tabla CSS 
+		<!-- Tabla CSS
 		============================================ -->
 		<link rel="stylesheet" href="css/quintamarcha.css">
 		<!-- Modernizer JS
 		============================================ -->
-		<script type="text/javascript" src="js/vendor/modernizr-2.8.3.min.js"></script>	
+		<script type="text/javascript" src="js/vendor/modernizr-2.8.3.min.js"></script>
 	@endif
 	<!-- Aquí cargamos los css de las tablas cuando nos hagan falta
 	============================================ -->
 	@stack('csstablas')
-	
+
 </head>
 <body>
 
@@ -123,7 +123,16 @@
 	@include('admin.slider')
 	@include('admin.datos')
 	{{-- @include('layouts.whatsapp')
-	@include('layouts.pie') --}}
+    @include('layouts.pie') --}}
+    <!-- Area de pie de página
+    ============================================ -->
+    <div class="footer-area overlay overlay-black overlay-70">
+        <div class="container">
+            <div class="footer-bottom text-center col-12">
+                <p class="copyright">Copyright Autoescuela QuintaMarcha -<i class="fa fa-copyright"></i> Desde el 2005 - Todos los derechos reservados - Desarrollado por <a href="https://rubenrleyva.dev/" target="_blank" >RubenRLeyva.dev</a> </p>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Final del body principal -->
 
@@ -132,7 +141,7 @@
 @if (Request::is('*/*'))
 	<!-- jQuery JS
 	============================================ -->
-	<script type="text/javascript" src="/../js/vendor/jquery-1.12.0.min.js"></script> 
+	<script type="text/javascript" src="/../js/vendor/jquery-1.12.0.min.js"></script>
 	<!-- DataTable JS
 	============================================ -->
 	<script type="text/javascript" src="/../js/jquery.dataTables.min.js"></script>
@@ -174,7 +183,7 @@
 	============================================ -->
 	<script type="text/javascript" src="js/main.js"></script>
 @endif
-<!-- Aquí cargamos los script de las tablas cuando nos hagan falta 
+<!-- Aquí cargamos los script de las tablas cuando nos hagan falta
 ============================================ -->
 @stack('scripttablas')
 

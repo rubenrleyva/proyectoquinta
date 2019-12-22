@@ -16,23 +16,25 @@
 		<div class="gallery-filter text-center">
 			<button class="active" data-filter="*">todo</button>
 			<button data-filter=".coches">coches</button>
-			<button data-filter=".estudiantes">estudiantes</button>
 			<button data-filter=".instalaciones">instalaciones</button>
 			<button data-filter=".examenes">exámenes</button>
+			<button data-filter=".otras">otras</button>
 		</div>
 		<!-- Galería de imágenes -->
 		<div class="gallery-grid row">
             @if (isset($fotos))
-                @foreach ($fotos as $foto)
-                    <div class="gallery-item {{ $foto->tipo_foto }} col-lg-3 col-md-4 col-12">
-                        <a href="{{ $foto->url_foto }}" class="gallery-image image-popup">
-                            <img src="{{ $foto->url_foto }}" alt="{{ $foto->tipo_foto }}" />
-                            <div class="content">
-                                <i class="icofont icofont-search"></i>
-                                <h4>{{ $foto->texto }}</h4>
-                            </div>
-                        </a>
-                    </div>
+				@foreach ($fotos as $foto)
+					@if ($foto->tipo_foto != "estudiantes")
+						<div class="gallery-item {{ $foto->tipo_foto }} col-lg-3 col-md-4 col-12">
+							<a href="{{ $foto->url_foto }}" class="gallery-image image-popup">
+								<img src="{{ $foto->url_foto }}" alt="{{ $foto->tipo_foto }}" />
+								<div class="content">
+									<i class="icofont icofont-search"></i>
+									<h4>{{ $foto->texto }}</h4>
+								</div>
+							</a>
+						</div>
+					@endif
                 @endforeach
             @endif
 		</div>

@@ -15,11 +15,12 @@
 Route::get('/', 'PaginaController@index');
 Route::get('/contacto', 'PaginaController@contacto');
 Route::get('/info-permisos', 'PaginaController@permisos');
+Route::get('/inicio', 'PaginaController@inicio')->middleware('auth');
 
-
+/*
 Route::get('/inicio', function () {
     return view('inicio');
-})->middleware('auth');
+})->middleware('auth');*/
 
 Route::middleware(['auth', 'role'])->group(function () {
 

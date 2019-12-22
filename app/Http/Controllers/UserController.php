@@ -60,16 +60,16 @@ class UserController extends Controller
             'telefono' => ['required', 'string', 'max:255'],
             'localidad' => ['required', 'string', 'max:255'],
             'codigopostal' => ['required', 'string', 'min:5'],
-            'foto' => ['required', 'file'],
+
         ]);
 
         // Si la foto existe
         if($request->file('foto')){
 
             $tipo = "estudiantes";
-        
+
             // elegimos el nombre del archivo y su ubicación
-            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';;
+            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';
 
             // le pasamos la imagen, el tamaño y guardamos
             Image::make($request->file('foto'))
@@ -83,8 +83,26 @@ class UserController extends Controller
                 'tipo_foto' => $tipo,
             ]);
 
+        }else{
+
+            $tipo = "estudiantes";
+
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';
+
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make('img\sin-foto.png')
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
+
+            // creamos una nueva foto y le pasamos la URL
+            $foto = Foto::create([
+                'url_foto' => $path,
+                'tipo_foto' => $tipo,
+            ]);
         }
-   
+
         User::create([
             'name' => $request['name'],
             'apellidos' => $request['apellidos'],
@@ -130,11 +148,9 @@ class UserController extends Controller
         // Buscamos al usuario
         $usuario = User::find($id);
 
-        // Si el usuario conectado es el administrador.
-        if (auth()->user()->tipousuario == 1) {
-             // retornamos la vista a la creación usuarios.
-            return view('admin.crearusuario', compact('usuario', $usuario));
-        }
+        // retornamos la vista a la creación usuarios.
+        return view('admin.crearusuario', compact('usuario', $usuario));
+
     }
 
     /**
@@ -148,7 +164,7 @@ class UserController extends Controller
     {
         // Buscamos al usuario
         $usuario = User::find($id);
-        
+
         $this->validate($request, [
                 'name' => ['required', 'string', 'max:255'],
             ]);
@@ -177,6 +193,46 @@ class UserController extends Controller
             'codigopostal' => ['required', 'string', 'min:5'],
         ]);
 
+        // Si la foto existe
+        if($request->file('foto')){
+
+            $tipo = "estudiantes";
+
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';
+
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make($request->file('foto'))
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
+
+            // creamos una nueva foto y le pasamos la URL
+            $foto = Foto::create([
+                'url_foto' => $path,
+                'tipo_foto' => $tipo,
+            ]);
+
+        }else{
+
+            $tipo = "estudiantes";
+
+            // elegimos el nombre del archivo y su ubicación
+            $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';
+
+            // le pasamos la imagen, el tamaño y guardamos
+            Image::make('img\sin-foto.png')
+            ->resize(189, 188, function ($constraint) {
+                $constraint->upsize();
+            })->save($path, 80);
+
+            // creamos una nueva foto y le pasamos la URL
+            $foto = Foto::create([
+                'url_foto' => $path,
+                'tipo_foto' => $tipo,
+            ]);
+        }
+
         // actualizamos los diferentes valores
         $usuario->name = $request['name'];
         $usuario->email = $request['email'];
@@ -194,16 +250,17 @@ class UserController extends Controller
         $usuario->telefono = $request['telefono'];
         $usuario->localidad = $request['localidad'];
         $usuario->codigopostal = $request['codigopostal'];
-        $usuario->tipousuario = $request['tipousuario'];
+        $usuario->tipousuario = 2;
 
-        $usuario->clasespracticas = $request['clasespracticas'];
+        $usuario->clasespracticas = $usuario->clasespracticas;
         $usuario->matricula = $request['matricula'];
         $usuario->teorico = $request['teorico'];
         $usuario->practico = $request['practico'];
+        $usuario->id_foto = $foto->id;
 
         $usuario->update();
         // damos una respuesta de los sucedido.
-        $respuesta = 'El usuario '.$request['name'].' ha sido creado.';
+        $respuesta = 'El usuario '.$request['name'].' ha sido editado.';
 
         // retornamos la ruta de muestra de usuarios.
         return redirect()->route('admin.mostrarusuarios')->with('respuesta', $respuesta);

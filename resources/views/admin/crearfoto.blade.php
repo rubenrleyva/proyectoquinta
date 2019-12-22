@@ -17,8 +17,6 @@
                             <label for="tipofoto" class="col-md-4 col-form-label text-md-right text-center">{{ __('Tipo foto') }}</label>
                             <div class="col-md-4">
                                 <select id="tipofoto" name="tipofoto" class="form-control @error('tipofoto') is-invalid @enderror" required>
-                                    <option value='estudiantes' @if ((isset($foto) && $foto->tipo_foto == "estudiantes")){{ old('tipofoto', 'selected') }}@endif>Estudiantes</option>
-                                    <option value='profesores' @if ((isset($foto) && $foto->tipo_foto == "profesores")){{ old('tipofoto', 'selected') }}@endif>Profesores</option>
                                     <option value='coches' @if ((isset($foto) && $foto->tipo_foto == "coches")){{ old('tipofoto', 'selected') }}@endif>Coches</option>
                                     <option value='instalaciones' @if ((isset($foto) && $foto->tipo_foto == "instalacines")){{ old('tipofoto', 'selected') }}@endif>Instalaciones</option>
                                     <option value='examenes' @if ((isset($foto) && $foto->tipo_foto == "examenes")){{ old('tipofoto', 'selected') }}@endif>Exámenes</option>

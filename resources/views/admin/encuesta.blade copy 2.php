@@ -34,7 +34,7 @@
                                                     <div class="form-check required">
                                                         @foreach ($pregunta->respuesta as $respuesta)
                                                             <ul>
-                                                                <input class="form-check-input" @if($respuesta->tipo == 1) type="radio" @else type="checkbox" @endif name="pregunta{{ $respuesta->id_pregunta }}@if($respuesta->tipo == 2)[] @endif" value="{{ $respuesta->id }}">
+                                                                <input class="form-check-input" @if($respuesta->tipo == 1) type="radio" @else type="checkbox" @endif name="pregunta{{ $respuesta->id_pregunta }}@if($respuesta->tipo == 2)[] @endif" id="pregunta{{ $respuesta->id_pregunta }}" value="{{ $respuesta->id }}">
                                                                 <label class="form-check-label" for="pregunta{{ $respuesta->id_pregunta }}">
                                                                     {{ $respuesta->respuesta }}
                                                                 </label>

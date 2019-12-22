@@ -12,7 +12,7 @@ win.on('load', function() {
 	Menu Sticky
 -----------------------------------*/
 var sticky = $('.sticky');
-win.on('scroll',function() {    
+win.on('scroll',function() {
 	var scroll = win.scrollTop();
 	if (scroll < 245) {
 		sticky.removeClass('stick');
@@ -68,14 +68,17 @@ $('.mean-menu nav').meanmenu({
 	Hero Slider
 -----------------------------------*/
 $('#hero-slider').nivoSlider({
-	animSpeed: 500,
-	slices: 18,
-	pauseTime: 55557000,
-	pauseOnHover: true,
-	controlNav: true,
+	//animSpeed: 500,
+	//slices: 18,
+    pauseTime: 7000,
+	//pauseOnHover: true,
+    //controlNav: true,
+    //autoplay: true,
+    autoplaySpeed: 1000,
+    infinite: true,
 	prevText: '<i class="icofont icofont-long-arrow-left"></i>',
     nextText: '<i class="icofont icofont-long-arrow-right"></i>',
-	afterChange: function(){ 
+	afterChange: function(){
 		var date = $('.nivo-caption .date-picker');
 		date.datepicker();
 		var select = $('.nivo-caption .cusselect');
@@ -137,7 +140,7 @@ galleryPopup.magnificPopup({
 	type: 'image',
 	gallery:{
 		enabled:true
-	}	
+	}
 });
 /*--
 	Isotop with ImagesLoaded
@@ -160,7 +163,7 @@ galleryGrid.isotope({
     columnWidth: '.gallery-item',
   }
 });
-	
+
 });
 /*--
 	Testimonial Slider
@@ -172,7 +175,10 @@ tiSlider.slick({
   asNavFor: '.tc-slider',
   centerMode: true,
   centerPadding: '225px',
+  animSpeed: 500,
   slidesToShow: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
   responsive: [
     {
       breakpoint: 1150,
@@ -223,11 +229,11 @@ tsNext.on('click', function(){
 var slideshowBG = $('.slideshow-bg');
 slideshowBG.backstretch([
     'img/slider/1.jpg',
-    'img/slider/4.jpg',
+    'img/slider/2.jpg',
     'img/slider/3.jpg',
 ],{
 	fade: 750,
-	duration: 3000
+	duration: 4000
 });
 /*--
 	Kenburnsy Slideshow
@@ -272,7 +278,50 @@ if (hamburgers.length > 0) {
   });
 }
 
+/*--
+	Ofertas Slider
+-----------------------------------*/
+$('.multiple-items').slick({
+    arrows: false,
+    centerMode: true,
+    animSpeed: 500,
+    slidesToShow: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+        {
+            breakpoint: 1150,
+            settings: {
+                centerPadding: '190px',
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 990,
+            settings: {
+                centerPadding: '210px',
+                slidesToShow: 2,
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                centerPadding: '50px',
+                slidesToShow: 1,
+            }
+        },
+        {
+            breakpoint: 350,
+            settings: {
+                centerPadding: '20px',
+                slidesToShow: 1,
+                centerMode: false,
+            }
+        }
+    ]
+});
 
 
 
-})(jQuery);	
+
+})(jQuery);

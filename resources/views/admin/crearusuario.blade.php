@@ -25,7 +25,7 @@
                                     </div>
                                 @endif
                                 <label for="file" class="col-md-4 col-form-label text-md-right text-center">Añade una foto: </label>
-                                <input type="file" id="imagen" name="foto" class="foto {{ $errors->has('foto') ? ' is-invalid' : '' }} btn btn-primary btn-sx text-uppercase" value="Insertar una imagen" accept="image/*" required/>
+                                <input type="file" id="imagen" name="foto" class="foto {{ $errors->has('foto') ? ' is-invalid' : '' }} btn btn-primary btn-sx text-uppercase" value="Insertar una imagen" accept="image/*"/>
                                 @if ($errors->has('foto'))
                                     <br>
                                     <strong style="color: red;">{{ $errors->first('foto') }}</strong>
