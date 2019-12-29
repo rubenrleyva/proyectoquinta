@@ -13,25 +13,25 @@
 			</div>
 		</div>
 		<div class="row multiple-items">
-			@foreach($permisos as $permiso)
-				@if ($permiso->oferta == 1)
+			@foreach($servicios as $servicio)
+				@if ($servicio->oferta == 1)
 					<div class="col-lg-3 col-md-6 col-12 mb-30 ">
 						<div class="single-pricing text-center">
 							<div class="pricing-head">
-                                <h4>{{ $permiso->descripcion}}
-                                    @if ($permiso->clases > 0)
-                                        {{ $permiso->clases }}
+                                <h4>{{ $servicio->descripcion}}
+                                    @if ($servicio->clases > 0)
+                                        {{ $servicio->clases }}
                                     @endif
                                 </h4>
 							</div>
 							<div class="pricing-price">
-								<h2>{{ $permiso->precioferta }} €</h2>
+								<h2>{{ $servicio->precioiva }} €</h2>
 							</div>
 							<ul class="pricing-details">
                                 <li>Completo.</li>
-								<li>{{ $permiso->clases}} clases prácticas.</li>
+								<li>{{ $servicio->clases}} clases prácticas.</li>
 							</ul>
-							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $permiso->descripcion}}." class="pricing-action">Elegir (Contacta)</a>
+							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $servicio->descripcion}}." class="pricing-action">Elegir (Contacta)</a>
 						</div>
 					</div>
 				@endif

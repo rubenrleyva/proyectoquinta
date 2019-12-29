@@ -14,7 +14,7 @@
 // Controlamos la página principal.
 Route::get('/', 'PaginaController@index');
 Route::get('/contacto', 'PaginaController@contacto');
-Route::get('/info-permisos', 'PaginaController@permisos');
+Route::get('/info-servicios', 'PaginaController@servicios');
 Route::get('/inicio', 'PaginaController@inicio')->middleware('auth');
 
 /*
@@ -47,12 +47,12 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::delete('borrarfoto/{foto}', 'FotoController@destroy')->name('admin.borrarfoto.borrar');
 
     // Rutas correspondientes a los permisos
-    Route::get('permisos', 'PermisoController@index')->name('admin.mostrarpermisos');
-    Route::get('crearpermiso', 'PermisoController@create')->name('admin.crearpermiso');
-    Route::post('guardarpermiso/{permiso?}', 'PermisoController@store')->name('admin.guardarpermiso.guardar');
-    Route::get('editarpermiso/{permiso}', 'PermisoController@edit')->name('admin.editarpermiso.editar');
-    Route::post('guardarpermisoeditado/{permiso?}', 'PermisoController@update')->name('admin.guardarpermisoeditado.guardar');
-    Route::delete('borrarpermiso/{permiso?}', 'PermisoController@destroy')->name('admin.borrarpermiso.borrar');
+    Route::get('servicios', 'ServicioController@index')->name('admin.mostrarservicios');
+    Route::get('crearservicio', 'ServicioController@create')->name('admin.crearservicio');
+    Route::post('guardarservicio/{servicio?}', 'ServicioController@store')->name('admin.guardarservicio.guardar');
+    Route::get('editarservicio/{servicio}', 'ServicioController@edit')->name('admin.editarservicio.editar');
+    Route::post('guardarservicioeditado/{servicio?}', 'ServicioController@update')->name('admin.guardarservicioeditado.guardar');
+    Route::delete('borrarservicio/{servicio?}', 'ServicioController@destroy')->name('admin.borrarservicio.borrar');
 
     // Rutas correspondientes a los pagos
     Route::get('pagos', 'PagoController@index')->name('admin.mostrarpagos');
@@ -82,7 +82,7 @@ Route::post('guardarpreguntaeditada/{pregunta?}', 'PreguntaEncuestaController@up
 Route::delete('borrarpreguntaencuesta/{pregunta?}', 'PreguntaEncuestaController@destroy')->name('admin.borrarpreguntaencuesta.borrar')->middleware('auth');
 
 // Rutas para las fotos
-Route::get('borrarfoto/{id}', 'FotoController@destroy')->name('admin.borrarfoto.borrar')->middleware('auth');
+// Route::get('borrarfoto/{id}', 'FotoController@destroy')->name('admin.borrarfoto.borrar')->middleware('auth');
 
 // Rutas correspondientes a las respuestas
 Route::post('responderencuesta/{respuestas?}', 'RespuestaEncuestasController@update')->name('admin.editarrespuestaencuesta.editar')->middleware('auth');

@@ -66,11 +66,11 @@
 							<li><a href="/">inicio</a></li>
 							<li><span>contacto</span></li>
 						</ul>
-					@elseif(Request::is('infopermisos'))
-						<h1>permisos</h1>
+					@elseif(Request::is('info-servicios'))
+						<h1>servicios</h1>
 						<ul>
 							<li><a href="/">inicio</a></li>
-							<li><span>permisos</span></li>
+							<li><span>servicios</span></li>
 						</ul>
 					@endif
 				</div>

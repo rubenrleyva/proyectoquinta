@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pago;
 use App\User;
-use App\Permiso;
+use App\Servicio;
 use Illuminate\Http\Request;
 
 class PagoController extends Controller
@@ -31,11 +31,11 @@ class PagoController extends Controller
     public function create()
     {
 
-        $permisos = Permiso::all();
+        $servicios = Servicio::all();
         $alumnos = User::all()->where('tipousuario', 2);
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('admin.crearpago', compact('permisos', 'alumnos'));
+        return view('admin.crearpago', compact('servicios', 'alumnos'));
     }
 
     /**
@@ -105,11 +105,11 @@ class PagoController extends Controller
      */
     public function edit($id)
     {
-        $permisos = Permiso::all();
+        $servicio = Servicio::all();
         $usuario = User::find($id);
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('admin.crearpago', compact('usuario', 'permisos'));
+        return view('admin.crearpago', compact('usuario', 'servicio'));
     }
 
     /**
@@ -120,7 +120,7 @@ class PagoController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request['id']);
+       
         // Buscamos el alumno
         $alumno = User::find($request['id']);
         $pagos = Pago::all()->where('id_usuario', $request['alumno'])->count();

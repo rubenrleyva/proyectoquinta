@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Permiso;
+use App\Servicio;
 use App\User;
 use App\Foto;
 

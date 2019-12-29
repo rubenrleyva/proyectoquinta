@@ -30,16 +30,16 @@
 							<p>Rellena los datos necesarios para editar el usuario</p>
 						@elseif (Request::is('permisos'))
 							<p>Aquí podrás ver los permisos que existen en el sistema.</p>
-						@elseif (Request::is('crearpermiso'))
-							<p>Rellena los datos necesarios para crear un nuevo permiso</p>
-						@elseif (Request::is('editarpermiso/*'))
-							<p>Rellena los datos necesarios para editar el permiso</p>
-						@elseif (Request::is('titulos'))
-							<p>Aquí podrás ver los títulos que existen en el sistema.</p>
+						@elseif (Request::is('crearformacion'))
+							<p>Rellena los datos necesarios para crear una nueva formación</p>
+						@elseif (Request::is('editarformacion/*'))
+							<p>Rellena los datos necesarios para editar la formación</p>
 						@elseif (Request::is('encuestas'))
 							<p>Aquí podrás ver las encuestas que existen en el sistema.</p>
 						@elseif (Request::is('clasespracticas'))
 							<p>Aquí podrás ver las clases prácticas que existen en el sistema.</p>
+						@elseif (Request::is('pagos'))
+							<p>Aquí podrás ver los pagos que existen en el sistema.</p>
 						@elseif (Request::is('fotos'))
 							<p>Aquí podrás ver las fotos que existen en el sistema.</p>
 						@elseif (Request::is('examenes'))
@@ -54,19 +54,19 @@
 			<div class="row">
 				<div class="text-center col-12 mb-20">
 					@if (Request::is('usuarios') || Request::is('inicio')
-					|| Request::is('permisos')
-					|| Request::is('titulos')
+					|| Request::is('servicios')
 					|| Request::is('encuestas')
 					|| Request::is('clasespracticas')
+					|| Request::is('pagos')
 					|| Request::is('fotos')
 					|| Request::is('examenes'))
 						<!-- Opciones -->
 					<div class="gallery-filter-quintamarcha text-center">
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">usuarios</a>
-						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarpermisos') }}">permisos</a>
-						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">títulos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarservicios') }}">servicios</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarencuestas') }}">encuestas</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarclases') }}">clases</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarclases') }}">pagos</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarfotos') }}">fotos</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">exámenes</a>
 					</div>

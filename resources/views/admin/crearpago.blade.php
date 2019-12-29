@@ -58,16 +58,16 @@
                                 </div>
                             </div>
                         @endif
-                        
-
                         <div class="form-group row">
                             <label for="concepto" class="col-md-4 col-form-label text-md-right text-center">{{ __('Concepto') }}</label>
                             <div class="col-md-6">
                                 <select id="concepto" name="concepto" class="form-control @error('concepto') is-invalid @enderror" selected>
-                                    <option value='Clases prácticas'>Clases prácticas</option>      
-                                @foreach ($permisos as $permiso)
-                                    <option value='{{ $permiso->descripcion }}' data-precio='{{ $permiso->precio }}' data-clase='{{ $permiso->clases }}'>{{ $permiso->descripcion }} con {{ $permiso->clases }} clases por {{ $permiso->precio }} €</option>         
-                                @endforeach 
+                                    <option value='Clases prácticas'>Clases prácticas</option>
+                                    @if (isset($servicios))
+                                         @foreach ($servicios as $servicio)
+                                            <option value='{{ $servicio->descripcion }}' data-precio='{{ $servicio->precio }}' data-clase='{{ $servicio->clases }}'>{{ $servicio->descripcion }} con {{ $servicio->clases }} clases por {{ $servicio->precio }} €</option>         
+                                        @endforeach 
+                                    @endif     
                                 </select>
                                 @error('concepto')
                                     <span class="invalid-feedback" role="alert">
@@ -158,7 +158,7 @@
                         <div class="form-group row col-md-offset-1">
                             <div class="col-md-4 offset-md-4 text-center mb-1">
                                 <button type="submit" class="btn color wow fadeInLeft">
-                                    @if (Request::is('editarpermiso/*'))
+                                    @if (Request::is('editarservicio/*'))
                                         {{ __('Editar Pago') }}
                                     @else
                                         {{ __('Añadir Pago') }}

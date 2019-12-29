@@ -27,52 +27,22 @@
 						<ul>
 							@if (Request::is('/'))
 								<li class="active"><a href="/">autoescuela</a></li>
-								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="{{ url('/info-permisos') }}">Permisos</a></li>
-										<li><a href="header-2.html">Titulos</a></li>
-									</ul>
-								</li>
+								<li><a href="{{ url('/info-servicios') }}">servicios</a></li>
 								<li><a href="{{ url('/contacto') }}">contacto</a></li>
 								<li><a href="{{ route('login') }}">mi autoescuela</a></li>
-							@elseif (Request::is('servicios'))
+							@elseif (Request::is('info-servicios'))
 								<li><a href="/">autoescuela</a></li>
-								<li><a class="active" href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="{{ url('/info-permisos') }}">Permisos</a></li>
-										<li><a href="header-2.html">Titulos</a></li>
-									</ul>
-								</li>
-								<li><a href="{{ url('/contacto') }}">contacto</a></li>
-								<li><a href="{{ route('login') }}">mi autoescuela</a></li>
-							@elseif (Request::is('info-permisos'))
-								<li><a href="/">autoescuela</a></li>
-								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a class="active" href="{{ url('/info-permisos') }}">Permisos</a></li>
-										<li><a href="header-2.html">Titulos</a></li>
-									</ul>
-								</li>
+								<li class="active"><a href="{{ url('/info-servicios') }}">servicios</a></li>
 								<li><a href="{{ url('/contacto') }}">contacto</a></li>
 								<li><a href="{{ route('login') }}">mi autoescuela</a></li>
 							@elseif (Request::is('contacto'))
 								<li><a href="/">autoescuela</a></li>
-								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="header-1.html">Permisos</a></li>
-										<li><a href="header-2.html">Titulos</a></li>
-									</ul>
-								</li>
+								<li><a href="{{ url('/info-servicios') }}">servicios</a></li>
 								<li class="active"><a href="{{ url('/contacto') }}">contacto</a></li>
 								<li><a href="{{ route('login') }}">mi autoescuela</a></li>
 							@elseif (Request::is('login'))
 								<li><a href="/">autoescuela</a></li>
-								<li><a href="{{ url('/servicios') }}">servicios<i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="header-1.html">Permisos</a></li>
-										<li><a href="header-2.html">Titulos</a></li>
-									</ul>
-								</li>
+								<li><a href="{{ url('/info-servicios') }}">servicios</a></li>
 								<li><a href="{{ url('/contacto') }}">contacto</a></li>
 								<li class="active"><a href="{{ route('login') }}">mi autoescuela</a></li>
 							@endif

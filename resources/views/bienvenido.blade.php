@@ -74,11 +74,11 @@
             @include('layouts.contacto')
             @include('layouts.whatsapp')
             @include('layouts.pie')
-        @elseif (Request::is('info-permisos'))
+        @elseif (Request::is('info-servicios'))
             @include('layouts.cabecera')
             @include('layouts.slider')
             @include('layouts.informacion')
-            @include('layouts.ofertas')
+            {{-- @include('layouts.ofertas') --}}
             @include('layouts.whatsapp')
             @include('layouts.pie')
         @elseif (Request::is('login'))

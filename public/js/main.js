@@ -285,7 +285,7 @@ $('.multiple-items').slick({
     arrows: false,
     centerMode: true,
     animSpeed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
@@ -293,7 +293,7 @@ $('.multiple-items').slick({
             breakpoint: 1150,
             settings: {
                 centerPadding: '190px',
-                slidesToShow: 2,
+                slidesToShow: 1,
             }
         },
         {

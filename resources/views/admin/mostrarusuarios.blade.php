@@ -56,69 +56,128 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                                <div id="usuario{{ $usuario->dni }}" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
+                                                <div id="usuario{{ $usuario->dni }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                         <div class="modal-content">
                                                             <div class="modal-body">
                                                                 <div class="card-body">
                                                                     <div class="container-fluid">
-                                                                        <div class="row mb-3">
+                                                                        {{-- <div class="row mb-3">
                                                                             <img src="{{ $usuario->foto->url_foto }}" class="rounded mx-auto d-block">
-                                                                        </div>
-                                                                        <div class="card">
+                                                                        </div> --}}
+                                                                        <div class="card ">
                                                                             <div class="card-body">
-                                                                                <div class="row">
-                                                                                    <label for="name" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Nombre:') }}</label>
-                                                                                    <label for="name" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->name }}</label>
-                                                                                    <label for="apellidos" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Apellidos:') }}</label>
-                                                                                    <label for="apellidos" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->apellidos }}</label>
+                                                                                <div class="form-row mb-4">
+                                                                                    <img src="{{ $usuario->foto->url_foto }}" class="rounded mx-auto d-block">
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <label for="dni" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('DNI:') }}</label>
-                                                                                    <label for="dni" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->dni }}</label>
-                                                                                    <label for="domicilio" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Domicilio:') }}</label>
-                                                                                    <label for="domicilio" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->domicilio }}</label>
+                                                                                <div class="form-row mb-2">
+                                                                                    <div class="form-group col-md-12 text-center">
+                                                                                        <h4 class="font-weight-bold">Datos personales:</h4>  
+                                                                                    </div>
+                                                                                </div>                                                                             
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="nombre">Nombre</label>
+                                                                                        <div for="nombre" class="form-control w-auto h-auto">{{ $usuario->name }}</div>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="email">Email</label>
+                                                                                        <p for="email" class="form-control w-auto h-auto">{{ $usuario->email }}</p>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <label for="fechanacimiento" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Fecha de nacimiento:') }}</label>
-                                                                                    <label for="fechanacimiento" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->fechanacimiento }}</label>
-                                                                                    <label for="telefono" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Teléfono:') }}</label>
-                                                                                    <label for="telefono" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->telefono }}</label>
+                                                                                <div class="form-group">
+                                                                                    <label for="inputAddress">Dirección</label>
+                                                                                    <p for="email" class="form-control w-auto h-auto">{{ $usuario->domicilio }}</p>
+                                                                                </div>  
+                                                                                <div class="form-row">
+                                                                                    <div class="form-group col-md-6">
+                                                                                        <label for="inputCity">Localidad</label>
+                                                                                        <p for="email" class="form-control w-auto h-auto">{{ $usuario->localidad }}</p>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-4">
+                                                                                        <label for="cp">Teléfono</label>
+                                                                                        <p for="cp" class="form-control w-auto h-auto">{{ $usuario->telefono }}</p>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-2">
+                                                                                        <label for="cp">CP</label>
+                                                                                        <p for="cp" class="form-control w-auto h-auto">{{ $usuario->codigopostal }}</p>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <label for="matricula" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Matrícula:') }}</label>
-                                                                                    <label for="matricula" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->matricula }}</label>
-                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases prácticas:') }}</label>
-                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->clasespracticas }}</label>
+                                                                                <div class="form-row mb-3">
+                                                                                    <div class="form-group col-md-6 ">
+                                                                                        <label for="clases">Nº Prácticas restantes</label>
+                                                                                        <p for="email" class="form-control w-auto h-auto">{{ $usuario->clasespracticas }}</p>
+                                                                                    </div>
+                                                                                    <div class="form-group col-md-6 ">
+                                                                                        <label for="cp">Nº Prácticas realizadas</label>
+                                                                                        <p for="cp" class="form-control w-auto h-auto">
+                                                                                            {{ $usuario->clase->count() }}
+                                                                                        </p>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases restantes:') }}</label>
-                                                                                    <label for="clasespracticas" class="col-md-3 col-form-label text-md-left text-center">{{ $usuario->clasespracticas }}</label>
-                                                                                    <label for="clasesrealizadas" class="col-md-3 col-form-label text-md-right text-center font-weight-bold">{{ __('Clases realizadas:') }}</label>
-                                                                                    <label for="clasesrealizadas" class="col-md-3 col-form-label text-md-left text-center">{{  $usuario->clase->count() }}</label>
+                                                                                
+                                                                                <div class="form-row mb-2">
+                                                                                    <div class="form-group col-md-12 text-center">
+                                                                                        <h5 class="font-weight-bold">Clases prácticas:</h5>  
+                                                                                    </div>
+                                                                                </div>   
+
+                                                                                @foreach ($usuario->clase as $clase)
+                                                                                    <div class="form-row mb-1">
+                                                                                        <div class="form-group col-md-1">
+                                                                                            <label>Nº</label>
+                                                                                            <p class="form-control">
+                                                                                                {{ $clase->clase_numero }} 
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="form-group col-md-11">
+                                                                                            <label>Comentario</label>
+                                                                                            <p class="form-control w-auto h-auto">
+                                                                                                {{ $clase->comentarios }}    
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                                
+                                                                                <div class="form-row mb-2 mt-3">
+                                                                                    <div class="form-group col-md-12 text-center">
+                                                                                        <h5 class="font-weight-bold">Pagos realizados:</h5>  
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <label for="clasespracticas" class="col-md-12 col-form-label text-center font-weight-bold">{{ __('Clases Prácticas:') }}</label>
-                                                                                    @if ($usuario->clase->count() < 1)
-                                                                                        <p for="clasespracticas" class="col-md-12 col-form-label text-center">{{ __('Sin clases prácticas realizadas.') }}</p>
-                                                                                    @else
-                                                                                        @foreach ($usuario->clase as $clase)
-                                                                                            <label for="clasenumero" class="col-md-1 col-form-label text-md-right text-center font-weight-bold">{{ $clase->clase_numero }}</label>
-                                                                                            <label for="clasecomentario" class="col-md-11 col-form-label text-md-left text-center">{{ $clase->comentarios }}</label>
-                                                                                        @endforeach
-                                                                                    @endif
-                                                                                </div>
+
+                                                                                @foreach ($usuario->pago as $pago)
+                                                                                    <div class="form-row mb-1">
+                                                                                        <div class="form-group col-md-1">
+                                                                                            <label>Nº</label>
+                                                                                            <p class="form-control">
+                                                                                                {{ $pago->numeropago }} 
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="form-group col-md-7">
+                                                                                            <label>Concepto</label>
+                                                                                            <p class="form-control w-auto h-auto">
+                                                                                                {{ $pago->concepto }}    
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="form-group col-md-4">
+                                                                                            <label>Fecha</label>
+                                                                                            <p class="form-control w-auto h-auto">
+                                                                                                {{ $pago->created_at->formatLocalized(' %d %B %H:%M') }}    
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row col-md-offset-1">
-                                                                    <div class="col-md-4 offset-md-4 text-center mb-1">
-                                                                        <a class="btn color col-form-label text-md-right text-center font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a>
+                                                                <div class="form-row mb-3">
+                                                                     <div class="form-group col-md-6 text-center">
+                                                                        <a class="btn color font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a>
                                                                     </div>
-                                                                    <div class="col-md-4 offset-md-4 text-center">
+                                                                    <div class="form-group col-md-6 text-center">
                                                                         @if ($usuario->clasespracticas > 0)
-                                                                            <a class="btn color col-form-label text-md-right text-center font-weight-bold" href="{{ route('admin.crearclase', $usuario) }}">Añade clase</a>
+                                                                            <a class="btn color font-weight-bold" href="{{ route('admin.crearclase', $usuario) }}">Añade clase</a>
                                                                         @endif
                                                                     </div>
                                                                 </div>

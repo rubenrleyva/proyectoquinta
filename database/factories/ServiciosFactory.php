@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Permiso;
+use App\Formacion;
 use Faker\Generator as Faker;
 
-$factory->define(Permiso::class, function (Faker $faker) {
+$factory->define(Formacion::class, function (Faker $faker) {
     return [
         //
     ];

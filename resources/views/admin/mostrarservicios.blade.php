@@ -2,7 +2,7 @@
 
 @section('contenido')
 <div class="container-fluid pt-5">
-    @if ($permisos)
+    @if ($servicios)
     <div class="row-fluid">
         <div class="col-12">
             <div class="card">
@@ -18,14 +18,15 @@
                 @endif
                 <div class="card-body">
                     <div class="dataTables_wrapper dt-bootstrap4">
-                      <a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.crearpermiso') }}">Crear permiso</a>
+                      <a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.crearservicio') }}">Crear servicio</a>
                         <div class="row">
                             <div class="col-12 table-responsive">
                               <table id="usotabla" class="table w-100 table-striped table-bordered dt-responsive nowrap text-center" role="grid">
                                     <thead class="thead-dark">
                                         <tr role="row">
                                             <th class="sorting_asc align-middle">ID</th>
-                                            <th class="sorting align-middle">Permiso</th>
+                                            <th class="sorting align-middle">Tipo formación</th>
+                                            <th class="sorting align-middle">Nombre</th>
                                             <th class="sorting align-middle">Descripción</th>
                                             <th class="sorting align-middle">Texto1</th>
                                             <th class="sorting align-middle">Texto2</th>
@@ -45,35 +46,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($permisos as $permiso)
+                                        @foreach ($servicios as $servicio)
                                             <tr role="row">
-                                                <td class="sorting_1">{{ $permiso->id }}</td>
-                                                <td>{{ $permiso->tipopermiso }}</td>
-                                                <td>{{ $permiso->descripcion }}</td>
-                                                <td>{{ $permiso->texto1 }}</td>
-                                                <td>{{ $permiso->texto2 }}</td>
-                                                <td>{{ $permiso->texto3 }}</td>
-                                                <td>{{ $permiso->texto4 }}</td>
-                                                <td>{{ $permiso->texto5 }}</td>
-                                                <td>{{ $permiso->texto6 }}</td>
-                                                <td>{{ $permiso->texto7 }}</td>
-                                                <td>{{ $permiso->texto8 }}</td>
-                                                <td>{{ $permiso->clases }}</td>
-                                                <td>{{ $permiso->precio }}</td>
-                                                <td>{{ $permiso->precioiva }}</td>
+                                                <td class="sorting_1">{{ $servicio->id }}</td>
+                                                <td>{{ $servicio->tipo_servicio }}</td>
+                                                <td>{{ $servicio->nombre_servicio }}</td>
+                                                <td>{{ $servicio->descripcion }}</td>
+                                                <td>{{ $servicio->texto1 }}</td>
+                                                <td>{{ $servicio->texto2 }}</td>
+                                                <td>{{ $servicio->texto3 }}</td>
+                                                <td>{{ $servicio->texto4 }}</td>
+                                                <td>{{ $servicio->texto5 }}</td>
+                                                <td>{{ $servicio->texto6 }}</td>
+                                                <td>{{ $servicio->texto7 }}</td>
+                                                <td>{{ $servicio->texto8 }}</td>
+                                                <td>{{ $servicio->clases }}</td>
+                                                <td>{{ $servicio->precio }}</td>
+                                                <td>{{ $servicio->precioiva }}</td>
                                                 <td>
-                                                    @if ($permiso->oferta == 1)
+                                                    @if ($servicio->oferta == 1)
                                                         Si
                                                     @else
                                                         No
                                                     @endif
                                                 </td>
-                                                <td>{{ $permiso->created_at->formatLocalized(' %d %B %H:%M') }}</td>
+                                                <td>{{ $servicio->created_at->formatLocalized(' %d %B %H:%M') }}</td>
                                                 <td>
-                                                    <a href="{{ route('admin.editarpermiso.editar', $permiso ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>
+                                                    <a href="{{ route('admin.editarservicio.editar', $servicio ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>
                                                 </td>
                                                 <td>
-                                                    <form id="borrarregistro" action="{{ route('admin.borrarpermiso.borrar', ['permiso'=>$permiso->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
+                                                    <form name="borrarregistro" action="{{ route('admin.borrarservicio.borrar', ['servicio'=>$servicio->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar la formación?')" >
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-close"></i></button>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermisosTable extends Migration
+class CreateServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatePermisosTable extends Migration
      */
     public function up()
     {
-        Schema::create('permisos', function (Blueprint $table) {
+        Schema::create('servicios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tipopermiso');
+            $table->string('tipo_servicio');
+            $table->string('nombre_servicio');
             $table->string('descripcion');
             $table->string('texto1')->nullable();
             $table->string('texto2')->nullable();
@@ -28,7 +29,7 @@ class CreatePermisosTable extends Migration
             $table->integer('clases');
             $table->float('precio');
             $table->float('precioiva');
-            $table->float('precioferta')->nullable();
+            //$table->float('precioferta')->nullable();
             $table->integer('oferta');
             $table->timestamps();
         });
@@ -41,6 +42,6 @@ class CreatePermisosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permisos');
+        Schema::dropIfExists('servicios');
     }
 }

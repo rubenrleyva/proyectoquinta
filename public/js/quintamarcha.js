@@ -40,11 +40,11 @@ function tabla() {
 /**
  *  Función encargada de activar o desactivar opciones en la creación o edición de usuarios.
  *  deprecated
- 
+
 function usuarios_deprecated(){
 
     $("#tipousuario").change(function () {
-        
+
         if ($(this).val() == 1) {
             $("#matricula").prop('disabled', true);
             $("#clasespracticas").prop('disabled', true);
@@ -61,9 +61,9 @@ function usuarios_deprecated(){
 
 /**
  * Función encargada de activar o desactivar opciones en la creación o edición de usuarios.
- 
+
 function usuarios() {
-    
+
     $("#datosextra").hide();
     $("#tipousuario").change(function () {
         if ($(this).val() == 2) {
@@ -86,8 +86,9 @@ function usuarios() {
  * Función encargada de aumentar el IVA en función al precio sin IVA para permisos.
  */
 function precioIva() {
-    $('input[name=precioferta]').change(function () {
-        $("#precioiva").val($(this).val() * 1.21);
+
+    $('input[name=precioiva]').change(function () {
+        $("#precio").val(($(this).val() / 1.21).toFixed(2));
     });
 }
 
@@ -102,7 +103,7 @@ function precioIvaPagos() {
     $('select[name=numeroclases]').change(function () {
 
         clases = 0;
-        
+
         clases = $(this).val() * $('input[name=precioclases]').val();
 
         juntos = clases + parseFloat(permiso);
@@ -112,9 +113,9 @@ function precioIvaPagos() {
     });
 
     $('select[name=concepto]').change(function () {
-     
+
         permiso = 0;
-        
+
         permiso = $(this).find(':selected').data('precio');
 
         juntos = clases + parseFloat(permiso);
@@ -147,7 +148,7 @@ function nuevaPreguntasEncuesta(){
                     + "<input id='pregunta" + numeroPregunta + "' type='text' class='form-control @error('pregunta" + numeroPregunta + "') is-invalid @enderror' name='pregunta" + numeroPregunta + "' autocomplete='pregunta" + numeroPregunta +"' placeholder='Introduce la pregunta*' autofocus>"
                 +"</div>"
             + "</div>"
-        );      
+        );
     });
 
     $("#borrarPregunta").click(function () {
@@ -161,7 +162,7 @@ function nuevaPreguntasEncuesta(){
  *  Función encargada de introducir nuevas preguntas en las encuestas.
  */
 function nuevaRespuestasEncuesta() {
-    
+
     $("#nuevaRespuesta").click(function () {
         numeroRespuesta++;
         $("#nuevasRespuestas").append("<div id='respuestas" + numeroRespuesta + "' class='form-group row'>"
@@ -172,10 +173,10 @@ function nuevaRespuestasEncuesta() {
                     + "<input id='respuesta" + numeroRespuesta + "' type='text' class='form-control @error('respuesta" + numeroRespuesta + "') is-invalid @enderror' name='respuesta" + numeroRespuesta + "' autocomplete='respuesta" + numeroRespuesta + "' autofocus>"
                 + "</div>"
                 + "<div class='col-md-3'>"
-    
+
                 + "</div>"
             + "</div>"
-        );    
+        );
     });
 
     $("#borrarRespuesta").click(function ()  {
@@ -191,12 +192,12 @@ function nuevaRespuestasEncuesta() {
 function coloresEstadistica(){
 
     var numItems = $('.progress-bar').length;
-    var primerNumero = parseInt($('.progress-bar').attr('data-id'));   
-    for (let inicio = 0; inicio < numItems; inicio++) {  
+    var primerNumero = parseInt($('.progress-bar').attr('data-id'));
+    for (let inicio = 0; inicio < numItems; inicio++) {
         var colores = Math.floor(Math.random() * 16777215).toString(16);
         $('.color_' + primerNumero).css('background-color', '#'+colores);
-        primerNumero++;              
-    }  
+        primerNumero++;
+    }
 }
 
 /**
@@ -227,45 +228,46 @@ function precios() {
     $(".precioferta").each(function () {
 
         var value = $(this).text();
-        
+
         if (!isNaN(value) && value.length != 0) {
             sumaPrecio += parseFloat(value);
         }
     });
 
-    $('#nuevo').text(sumaPrecio);  
+    $('#nuevo').text(sumaPrecio);
 
     $(".precioiva").each(function () {
 
         var value = $(this).text();
-        
+
         if (!isNaN(value) && value.length != 0) {
             sumaPrecioIva += parseFloat(value);
         }
     });
 
-    $('#nuevoiva').text(sumaPrecioIva);  
+    $('#nuevoiva').text(sumaPrecioIva);
 }
 
 /**
  * Función encargada de la preview de la foto
- * @param {foto} input 
+ * @param {foto} input
  */
 function previewFoto(input) {
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#preview').attr('src', e.target.result); 
+            $('#preview').attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
 
+
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas
  *  deprecated
- 
+
 function nuevaRespuestasEncuestaBotones_deprecated() {
 
     $(document).on("click", "#nuevarespuesta", function () {
@@ -288,7 +290,7 @@ function nuevaRespuestasEncuestaBotones_deprecated() {
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas
  *  deprecated
- 
+
 function nuevaPreguntasEncuestaBotones_deprecated() {
 
     $("#nuevaPregunta").click(function () {
@@ -317,7 +319,7 @@ function nuevaPreguntasEncuestaBotones_deprecated() {
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas
  *  deprecated.
- 
+
 function nuevaRespuestasEncuesta_deprecated() {
 
     $("#añadirespuesta" + numeroPregunta).click(function () {
@@ -341,7 +343,7 @@ function nuevaRespuestasEncuesta_deprecated() {
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas
  *  deprecated.
- 
+
 function nuevaPreguntasEncuesta_deprecated(){
 
     $("#nuevaPregunta").click(function () {
@@ -358,7 +360,7 @@ function nuevaPreguntasEncuesta_deprecated(){
             + "</div>"
             + "<div id='nuevasRespuestas" + numeroPregunta +"'></div>"
         );
-        
+
     });
 
     $("#borrarPregunta").click(function () {

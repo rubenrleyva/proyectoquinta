@@ -27,6 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'localidad' => $faker->city,
         'codigopostal' => $faker->postcode,
         'matricula' => Str::random(5),
+        'clasespracticas' => 0,
         'tipousuario' => 2,
         'teorico' => 2,
         'practico' => 2,

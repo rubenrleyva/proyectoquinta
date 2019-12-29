@@ -57,7 +57,7 @@ class User extends Authenticatable
      */
     public function pago()
     {
-        return $this->belongsTo('App\Clase');
+        return $this->hasMany('App\Pago', 'id_usuario', 'id');
     }
 
 
