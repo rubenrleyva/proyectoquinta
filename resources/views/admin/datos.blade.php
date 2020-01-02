@@ -66,7 +66,7 @@
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarservicios') }}">servicios</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarencuestas') }}">encuestas</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarclases') }}">clases</a>
-						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarclases') }}">pagos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarpagos') }}">pagos</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarfotos') }}">fotos</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mostrarusuarios') }}">exámenes</a>
 					</div>

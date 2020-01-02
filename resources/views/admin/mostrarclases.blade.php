@@ -13,7 +13,7 @@
                 @endif
                 <div class="card-body">
                     <div class="dataTables_wrapper dt-bootstrap4">
-                        <a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.crearclase') }}">Crear clase</a>
+                        {{-- <a class="btn color wow fadeInLeft mb-10" href="{{ route('admin.crearclase') }}">Crear clase</a> --}}
                         <div class="row">
                             <div class="col-12 table-responsive">
                               <table id="usotabla" class="table w-100 table-striped table-bordered dt-responsive nowrap text-center" role="grid">

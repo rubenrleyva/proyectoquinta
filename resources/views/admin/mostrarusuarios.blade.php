@@ -116,57 +116,61 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 
-                                                                                <div class="form-row mb-2">
-                                                                                    <div class="form-group col-md-12 text-center">
-                                                                                        <h5 class="font-weight-bold">Clases prácticas:</h5>  
-                                                                                    </div>
-                                                                                </div>   
-
-                                                                                @foreach ($usuario->clase as $clase)
-                                                                                    <div class="form-row mb-1">
-                                                                                        <div class="form-group col-md-1">
-                                                                                            <label>Nº</label>
-                                                                                            <p class="form-control">
-                                                                                                {{ $clase->clase_numero }} 
-                                                                                            </p>
+                                                                                @if ($usuario->clase->count() > 0)
+                                                                                    <div class="form-row mb-2">
+                                                                                        <div class="form-group col-md-12 text-center">
+                                                                                            <h5 class="font-weight-bold">Clases prácticas:</h5>  
                                                                                         </div>
-                                                                                        <div class="form-group col-md-11">
-                                                                                            <label>Comentario</label>
-                                                                                            <p class="form-control w-auto h-auto">
-                                                                                                {{ $clase->comentarios }}    
-                                                                                            </p>
+                                                                                    </div>   
+                                                                                    @foreach ($usuario->clase as $clase)
+                                                                                        <div class="form-row mb-1">
+                                                                                            <div class="form-group col-md-1">
+                                                                                                <label>Nº</label>
+                                                                                                <p class="form-control">
+                                                                                                    {{ $clase->clase_numero }} 
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-11">
+                                                                                                <label>Comentario</label>
+                                                                                                <p class="form-control w-auto h-auto">
+                                                                                                    {{ $clase->comentarios }}    
+                                                                                                </p>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                @endforeach
+                                                                                    @endforeach    
+                                                                                @endif
                                                                                 
-                                                                                <div class="form-row mb-2 mt-3">
-                                                                                    <div class="form-group col-md-12 text-center">
-                                                                                        <h5 class="font-weight-bold">Pagos realizados:</h5>  
+                                                                                @if ($usuario->pago->count() > 0)
+                                                                                    
+                                                                                    <div class="form-row mb-2 mt-3">
+                                                                                        <div class="form-group col-md-12 text-center">
+                                                                                            <h5 class="font-weight-bold">Pagos realizados:</h5>  
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
 
-                                                                                @foreach ($usuario->pago as $pago)
-                                                                                    <div class="form-row mb-1">
-                                                                                        <div class="form-group col-md-1">
-                                                                                            <label>Nº</label>
-                                                                                            <p class="form-control">
-                                                                                                {{ $pago->numeropago }} 
-                                                                                            </p>
+                                                                                    @foreach ($usuario->pago as $pago)
+                                                                                        <div class="form-row mb-1">
+                                                                                            <div class="form-group col-md-1">
+                                                                                                <label>Nº</label>
+                                                                                                <p class="form-control">
+                                                                                                    {{ $pago->numeropago }} 
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-7">
+                                                                                                <label>Concepto</label>
+                                                                                                <p class="form-control w-auto h-auto">
+                                                                                                    {{ $pago->concepto }}    
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="form-group col-md-4">
+                                                                                                <label>Fecha</label>
+                                                                                                <p class="form-control w-auto h-auto">
+                                                                                                    {{ $pago->created_at->formatLocalized(' %d %b %H:%M') }}    
+                                                                                                </p>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div class="form-group col-md-7">
-                                                                                            <label>Concepto</label>
-                                                                                            <p class="form-control w-auto h-auto">
-                                                                                                {{ $pago->concepto }}    
-                                                                                            </p>
-                                                                                        </div>
-                                                                                        <div class="form-group col-md-4">
-                                                                                            <label>Fecha</label>
-                                                                                            <p class="form-control w-auto h-auto">
-                                                                                                {{ $pago->created_at->formatLocalized(' %d %B %H:%M') }}    
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                @endforeach
+                                                                                    @endforeach
+                                                                                @endif
                                                                             </div>
                                                                         </div>
                                                                     </div>

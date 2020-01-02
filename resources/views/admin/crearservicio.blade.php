@@ -34,7 +34,7 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right text-center">{{ __('Nombre del servicio') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="@if (isset($servicio)){{ old('nombre', $servicio->nombre) }}@else{{ old('nombre') }} @endif" required autocomplete="nombre" autofocus>
+                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="@if (isset($servicio)){{ old('nombre', $servicio->nombre_servicio) }}@else{{ old('nombre') }} @endif" required autocomplete="nombre" autofocus>
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -269,7 +269,7 @@
                                 </button>
                             </div>
                             <div class="col-md-4 offset-md-4 text-center">
-                                <a href="../servicioes" class="btn color wow fadeInLeft">Cancelar</a>
+                                <a href="../servicios" class="btn color wow fadeInLeft">Cancelar</a>
                             </div>
                         </div>
                     </form>

@@ -180,11 +180,11 @@ class ServicioController extends Controller
         // Si no existe
         if(!$servicio){
 
-            return redirect()->back()->with('respuesta', 'No existe el permiso.');
+            return redirect()->back()->with('respuesta', 'No existe el servicio.');
         }
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('admin.crearformacion', compact('formacion'));
+        return view('admin.crearservicio', compact('servicio'));
     }
 
     /**
@@ -204,8 +204,8 @@ class ServicioController extends Controller
 
             // validamos alguno de los datos.
             $this->validate($request, [
-                'tipoformacion' => ['required', 'string', 'max:100'],
-                'nombreformacion' => ['required'],
+                'tiposervicio' => ['required', 'string', 'max:100'],
+                'nombre' => ['required'],
                 'descripcion' => ['required', 'string', 'max:255'],
             ]);
 
@@ -330,11 +330,11 @@ class ServicioController extends Controller
         } else {
 
             // Retornamos a la ruta anterior con una respuesta
-            return redirect()->back()->with('respuesta', 'La formacion no existe.');
+            return redirect()->back()->with('respuesta', 'El servicio no existe.');
         }
 
         // Retornamos una vista con una respuesta
-        return redirect()->route('admin.mostrarservicios')->with('respuesta', 'El servicio ha sido creada.');
+        return redirect()->route('admin.mostrarservicios')->with('respuesta', 'El servicio ha sido creado.');
     }
 
     /**
@@ -348,11 +348,12 @@ class ServicioController extends Controller
         $servicio = Servicio::find($id);
 
         if(!$servicio){
-
+            $respuesta = 'El servicio no existe en el sistema.';
+        }else{
+            $respuesta = 'El servicio ha sido borrada del sistema.';
+            $servicio->delete();
         }
 
-        $servicio->delete();
-
-        return redirect()->route('admin.mostrarformaciones')->with('respuesta', 'El servicio ha sido borrada del sistema.');
+        return redirect()->route('admin.mostrarservicios')->with('respuesta', $respuesta);
     }
 }

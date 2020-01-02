@@ -32,8 +32,11 @@ class PaginaController extends Controller
         // Recogemos todos los valores de usuarios del sistema.
         $usuarios = User::all();
 
+        // Contamos si existe algún comentario.
+        $comentarios = User::all()->where('comentario' != null);
+
         // Retornamos los valores y se los pasamos a una vista.
-        return view('bienvenido', compact('servicios', 'usuarios', 'alumnos', 'fotos'));
+        return view('bienvenido', compact('servicios', 'usuarios', 'alumnos', 'fotos', 'comentarios'));
     }
 
     /**
@@ -58,14 +61,12 @@ class PaginaController extends Controller
         // Recogemos el valor de los permisos
         $servicios = Servicio::all();
 
-        $basicos = Servicio::all()->where('tipo_servicio', 'Permisos básicos');
-        $profesionales = Servicio::all()->where('tipo_servicio', 'Permisos profesionales');
-        $cursos = Servicio::all()->where('tipo_servicio', 'Cursos');
-        $titulaciones = Servicio::all()->where('tipo_servicio', 'Titulaciones');
-        $bonos = Servicio::all()->where('tipo_servicio', 'Bonos');
+        $servicios = $servicios->shuffle();
+
+        $servicios->all();
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('bienvenido', compact('basicos', 'profesionales', 'cursos', 'titulaciones', 'bonos', 'servicios'));
+        return view('bienvenido', compact('servicios'));
     }
 
     /**

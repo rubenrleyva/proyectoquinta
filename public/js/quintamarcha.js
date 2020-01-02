@@ -263,6 +263,74 @@ function previewFoto(input) {
     }
 }
 
+/**
+ * Función encargada mostrar información de los cursos.
+ */
+function infoPermisos() {
+
+    $(".permisos").hide();
+
+    // Al entrar el ratón cambia el texto según corresponda.
+    $('.course-item').mouseenter(function () {
+     
+        if ($("h4", this).first().text() == 'básicos'){
+
+            $("p", this).text('Permisos B, A.M. y A1/A2.');
+
+            $(".heading.servicio").text('servicios básicos').fadeIn("slow");
+            $(".excerpt.servicio").text('Permisos B, A.M. y A1/A2.').fadeIn("slow");
+
+            $(".permisos-profesionales").hide();
+            $(".permisos-titulaciones").hide();
+            $(".permisos-cursos").hide();
+            $(".permisos-basicos").fadeIn("slow");
+  
+        } else if ($("h4", this).first().text() == 'profesionales'){
+
+            $("p", this).text('Permisos C, C1, D, D1 y E.');
+
+            $(".heading.servicio").text('servicios profesionales').fadeIn("slow");
+            $(".excerpt.servicio").text('Permisos C, C1, D, D1 y E.').fadeIn("slow");
+
+            $(".permisos-basicos").hide();
+            $(".permisos-titulaciones").hide();
+            $(".permisos-cursos").hide();
+            $(".permisos-profesionales").fadeIn("slow");
+
+        } else if ($("h4", this).first().text() == 'cursos') {
+
+            $("p", this).text('Certificados de aptitud profesional, aplicador de fitosanitarios y manipulador de alimentos.');
+
+            $(".heading.servicio").text('cursos');
+            $(".excerpt.servicio").text('Certificados de aptitud profesional, aplicador de fitosanitarios y manipulador de alimentos.').fadeIn("slow");
+
+            $(".permisos-basicos").hide();
+            $(".permisos-profesionales").hide();
+            $(".permisos-titulaciones").hide();
+            $(".permisos-cursos").fadeIn("slow");
+
+        }else if ($("h4", this).first().text() == 'titulaciones') {
+
+            $("p", this).text('Conductores de torillo, camión autoportante y retroexcavadora.');
+
+            $(".heading.servicio").text('titulaciones').fadeIn("slow");
+            $(".excerpt.servicio").text('Conductores de torillo, camión autoportante y retroexcavadora.').fadeIn("slow");
+
+            $(".permisos-basicos").hide();
+            $(".permisos-profesionales").hide();
+            $(".permisos-cursos").hide();
+            $(".permisos-titulaciones").fadeIn("slow");
+        }
+    });
+
+    // Al sacar el ratón cambiá de nuevo de texto.
+    $('.course-item').mouseleave(function () {
+
+        $("p", this).text('Más información.');
+
+    });
+}
+
 
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas

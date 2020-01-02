@@ -105,11 +105,11 @@ class PagoController extends Controller
      */
     public function edit($id)
     {
-        $servicio = Servicio::all();
+        $servicios = Servicio::all();
         $usuario = User::find($id);
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('admin.crearpago', compact('usuario', 'servicio'));
+        return view('admin.crearpago', compact('usuario', 'servicios'));
     }
 
     /**

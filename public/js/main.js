@@ -285,7 +285,7 @@ $('.multiple-items').slick({
     arrows: false,
     centerMode: true,
     animSpeed: 500,
-    slidesToShow: 2,
+    slidesToShow: 4,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
@@ -304,6 +304,13 @@ $('.multiple-items').slick({
             }
         },
         {
+            breakpoint: 770,
+            settings: {
+                centerPadding: '150px',
+                slidesToShow: 1,
+            }
+        },
+        {
             breakpoint: 600,
             settings: {
                 centerPadding: '50px',
@@ -311,13 +318,29 @@ $('.multiple-items').slick({
             }
         },
         {
-            breakpoint: 350,
+            breakpoint: 415,
+            settings: {
+                centerPadding: '50px',
+                slidesToShow: 1,
+                centerMode: false,
+            }
+		},
+        {
+            breakpoint: 365,
             settings: {
                 centerPadding: '20px',
                 slidesToShow: 1,
                 centerMode: false,
             }
-        }
+		},
+		{
+			breakpoint: 350,
+			settings: {
+				centerPadding: '20px',
+				slidesToShow: 1,
+				centerMode: false,
+			}
+		}
     ]
 });
 

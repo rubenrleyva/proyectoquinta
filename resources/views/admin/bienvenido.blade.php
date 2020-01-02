@@ -123,7 +123,7 @@
 	@include('admin.slider')
 	@include('admin.datos')
 	{{-- @include('layouts.whatsapp')
-    @include('layouts.pie') --}}
+	@include('layouts.pie') --}}
     <!-- Area de pie de página
     ============================================ -->
     <div class="footer-area overlay overlay-black overlay-70">

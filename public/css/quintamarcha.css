@@ -22,3 +22,43 @@
 .sombra {
     text-shadow: 5px 5px 5px black;
 }
+
+.course-item{
+    height: 250px;
+    padding: 65px 25px 40px;
+}
+
+.course-item i {
+    font-size: 70px;
+}
+
+.heading.servicio{
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+.excerpt.servicio{
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 12px;
+    
+}
+
+@media (max-width: 1169px) and (min-width: 992px){
+    .course-item{
+        height: auto;
+    }
+}
+
+.servicios {
+    height: 256px;
+}
+
+@media (max-width: 767px){
+    .servicios {
+        height: auto;
+    }
+}

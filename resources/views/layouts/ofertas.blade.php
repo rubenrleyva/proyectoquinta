@@ -7,7 +7,7 @@
 			<div class="section-title title-white text-center col-12 mb-45">
 				<h3 class="heading">Ofertas</h3>
 				<div class="excerpt">
-					<p>Aquí encontrarás nuestras ofertas para ti</p>
+					<p>Nuestras mejores ofertas para ti.</p>
 				</div>
 				<i class="icofont icofont-traffic-light"></i>
 			</div>
@@ -15,23 +15,23 @@
 		<div class="row multiple-items">
 			@foreach($servicios as $servicio)
 				@if ($servicio->oferta == 1)
-					<div class="col-lg-3 col-md-6 col-12 mb-30 ">
+					<div class="col-lg-3 col-md-6 col-12 mb-30">
 						<div class="single-pricing text-center">
 							<div class="pricing-head">
-                                <h4>{{ $servicio->descripcion}}
-                                    @if ($servicio->clases > 0)
-                                        {{ $servicio->clases }}
-                                    @endif
-                                </h4>
+                                <h4>{{ $servicio->descripcion}}</h4>
 							</div>
 							<div class="pricing-price">
 								<h2>{{ $servicio->precioiva }} €</h2>
 							</div>
 							<ul class="pricing-details">
-                                <li>Completo.</li>
-								<li>{{ $servicio->clases}} clases prácticas.</li>
+								<li>Completo.</li>
+								@if ( $servicio->clases > 0)
+									<li>{{ $servicio->clases}} clases prácticas.</li>	
+								@else
+									<li>Sin clases prácticas.</li>
+								@endif
 							</ul>
-							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $servicio->descripcion}}." class="pricing-action">Elegir (Contacta)</a>
+							{{-- <a href="#" class="pricing-action"></a> --}}<a href="https://api.whatsapp.com/send?phone=34685881044&text=Hola%20quiero%20información sobre la oferta del {{ $servicio->descripcion }}." class="pricing-action">Elegir (Contacta)</a>
 						</div>
 					</div>
 				@endif
