@@ -30,7 +30,8 @@
                                     <tbody>
                                         @if (isset($fotos))
                                             @foreach ($fotos as $foto)
-                                                <tr role="row" class="odd">
+                                                @if (($foto->tipo_foto != "estudiantes") && ($foto->tipo_foto != "test"))
+                                                  <tr role="row" class="odd">
                                                     <td class="sorting_1">{{ $foto->id }}</td>
                                                     <td> <img class="fotos" src="{{ $foto->url_foto }}" alt="{{ $foto->tipo_foto }}"> </td>
                                                     <td> {{ $foto->tipo_foto }} </td>
@@ -45,7 +46,8 @@
                                                             <button class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-close"></i></button>
                                                         </form>
                                                     </td>
-                                                </tr>
+                                                </tr>  
+                                                @endif
                                             @endforeach
                                         @endif
                                     </tbody>

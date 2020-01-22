@@ -3,7 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Quintamarcha</title>
+        @if (Request::is('/'))
+		    <title>Quintamarcha</title>
+        @elseif (Request::is('info-servicios'))
+            <title>Quintamarcha - Servicios</title>
+        @elseif (Request::is('contacto'))
+            <title>Quintamarcha - Contacto</title>
+        @endif
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 

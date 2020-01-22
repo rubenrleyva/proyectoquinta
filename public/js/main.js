@@ -285,7 +285,7 @@ $('.multiple-items').slick({
     arrows: false,
     centerMode: true,
     animSpeed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [

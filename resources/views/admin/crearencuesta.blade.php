@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card py-3">
                 <div class="card-body">
                     @if (isset($encuesta))
                         <form name="editarencuesta" method="POST" action="{{ route('admin.guardarencuestaeditado.guardar', ['encuesta'=>$encuesta]) }}">

@@ -278,8 +278,17 @@ class UserController extends Controller
         // En caso de ser Administradores
 
         if($usuario->tipousuario == 1){
+
             $respuesta = 'El usuario elegido no puede eliminarse.';
+
         }else{
+
+            // Busamos la foto en el sistema.
+            $foto = Foto::find($usuario->id_foto);
+
+             // eliminamos el archivo del sistema.
+            Storage::disk('public')->delete($foto->url_foto);
+            
             $usuario->delete();
             // devolvemos un mensaje.
             $respuesta = 'El usuario ha sido elimianado.';

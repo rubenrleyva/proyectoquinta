@@ -1,6 +1,5 @@
 <!-- Area de comentarios
 ============================================ -->
-{{$comentarios->count()}}
 @if (isset($usuarios) && ($comentarios->count() > 0))
 <div id="testimonial-area" class="testimonial-area overlay overlay-white overlay-80 text-center pt-90 pb-90">
 	<div class="container">

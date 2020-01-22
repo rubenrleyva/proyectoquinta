@@ -19,6 +19,8 @@
 		<title>Quintamarcha - Clases</title>
 	@elseif (Request::is('clases/*'))
 		<title>Quintamarcha - Crear clase</title>
+	@elseif (Request::is('encuesta/*'))
+		<title>Quintamarcha - @if (isset($encuesta)){{ $encuesta->titulo }}@endif</title>
 	@endif
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -123,7 +125,7 @@
 	@include('admin.slider')
 	@include('admin.datos')
 	{{-- @include('layouts.whatsapp')
-	@include('layouts.pie') --}}
+	@include('layouts.pie')  --}}
     <!-- Area de pie de página
     ============================================ -->
     <div class="footer-area overlay overlay-black overlay-70">
@@ -132,7 +134,7 @@
                 <p class="copyright">Copyright Autoescuela QuintaMarcha -<i class="fa fa-copyright"></i> Desde el 2005 - Todos los derechos reservados - Desarrollado por <a href="https://rubenrleyva.dev/" target="_blank" >RubenRLeyva.dev</a> </p>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <!-- Final del body principal -->
 

@@ -38,7 +38,7 @@
                             <label for="profesor" class="col-md-4 col-form-label text-md-right text-center">{{ __('Nombre profesor') }}</label>
 
                             <div class="col-md-6">
-                                <input id="profesor" type="text" class="form-control @error('profesor') is-invalid @enderror" name="profesor" value="@if (isset($profesor)){{ old('profesor', $profesor->name) }}@else{{ old('profesor') }} @endif" readonly autocomplete="profesor" autofocus>
+                                <input id="profesor" type="text" class="form-control @error('profesor') is-invalid @enderror" name="profesor" value="@if (isset($profesor)){{ old('profesor', $profesor->name) }}@else{{ old('profesor') }} @endif" autocomplete="profesor" autofocus>
 
                                 @error('profesor')
                                     <span class="invalid-feedback" role="alert">

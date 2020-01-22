@@ -5,7 +5,7 @@
 		<!-- Section Title -->
 		<div class="row">
 			<div class="section-title text-center col-12 mb-45">
-				<h3 class="heading">información</h3>
+				<h3 class="heading">contacto</h3>
 				<div class="excerpt">
 					<p>Lorem ipsum dolor sit amet, consectetur maksu rez do eiusmod tempor magna aliqua</p>
 				</div>

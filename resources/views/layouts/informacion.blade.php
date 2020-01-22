@@ -189,7 +189,7 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-header">
+								<div class="card-header servicio">
 									<h2>{{ $servicio->nombre_servicio }}</h2>
 									<p class="lead">{{ $servicio->descripcion }}</p>
 								</div>
@@ -224,7 +224,7 @@
 										@endif
 									</ul>
 								</div>
-								<div class="card-footer">
+								<div class="card-footer servicio">
 									<p>Precio sin IVA: {{ $servicio->precio }}€</p>
 									<p class="text-danger">PRECIO TOTAL: {{ $servicio->precioiva }}€</p>
 								</div>

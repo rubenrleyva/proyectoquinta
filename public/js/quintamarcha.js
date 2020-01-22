@@ -254,11 +254,18 @@ function precios() {
  */
 function previewFoto(input) {
 
+    // Si tenemos la foto 
     if (input.files && input.files[0]) {
+
+        // instanciamos FileReader
         var reader = new FileReader();
+
+        // y cargamos la foto en una preview.
         reader.onload = function (e) {
             $('#preview').attr('src', e.target.result);
         }
+
+        // contiene la URL de la foto
         reader.readAsDataURL(input.files[0]);
     }
 }
@@ -270,9 +277,10 @@ function infoPermisos() {
 
     $(".permisos").hide();
 
-    // Al entrar el ratón cambia el texto según corresponda.
+    // Al entrar el ratón cambia muestra los precios que le corresponde.
     $('.course-item').mouseenter(function () {
      
+        // Para el uso de los permisos básicos.
         if ($("h4", this).first().text() == 'básicos'){
 
             $("p", this).text('Permisos B, A.M. y A1/A2.');
@@ -285,6 +293,7 @@ function infoPermisos() {
             $(".permisos-cursos").hide();
             $(".permisos-basicos").fadeIn("slow");
   
+        // Para el uso de los permisos profesionales.
         } else if ($("h4", this).first().text() == 'profesionales'){
 
             $("p", this).text('Permisos C, C1, D, D1 y E.');
@@ -297,6 +306,7 @@ function infoPermisos() {
             $(".permisos-cursos").hide();
             $(".permisos-profesionales").fadeIn("slow");
 
+        // Para el uso de los cursos
         } else if ($("h4", this).first().text() == 'cursos') {
 
             $("p", this).text('Certificados de aptitud profesional, aplicador de fitosanitarios y manipulador de alimentos.');
@@ -309,6 +319,7 @@ function infoPermisos() {
             $(".permisos-titulaciones").hide();
             $(".permisos-cursos").fadeIn("slow");
 
+        // Para el uso de las titulaciones.
         }else if ($("h4", this).first().text() == 'titulaciones') {
 
             $("p", this).text('Conductores de torillo, camión autoportante y retroexcavadora.');
@@ -331,6 +342,34 @@ function infoPermisos() {
     });
 }
 
+/**
+ * Función encargada de cambiar los checkbox
+ */
+function eleccion(){
+    
+    $('#respuesta-check1').click(function () {
+
+        if ($(this).prop('checked')) {
+            $('#respuesta-check2').prop('checked', false);
+            $('#respuesta-check3').prop('checked', false);
+        }
+    });
+
+    $('#respuesta-check2').click(function () {
+
+        if ($(this).prop('checked')) {
+            $('#respuesta-check1').prop('checked', false);
+            $('#respuesta-check3').prop('checked', false);
+        }
+    });
+
+    $('#respuesta-check3').click(function () {
+        if ($(this).prop('checked')) {
+            $('#respuesta-check1').prop('checked', false);
+            $('#respuesta-check2').prop('checked', false);
+        }
+    });
+}
 
 /**
  *  Función encargada de introducir nuevas preguntas en las encuestas

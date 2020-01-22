@@ -24,7 +24,7 @@
 		<div class="gallery-grid row">
             @if (isset($fotos))
 				@foreach ($fotos as $foto)
-					@if ($foto->tipo_foto != "estudiantes")
+					@if (($foto->tipo_foto != "estudiantes") && ($foto->tipo_foto != "test"))
 						<div class="gallery-item {{ $foto->tipo_foto }} col-lg-3 col-md-4 col-12">
 							<a href="{{ $foto->url_foto }}" class="gallery-image image-popup">
 								<img src="{{ $foto->url_foto }}" alt="{{ $foto->tipo_foto }}" />

@@ -47,6 +47,10 @@
     
 }
 
+.card-header.servicio{
+    background-color: #4caf50;
+}
+
 @media (max-width: 1169px) and (min-width: 992px){
     .course-item{
         height: auto;
@@ -61,4 +65,10 @@
     .servicios {
         height: auto;
     }
+}
+
+/* Mias */
+
+.fd-i{
+    flex-direction: initial;
 }

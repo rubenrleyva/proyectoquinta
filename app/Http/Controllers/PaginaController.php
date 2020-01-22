@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Servicio;
 use App\User;
 use App\Foto;
+use App\Test;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 /**
@@ -76,8 +78,23 @@ class PaginaController extends Controller
      */
     public function inicio()
     {
+        // Retornamos los valores y se los pasamos a una vista.
+        return view('admin.inicio');
+    }
+
+    /**
+     * Función encargada de mostrar la página de inicio.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function usuariotest()
+    {
+
+        $usuario = auth()->user();
+
+        $tests = Test::all();
 
         // Retornamos los valores y se los pasamos a una vista.
-            return view('admin.inicio');
+        return view('admin.usuario', compact(['usuario', $usuario],['tests', $tests]));
     }
 }

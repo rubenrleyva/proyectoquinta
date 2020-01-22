@@ -18,11 +18,6 @@ class PreguntaEncuestaController extends Controller
      */
     public function index($id)
     {
-        // Si el usuario conectado no es administrador lo sacamos avisando.
-        if (auth()->user()->tipousuario != 1) {
-
-            return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes crear encuestas, selecciona una opción de tú menú.');
-        }
         $encuesta = Encuesta::find($id);
         $preguntas = PreguntaEncuesta::all()->where('id_encuesta', $id);
         // retornamos la vista a la creación Usuarios.
@@ -36,11 +31,7 @@ class PreguntaEncuestaController extends Controller
      */
     public function create($id)
     {
-        // Si el usuario conectado no es administrador lo sacamos avisando.
-        if (auth()->user()->tipousuario != 1) {
 
-            return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes crear encuestas, selecciona una opción de tú menú.');
-        }
         $encuesta = Encuesta::find($id);
         $preguntas = PreguntaEncuesta::all()->where('id_encuesta', $id);
         // retornamos la vista a la creación Usuarios.
@@ -148,15 +139,6 @@ class PreguntaEncuestaController extends Controller
     public function edit($id)
     {
 
-        // Si el usuario conectado no es administrador lo sacamos avisando.
-        if (auth()->user()->tipousuario != 1) {
-
-            return redirect()->route('admin.bienvenido')->with('respuesta', 'No puedes editar las preguntas, selecciona una opción de tú menú.');
-        }
-
-        // $encuesta = Encuesta::find($id);
-
-        //$preguntas = PreguntaEncuesta::all()->where('id_encuesta', $id);
         $pregunta = PreguntaEncuesta::find($id);
         $encuesta = Encuesta::find($pregunta->id_encuesta);
         $respuestas = RespuestaEncuestas::all()->where('id_pregunta', $id);
