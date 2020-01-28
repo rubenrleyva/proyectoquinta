@@ -196,10 +196,10 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Buscamos el permiso
+        // Buscamos el servicio
         $servicio = Servicio::find($id);
 
-        // si exite el permiso
+        // si exite
         if ($servicio) {
 
             // validamos alguno de los datos.
@@ -284,7 +284,7 @@ class ServicioController extends Controller
 
                 // se lo asignamos
                 $servicio->texto6 = $request['texto6'];
-            }
+            } 
 
             // comprobamos si exite el texto 7
             if ($request['texto7']){
@@ -314,7 +314,7 @@ class ServicioController extends Controller
             $this->validate($request, [
                 'clases' => ['required'],
                 'precio' => ['required'],
-                'precioferta' => ['required'],
+                'precioiva' => ['required'],
             ]);
 
             // Se asignan los valores en la base de datos
@@ -334,7 +334,7 @@ class ServicioController extends Controller
         }
 
         // Retornamos una vista con una respuesta
-        return redirect()->route('admin.mostrarservicios')->with('respuesta', 'El servicio ha sido creado.');
+        return redirect()->route('admin.mostrarservicios')->with('respuesta', 'El servicio ha sido editado.');
     }
 
     /**

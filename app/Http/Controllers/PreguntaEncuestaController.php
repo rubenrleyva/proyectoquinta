@@ -226,7 +226,7 @@ class PreguntaEncuestaController extends Controller
             $numeroPreguntaEncuesta = 0;
             $preguntas = PreguntaEncuesta::all()->where('id_encuesta', $request['id']);
             $filtro = Arr::except($request, ['_token']);
-            dd($filtro);
+
             foreach ($filtro->request as $valor) {
 
                 if($numero == 1){
@@ -239,7 +239,8 @@ class PreguntaEncuestaController extends Controller
                         $nuevaPregunta->pregunta = $valor;
                         $nuevaPregunta->update();
                     }else{
-                        $pregunta = PreguntaEncuesta::where(['numero' => $numeroPreguntaEncuesta ,'id_encuesta' => $request['id']])->first();
+                        $pregunta = PreguntaEncuesta::all()->where(['id' => $numeroPreguntaEncuesta ,'id_encuesta' => $request['id']]);
+                        dd($valor);
                         $pregunta->pregunta = $valor;
                         $pregunta->update();
                     }

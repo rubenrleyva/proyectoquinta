@@ -16,32 +16,34 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Devuelve los usuarios que hay en el sistema.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
+        // Recogemos todos los usuarios.
         $usuarios = User::all();
+
+        // Devolvemos la vista con los usuarios.
         return view('admin.mostrarusuarios', compact('usuarios'));
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostramos la vista encargada de la creación de un nuevo usuario.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-
+        // Devolvemos la vista de creación de usuarios.
         return view('admin.crearusuario');
 
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardamos los datos en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -49,6 +51,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+        // Validamos los datos que nos llegan.
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
@@ -63,9 +66,10 @@ class UserController extends Controller
 
         ]);
 
-        // Si la foto existe
+        // Comprobamos que la foto existe
         if($request->file('foto')){
 
+            // escogemos el tipo de foto
             $tipo = "estudiantes";
 
             // elegimos el nombre del archivo y su ubicación
@@ -83,14 +87,16 @@ class UserController extends Controller
                 'tipo_foto' => $tipo,
             ]);
 
+        // si la foto no existe
         }else{
 
+            // escogemos el tipo de foto
             $tipo = "estudiantes";
 
             // elegimos el nombre del archivo y su ubicación
             $path = 'img/'.$tipo.'/'.Str::random(30).'.'.'jpg';
 
-            // le pasamos la imagen, el tamaño y guardamos
+            // le pasamos la imagen predefinida para casos sin foto, el tamaño y guardamos
             Image::make('img\sin-foto.png')
             ->resize(189, 188, function ($constraint) {
                 $constraint->upsize();
@@ -103,6 +109,7 @@ class UserController extends Controller
             ]);
         }
 
+        // Creamos el nuevo usuario con los datos que nos llegan
         User::create([
             'name' => $request['name'],
             'apellidos' => $request['apellidos'],
@@ -122,6 +129,7 @@ class UserController extends Controller
             'practico' => $request['practico'],
         ]);
 
+        // Retornamos a la vista que muestra los usuarios junto con una respuesta.
         return redirect()->route('admin.mostrarusuarios')->with('respuesta', 'El usuario '.$request['name'].' ha sido creado.');
 
     }
@@ -138,23 +146,23 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostramos el formulario de edición de un usuario.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // Buscamos al usuario
+        // Buscamos el usuario
         $usuario = User::find($id);
 
-        // retornamos la vista a la creación usuarios.
+        // Retornamos la vista a la edición de con los datos del usuario.
         return view('admin.crearusuario', compact('usuario', $usuario));
 
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizamos los datos del usuario editado.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -165,26 +173,45 @@ class UserController extends Controller
         // Buscamos al usuario
         $usuario = User::find($id);
 
+        // Validamos el campo de nombre
         $this->validate($request, [
-                'name' => ['required', 'string', 'max:255'],
-            ]);
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        // Comprobamos si el email es igual al de la base de datos
         if ($usuario->email != $request->get('email')) {
+
+            // en caso de no serlo validamos
             $this->validate($request, [
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             ]);
+
+        // comprobamos si el password es nulo
         }elseif($request->get('password') != null){
+
+            // en tal caso lo validamos.
             $this->validate($request, [
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
             ]);
+
+        // comprobamos si la matrícula es igual al de la base de datos
         }elseif($usuario->matricula != $request->get('matricula')){
+
+            // en caso de no serlo la validamos
             $this->validate($request, [
                 'matricula' => ['required', 'string', 'min:1', 'unique:users'],
             ]);
+
+        // comprobamos si el DNI es igual al de la base de datos
         }elseif($usuario->dni != $request->get('dni')){
+
+            // en caso de no serlo lo validamos
             $this->validate($request, [
-                    'dni' => ['required', 'string', 'max:255', 'unique:users'],
+                'dni' => ['required', 'string', 'max:255', 'unique:users'],
             ]);
         }
+
+        // Validamos que existen el resto de datos
         $this->validate($request, [
             'domicilio' => ['required', 'string', 'max:255'],
             'fechanacimiento' => ['required', 'date'],
@@ -193,9 +220,10 @@ class UserController extends Controller
             'codigopostal' => ['required', 'string', 'min:5'],
         ]);
 
-        // Si la foto existe
+        // Comprobamos si disponemos de una foto
         if($request->file('foto')){
 
+            // escogemos el tipo de foto
             $tipo = "estudiantes";
 
             // elegimos el nombre del archivo y su ubicación
@@ -213,8 +241,10 @@ class UserController extends Controller
                 'tipo_foto' => $tipo,
             ]);
 
+        // si no existe foto 
         }else{
 
+            // escogemos el tipo de foto
             $tipo = "estudiantes";
 
             // elegimos el nombre del archivo y su ubicación

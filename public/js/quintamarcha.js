@@ -28,6 +28,7 @@ function tabla() {
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
+        "pageLength": 4,
         "paging": true,
         "lengthChange": false,
         "searching": true,
@@ -99,30 +100,47 @@ function precioIvaPagos() {
 
     var permiso = 0;
     var clases = 0;
+    var juntos = 0;
+    var ultimo = 0;
 
     $('select[name=numeroclases]').change(function () {
 
         clases = 0;
 
+        juntos = 0;
+
         clases = $(this).val() * $('input[name=precioclases]').val();
 
-        juntos = clases + parseFloat(permiso);
+        juntos = parseFloat(clases + parseFloat(permiso)).toFixed(2);
+
+        juntosIva = parseFloat(juntos * 1.21).toFixed(2);
 
         $("#precio").val(juntos);
-        $("#precioiva").val(juntos * 1.21);
+        $("#precioiva").val(juntosIva);
     });
 
     $('select[name=concepto]').change(function () {
 
-        permiso = 0;
-
         permiso = $(this).find(':selected').data('precio');
 
-        juntos = clases + parseFloat(permiso);
-        $("#precioclases").val(0);
+        if (permiso > 0){
+            $('#precioclases').prop("readonly", true);   
+            $('#precio').prop("readonly", true);
+            $('#precioiva').prop("readonly", true);
+            juntos = clases + parseFloat(permiso);
+            ultimo = parseFloat(juntos * 1.21).toFixed(2);
+            
+        }else{
+            $('#precioclases').removeAttr("readonly");     
+            $('#precio').removeAttr("readonly");
+            $('#precioiva').removeAttr("readonly");
+            juntos = 0;
+            ultimo = 0;
+        }
+
         $("#numeroclases").val($(this).find(':selected').data('clase'));
         $("#precio").val(juntos);
-        $("#precioiva").val(juntos * 1.21);
+        $("#precioiva").val(ultimo);
     });
 }
 
@@ -369,6 +387,64 @@ function eleccion(){
             $('#respuesta-check2').prop('checked', false);
         }
     });
+}
+
+
+/**
+ * Función encargada de validar los checkbox
+ */
+function validarCheckbox(){
+    
+    // Buscamos los checkbox
+    const checkbox = $('input[type=checkbox]');
+
+    // Comprobamos el número de checkbox que tenemos
+    const checkBoxTamano = checkbox.length;
+
+    // Si el tamaño del checkbox es mayor a cero le damos su posición
+    // al primer checkbox
+    const primerCheckBox = checkBoxTamano > 0 ? checkbox[0] : null;
+
+    // Función de inicio
+    function init() {
+
+        // Si existe el primer checkbox
+        if (primerCheckBox) {
+
+            // recorremos los checkbox
+            for (let i = 0; i < checkBoxTamano; i++) {
+
+                // comprobamos el cambio
+                // checkbox[i].addEventListener('change', checkValidity);
+                $(checkbox[i]).change(checkValido);
+            }
+
+            checkValido();
+        }
+    }
+
+    // Función encargada de comprobar si se encuentra chekeado
+    function checked() {
+
+        // recorremos los checkbox
+        for (let i = 0; i < checkBoxTamano; i++) {
+
+            // si se encuentra checkeado retornamos true
+            if (checkbox[i].checked) return true;
+        }
+
+        // en caso contrario false
+        return false;
+    }
+
+    // Función encargada de mostrar el mensaje
+    function checkValido() {
+        const errorMessage = !checked() ? 'Selecciona una de estas opciones.' : '';
+        primerCheckBox.setCustomValidity(errorMessage);
+    }
+
+    // Comenzamos
+    init();
 }
 
 /**

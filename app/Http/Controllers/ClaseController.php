@@ -34,19 +34,20 @@ class ClaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
+
         // Recogemos el valor de todas las clases del sistema.
         $clases = Clase::all();
 
         // Recogemos el valor de los usuarios que no tienen aprobado el teórico.
-        $usuarios = User::all()->where('practico', 2);
+        $usuario = User::find($id);
 
         // Revogemos el valor del profesor que se encuentra registrado en este momento.
         $profesor = auth()->user();
 
         // Retornamos los valores y se los pasamos a una vista.
-        return view('admin.crearclase', compact('clases', 'usuarios', 'profesor'));
+        return view('admin.crearclase', compact('clases', 'usuario', 'profesor'));
     }
 
     /**
@@ -59,7 +60,7 @@ class ClaseController extends Controller
     {
 
         // Buscamos el alumno en la base de datos.
-        $alumno = User::find($request['alumno']);
+        $alumno = User::find($request['id']);
 
         // Comprobamos que son válidos los datos introducidos.
         $this->validate($request, [
@@ -87,8 +88,8 @@ class ClaseController extends Controller
         // creamos la clase con los precios que nos pasan
         Clase::create([
             'clase_numero' => $numeroClase + 1,
-            'id_alumno' => $request['alumno'],
-            'id_profesor' => auth()->user()->id,
+            'id_alumno' => $request['id'],
+            'profesor' => $request['profesor'],
             'comentarios' => $request['comentarios'],
         ]);
 

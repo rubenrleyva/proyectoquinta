@@ -36,7 +36,7 @@
                                                     <td class="sorting_1">{{ $clase->id }}</td>
                                                     <td>{{ $clase->clase_numero }}</td>
                                                     <td>{{ $clase->usuarioAlumno->name }} {{ $clase->usuarioAlumno->apellidos }}</td>
-                                                    <td>{{ $clase->usuarioProfesor->name }} {{ $clase->usuarioProfesor->apellidos }}</td>
+                                                    <td>{{ $clase->profesor }}</td>
                                                     <td>{{ $clase->comentarios }}</td>
                                                     {{-- <td class ="precio">{{ $clase->precio }} €</td>
                                                     <td class ="precioiva">{{ $clase->precioiva }} €</td> --}}

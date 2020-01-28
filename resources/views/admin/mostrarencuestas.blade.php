@@ -28,7 +28,7 @@
                                             <th class="sorting align-middle">Editar nombre</th>
                                             <th class="sorting align-middle">Resultados</th>
                                             <th class="sorting align-middle">Elimninar</th>
-                                            <th class="sorting align-middle">Realizar</th>
+                                            <th class="sorting align-middle">Ver</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -63,7 +63,7 @@
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        @if ($encuesta->preguntasEncuestas != null)
+                                                        @if (count($encuesta->preguntasEncuestas) > 0)
                                                             <a href="{{ route('encuesta', [$encuesta->uuid]) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a>
                                                         @else
                                                             Sin preguntas

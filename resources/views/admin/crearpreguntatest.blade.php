@@ -18,7 +18,7 @@
                     @endif
                         @csrf
                         <div class="form-group row">
-                            <label for="titulo" class="col-md-12 col-form-label font-weight-bold text-uppercase text-center">Test {{ __($test->tipo) }} {{ __($test->titulo) }}</label>
+                            <label for="titulo" class="col-md-12 col-form-label font-weight-bold text-uppercase text-center">Test {{ __($test->titulo) }}</label>
                         </div>
                         <div class="form-group row mb-3">
                             <input id='id_pregunta' type='hidden' name='id_pregunta' value='@if (isset($pregunta)){{ old('id_pregunta', $test->id) }}@endif'>
@@ -64,7 +64,7 @@
                                 <input id='respuesta1-texto' type='text' class='form-control @error('respuesta1') is-invalid @enderror' name='respuesta1' value="@if (isset($respuesta1)){{ old('respuesta1', $respuesta1->respuesta) }}@else{{old('respuesta1')}}@endif" autocomplete='respuesta1' autofocus>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="respuesta1-check" name="respuesta-check1" @if ($respuesta1->correcta == 1) checked @endif >
+                                <input type="checkbox" class="form-check-input" id="respuesta1-check" name="respuesta-check1" @isset($respuesta1) @if ($respuesta1->correcta == 1) checked @endif @endisset>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
                                 <input id='respuesta2-texto' type='text' class='form-control @error('respuesta2') is-invalid @enderror' name='respuesta2' value="@if (isset($respuesta2)){{ old('respuesta2', $respuesta2->respuesta) }}@else{{old('respuesta2')}}@endif" autocomplete='respuesta2' autofocus>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="respuesta2-check" name="respuesta-check2" @if ($respuesta2->correcta == 1) checked @endif>
+                                <input type="checkbox" class="form-check-input" id="respuesta2-check" name="respuesta-check2" @isset($respuesta2) @if ($respuesta2->correcta == 1) checked @endif @endisset>
                             </div>
                         </div>
 
@@ -88,7 +88,7 @@
                                 <input id='respuesta3-texto' type='text' class='form-control @error('respuesta3') is-invalid @enderror' name='respuesta3' value="@if (isset($respuesta3)){{ old('respuesta3', $respuesta3->respuesta) }}@else{{old('respuesta3')}}@endif" autocomplete='respuesta3' autofocus>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="respuesta3-check" name="respuesta-check3" @if ($respuesta3->correcta == 1) checked @endif>
+                                <input type="checkbox" class="form-check-input" id="respuesta3-check" name="respuesta-check3" @isset($respuesta3) @if ($respuesta3->correcta == 1) checked @endif @endisset>
                             </div>
                         </div>
 

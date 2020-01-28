@@ -40,7 +40,7 @@
                                                         <a href="{{ route('admin.editarfoto.editar', $foto ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>
                                                     </td>
                                                     <td>
-                                                        <form id="borrarregistro" action="{{ route('admin.borrarfoto.borrar', ['id'=>$foto->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar la foto?')" >
+                                                        <form id="borrarregistro" action="{{ route('admin.borrarfoto.borrar', $foto->id) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar la foto?')" >
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-close"></i></button>

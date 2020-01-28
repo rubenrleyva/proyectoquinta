@@ -28,7 +28,7 @@
                                             <th class="sorting align-middle">Pagado</th>
                                             <th class="sorting align-middle">Fecha de realización</th>
                                             <th class="sorting align-middle">Editar</th>
-                                            <th class="sorting align-middle">Borrar</th>
+                                            {{--<th class="sorting align-middle">Borrar</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,8 +47,10 @@
                                                         <td>No pagado</td>
                                                     @endif  
                                                     <td>{{ $pago->created_at->formatLocalized(' %d %B %H:%M') }}</td>
-                                                    <td> - </td>
-                                                    <td> - </td>
+                                                    <td> 
+                                                        <a href="{{ route('admin.editarpago.editar', $pago ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>    
+                                                    </td>
+                                                    {{-- <td> - </td> --}}
                                                 </tr>
                                             @endforeach
                                         @endif

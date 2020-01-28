@@ -37,7 +37,7 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     // Rutas de uso para las clases prácticas
     Route::get('clasespracticas', 'ClaseController@index')->name('admin.mostrarclases');
-    Route::get('crearclase', 'ClaseController@create')->name('admin.crearclase');
+    Route::get('crearclase/{id}', 'ClaseController@create')->name('admin.crearclase');
     Route::post('guardarclase/{clase?}', 'ClaseController@store')->name('admin.guardarclase.guardar');
     Route::post('guardarclaseeditado/{clase?}', 'ClaseController@update')->name('admin.guardarclaseeditado.guardar');
 
@@ -48,6 +48,7 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('editarfoto/{foto}', 'FotoController@edit')->name('admin.editarfoto.editar');
     Route::post('guardarfotoeditado/{foto?}', 'FotoController@update')->name('admin.guardarfotoeditado.guardar');
     Route::delete('borrarfoto/{foto}', 'FotoController@destroy')->name('admin.borrarfoto.borrar');
+    Route::get('borrarfoto/{phaseId}', 'FotoController@destroy');
 
     // Rutas correspondientes a los permisos
     Route::get('servicios', 'ServicioController@index')->name('admin.mostrarservicios');
@@ -59,9 +60,10 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     // Rutas correspondientes a los pagos
     Route::get('pagos', 'PagoController@index')->name('admin.mostrarpagos');
-    Route::get('crearpago', 'PagoController@create')->name('admin.crearpago');
+    Route::get('crearpago/{usuario}', 'PagoController@create')->name('admin.crearpago');
     Route::post('guardarpago/{pago?}', 'PagoController@store')->name('admin.guardarpago.guardar');
     Route::get('editarpago/{pago}', 'PagoController@edit')->name('admin.editarpago.editar');
+    Route::post('guardarpagoeditado/{pago?}', 'PagoController@update')->name('admin.guardarpagoeditado.guardar');
 
     // Rutas correspondientes a las encuestas I
     Route::get('encuestas', 'EncuestaController@index')->name('admin.mostrarencuestas');
@@ -83,7 +85,7 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('preguntastests/{test?}', 'PreguntaTestController@index')->name('admin.mostrarpreguntastests');
     Route::get('crearpreguntatest/{test?}', 'PreguntaTestController@create')->name('admin.crearpreguntatest');
     Route::post('guardarpreguntastest/{test?}', 'PreguntaTestController@store')->name('admin.guardarpreguntatest.guardar');
-    Route::get('editarpreguntatest/{test?}', 'PreguntaTestController@edit')->name('admin.editarpreguntatest.editar');
+    //Route::get('editarpreguntatest/{test?}', 'PreguntaTestController@edit')->name('admin.editarpreguntatest.editar');
     Route::post('guardarpreguntaeditadatest/{pregunta?}', 'PreguntaTestController@update')->name('admin.guardarpreguntaeditadatest.editar');
     Route::delete('borrarpreguntatest/{pregunta?}', 'PreguntaTestController@destroy')->name('admin.borrarpreguntatest.borrar');
 

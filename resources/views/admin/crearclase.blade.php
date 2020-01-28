@@ -9,20 +9,33 @@
                     @if (isset($clase))
                         <form name="editarclase" method="POST" action="{{ route('admin.guardarclaseeditado.guardar', ['clase'=>$clase]) }}">
                     @else
-                        <form name="crearclase" method="POST" action="{{ route('admin.guardarclase.guardar') }}">
+                        <form name="crearclase" method="POST" action="{{ route('admin.guardarclase.guardar', ['id'=>$usuario->id]) }}">
                     @endif
                         @csrf
+                         <div class="form-group row">
+                                <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Alumno') }}</label>
 
-                        <div class="form-group row">
-                            <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Nombre alumno') }}</label>
+                                <div class="col-md-6">
+                                <input id="alumno" type="text" class="form-control @error('alumno') is-invalid @enderror" value="{{ $usuario->name }} {{ $usuario->apellidos }}" name="alumno" autocomplete="alumno" readonly>
+
+                                @error('alumno')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                
+                            </div>
+
+                        {{-- <div class="form-group row">
+                            <label for="alumno" class="col-md-4 col-form-label text-md-right text-center">{{ __('Alumno') }}</label>
 
                             <div class="col-md-6">
                                 <select id="alumno" name="alumno" class="form-control @error('alumno') is-invalid @enderror">
                                     @foreach ($usuarios as $usuario)
                                     @if ($usuario->clasespracticas > 0)
-                                        <option value='{{ $usuario->id }}'>{{ $usuario->name }}</option>          
-                                    @endif
-                                        
+                                        <option value='{{ $usuario->id }}' readonly>{{ $usuario->name." ".$usuario->apellidos }}</option>          
+                                    @endif    
                                     @endforeach  
                                 </select>
 
@@ -32,13 +45,13 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="profesor" class="col-md-4 col-form-label text-md-right text-center">{{ __('Nombre profesor') }}</label>
 
                             <div class="col-md-6">
-                                <input id="profesor" type="text" class="form-control @error('profesor') is-invalid @enderror" name="profesor" value="@if (isset($profesor)){{ old('profesor', $profesor->name) }}@else{{ old('profesor') }} @endif" autocomplete="profesor" autofocus>
+                                <input id="profesor" type="text" class="form-control @error('profesor') is-invalid @enderror" name="profesor" value="@if (isset($profesor) && ($profesor->tipousuario != 1)){{ old('profesor', $profesor->name) }}@else{{ old('profesor') }} @endif" autocomplete="profesor" autofocus>
 
                                 @error('profesor')
                                     <span class="invalid-feedback" role="alert">

@@ -62,10 +62,11 @@
                             <label for="concepto" class="col-md-4 col-form-label text-md-right text-center">{{ __('Concepto') }}</label>
                             <div class="col-md-6">
                                 <select id="concepto" name="concepto" class="form-control @error('concepto') is-invalid @enderror" selected>
-                                    <option value='Clases prácticas'>Clases prácticas</option>
+                                    <option value='Clases prácticas' @if ((isset($pago) && $pago->concepto == 'Clases prácticas')){{ old('concepto', 'selected') }} @endif>Clases prácticas</option>
                                     @if (isset($servicios))
                                          @foreach ($servicios as $servicio)
-                                            <option value='{{ $servicio->descripcion }}' data-precio='{{ $servicio->precio }}' data-clase='{{ $servicio->clases }}'>{{ $servicio->descripcion }} con {{ $servicio->clases }} clases por {{ $servicio->precio }} €</option>         
+                                           <option value='{{ $servicio->descripcion }}'  @if ((isset($pago) && $servicio->descripcion.' con '.$pago->clases.' clases por '.$pago->precio.' €' == $pago->concepto.' con '.$pago->clases.' clases por '.$pago->precio.' €')){{ old('concepto', 'selected') }} @endif data-precio='{{ $servicio->precio }}' data-clase='{{ $servicio->clases }}'>{{ $servicio->descripcion }} con {{ $servicio->clases }} clases por {{ $servicio->precio }} €</option>         
+                                           {{--<option value='{{ $servicio->descripcion }}' data-precio='{{ $servicio->precio }}' data-clase='{{ $servicio->clases }}'>{{ $servicio->descripcion }} con {{ $servicio->clases }} clases por {{ $servicio->precio }} €</option> --}}
                                         @endforeach 
                                     @endif     
                                 </select>
@@ -96,20 +97,20 @@
 
                             <div class="col-md-6">
                                 <select id="numeroclases" name="numeroclases" class="form-control @error('numeroclases') is-invalid @enderror" name="numeroclases">
-                                    <option value='0' selected>0</option>
-                                    <option value='1'>1</option>
-                                    <option value='2'>2</option>
-                                    <option value='3'>3</option>
-                                    <option value='4'>4</option>
-                                    <option value='5'>5</option>
-                                    <option value='6'>6</option>
-                                    <option value='7'>7</option>
-                                    <option value='8'>8</option>
-                                    <option value='9'>9</option>
-                                    <option value='10'>10</option>
-                                    <option value='15'>15</option>
-                                    <option value='20'>20</option>
-                                    <option value='25'>25</option>
+                                    <option value='0' @if ((isset($pago) && $pago->clases == 0)){{ old('numeroclases', 'selected') }}@endif>0</option>
+                                    <option value='1' @if ((isset($pago) && $pago->clases == 1)){{ old('numeroclases', 'selected') }}@endif>1</option>
+                                    <option value='2' @if ((isset($pago) && $pago->clases == 2)){{ old('numeroclases', 'selected') }}@endif>2</option>
+                                    <option value='3' @if ((isset($pago) && $pago->clases == 3)){{ old('numeroclases', 'selected') }}@endif>3</option>
+                                    <option value='4' @if ((isset($pago) && $pago->clases == 4)){{ old('numeroclases', 'selected') }}@endif>4</option>
+                                    <option value='5' @if ((isset($pago) && $pago->clases == 5)){{ old('numeroclases', 'selected') }}@endif>5</option>
+                                    <option value='6' @if ((isset($pago) && $pago->clases == 6)){{ old('numeroclases', 'selected') }}@endif>6</option>
+                                    <option value='7' @if ((isset($pago) && $pago->clases == 7)){{ old('numeroclases', 'selected') }}@endif>7</option>
+                                    <option value='8' @if ((isset($pago) && $pago->clases == 8)){{ old('numeroclases', 'selected') }}@endif>8</option>
+                                    <option value='9' @if ((isset($pago) && $pago->clases == 9)){{ old('numeroclases', 'selected') }}@endif>9</option>
+                                    <option value='10' @if ((isset($pago) && $pago->clases == 10)){{ old('numeroclases', 'selected') }}@endif>10</option>
+                                    <option value='15' @if ((isset($pago) && $pago->clases == 15)){{ old('numeroclases', 'selected') }}@endif>15</option>
+                                    <option value='20' @if ((isset($pago) && $pago->clases == 20)){{ old('numeroclases', 'selected') }}@endif>20</option>
+                                    <option value='25' @if ((isset($pago) && $pago->clases == 25)){{ old('numeroclases', 'selected') }}@endif>25</option>
                                 </select>
 
                                 @error('numeroclases')
@@ -124,7 +125,7 @@
                             <label for="precio" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio sin IVA') }}</label>
 
                             <div class="col-md-6">
-                                <input id="precio" type="number" step="any" class="form-control @error('precio') is-invalid @enderror" name="precio" required autocomplete="precio">
+                                <input id="precio" type="number" step="any" class="form-control @error('precio') is-invalid @enderror" name="precio" value="@if ((isset($pago) && $pago->precio > 0)){{ old('precio', $pago->precio) }}@endif" required autocomplete="precio">
 
                                 @error('precio')
                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +139,7 @@
                             <label for="precioiva" class="col-md-4 col-form-label text-md-right text-center">{{ __('Precio con IVA') }}</label>
 
                             <div class="col-md-6">
-                                <input id="precioiva" type="number" step="any" class="form-control @error('precioiva') is-invalid @enderror" name="precioiva" required autocomplete="precioiva">
+                                <input id="precioiva" type="number" step="any" class="form-control @error('precioiva') is-invalid @enderror" name="precioiva" value="@if ((isset($pago) && $pago->precioiva > 0)){{ old('precioiva', $pago->precioiva) }}@endif" required autocomplete="precioiva">
 
                                 @error('precioiva')
                                     <span class="invalid-feedback" role="alert">
@@ -151,14 +152,14 @@
                         <div class="form-group row">
                             <label for="pagado" class="col-md-4 col-form-label text-md-right text-center">{{ __('¿Pagado?') }}</label>
                             <div class="col-md-1">
-                                <input type="checkbox" class="form-control text-left" id="pagado" name="pagado">
+                                <input type="checkbox" class="form-control text-left" id="pagado" name="pagado" @if ((isset($pago) && $pago->pagado == 1.00)){{ old('pagado', 'checked') }}@else selected @endif>
                             </div>
                         </div>
 
                         <div class="form-group row col-md-offset-1">
                             <div class="col-md-4 offset-md-4 text-center mb-1">
                                 <button type="submit" class="btn color wow fadeInLeft">
-                                    @if (Request::is('editarservicio/*'))
+                                    @if (Request::is('editarpago/*'))
                                         {{ __('Editar Pago') }}
                                     @else
                                         {{ __('Añadir Pago') }}

@@ -79,7 +79,6 @@ class RespuestasTestUsuarioController extends Controller
 
         $numeroRespuestas = RespuestasTestUsuario::all()->where('n_test', $id);
 
-        dd($numeroRespuestas);
         foreach ($test->preguntasTests as $key => $value) {
             $key = $key + 1;
             $respuestaTest = RespuestaTest::all()->where('id_pregunta',$value->id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Foto;
 use App\User;
+use App\PreguntaTest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -200,25 +201,32 @@ class FotoController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
 
-        // Buscamos el usuario de dicha foto.
-        $usuario = User::find($id);
+        // Buscamos el usuario de dicha foto
+        $usuario = User::all()->where('id_foto', $id)->first();
 
         // Buscamos la pregunta de del test
-        $pregunta = PreguntaTest::find($id);
+        $pregunta = PreguntaTest::all()->where('id_foto', $id)->first();
 
-        if($usuario){
+        // Si el usuario existe
+        if($usuario != null){
 
-            // Busamos la foto en el sistema.
+            // buscamos la foto en el sistema
             $foto = Foto::find($usuario->id_foto);
 
-        }else if($pregunta){
+        // si la pregunta existe
+        }elseif($pregunta != null){
 
+            // buscamos la foto en el sistema
             $foto = Foto::find($pregunta->id_foto);
-        }
 
-        
+        // en cualquier otro caso
+        }else{
+
+            // buscamos la foto en el sistema
+            $foto = Foto::find($id);
+        }
+    
         // Comprobamos que la foto existe y que el usuario no está vacío.
         if($foto && $usuario){
 
@@ -226,15 +234,15 @@ class FotoController extends Controller
             Storage::disk('public')->delete($foto->url_foto);
 
             // damos una respuesta.
-            $respuesta = "Inserta otra fotografía";
+            $respuesta = "Inserta otra fotografía.";
 
-        }else if($foto && $pregunta){
+        }elseif($foto && $pregunta){
 
             // eliminamos el archivo del sistema.
             Storage::disk('public')->delete($foto->url_foto);
 
             // damos una respuesta.
-            $respuesta = "Inserta otra fotografía";
+            $respuesta = "Inserta otra fotografía.";
             
 
         }else{
@@ -246,15 +254,15 @@ class FotoController extends Controller
             $foto->delete();
 
             // damos una respuesta.
-            $respuesta = "Fotografía eliminada del sistema";
+            $respuesta = "Fotografía eliminada del sistema.";
         }
 
         // Recogemos el valor de todas las encuestas del sistema.
         $fotos = Foto::all();
 
+        // Retornamos a la vista anterior con un mensaje de respuesta.
         return redirect()->back()->with('fotos', $fotos)->with('respuesta', $respuesta);
-        // Retornamos la vista que muestra todas las fotos junto con una respuesta.
-        //return redirect()->route('admin.mostrarfotos', compact('fotos'))->with('respuesta', $respuesta);
+        
     }
 
 

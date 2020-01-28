@@ -10,7 +10,7 @@
                 {{ session('respuesta') }}
             </div>
             @endif
-            <form name="responderencuesta" method="POST" action="{{ route('admin.editarrespuestaencuesta.editar', ['id'=>$encuesta->id]) }}">
+            <form id="responderencuesta" name="responderencuesta" method="POST" action="{{ route('admin.editarrespuestaencuesta.editar', ['id'=>$encuesta->id]) }}">
                 @csrf
                 @foreach ($preguntasEncuesta as $clave => $pregunta)
                 <section class="row">
@@ -19,10 +19,10 @@
                             {{ $preguntasEncuesta[$clave]->numero }} - {{ $preguntasEncuesta[$clave]->pregunta }}  @if($pregunta->tipo == 2) (Puede escoger varías opciones) @endif
                         </div>
                         <div class="card-body">
-                            <div class="form-check required">
+                            <div class="form-check">
                                 @foreach ($pregunta->respuesta as $respuesta)
                                     <ul>
-                                        <input class="form-check-input" @if($respuesta->tipo == 1) type="radio" @else type="checkbox" @endif name="pregunta{{ $respuesta->id_pregunta }}@if($respuesta->tipo == 2)[] @endif" value="{{ $respuesta->id }}" required>
+                                        <input class="form-check-input" @if($respuesta->tipo == 1) type="radio" required @else type="checkbox" @endif name="pregunta{{ $respuesta->id_pregunta }}@if($respuesta->tipo == 2)[] @endif" value="{{ $respuesta->id }}">
                                         <label class="form-check-label" for="pregunta{{ $respuesta->id_pregunta }}">
                                             {{ $respuesta->respuesta }}
                                         </label>
@@ -49,4 +49,12 @@
     @endif
 </div>
 @endsection
+@push('scripttablas')
+  <script src="/js/quintamarcha.js"></script>
+  <script>
+    $(window).on("load", function() {
+      validarCheckbox();
+    });
+  </script>
+@endpush
 

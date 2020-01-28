@@ -17,7 +17,7 @@ class CreateClasesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('clase_numero');
             $table->integer('id_alumno');
-            $table->integer('id_profesor');
+            $table->string('profesor');
             $table->string('comentarios');
             $table->timestamps();
         });

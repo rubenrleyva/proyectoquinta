@@ -49,11 +49,15 @@
                                                     <td><button type="button" class="btn color wow fadeInLeft" data-toggle="modal" data-target="#usuario{{ $usuario->dni }}"><i class="icofont icofont-eye"></i></button></td>
                                                     <td><a href="{{ route('admin.editarusuario.editar', $usuario ) }}" class="btn color wow fadeInLeft"><i class="icofont icofont-edit-alt"></i></a></td>
                                                     <td>
-                                                        <form name="borrarregistro" action="{{ route('admin.borrarusuario.borrar', ['usuario'=>$usuario->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn color wow fadeInLeft"><i class="icofont icofont-close"></i></button>
-                                                        </form>
+                                                        @if ($usuario->pago->count() > 0)
+                                                            No procede
+                                                        @else
+                                                            <form name="borrarregistro" action="{{ route('admin.borrarusuario.borrar', ['usuario'=>$usuario->id]) }}" method="POST" style="display: inline" onclick="return confirm('¿Quieres borrar al usuario?')" >
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn color wow fadeInLeft"><i class="icofont icofont-close"></i></button>
+                                                            </form>   
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <div id="usuario{{ $usuario->dni }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -159,7 +163,7 @@
                                                                                             <div class="form-group col-md-7">
                                                                                                 <label>Concepto</label>
                                                                                                 <p class="form-control w-auto h-auto">
-                                                                                                    {{ $pago->concepto }}    
+                                                                                                    {{ $pago->concepto.' con '.$pago->clases.' clases.' }}    
                                                                                                 </p>
                                                                                             </div>
                                                                                             <div class="form-group col-md-4">
@@ -177,7 +181,8 @@
                                                                 </div>
                                                                 <div class="form-row mb-3">
                                                                      <div class="form-group col-md-6 text-center">
-                                                                        <a class="btn color font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a>
+                                                                        {{-- <a class="btn color font-weight-bold" href="{{ route('admin.editarpago.editar', $usuario) }}">Añade pago</a> --}}
+                                                                        <a class="btn color font-weight-bold" href="{{ route('admin.crearpago', $usuario->id) }}">Añade pago</a>
                                                                     </div>
                                                                     <div class="form-group col-md-6 text-center">
                                                                         @if ($usuario->clasespracticas > 0)

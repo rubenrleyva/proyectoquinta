@@ -5,22 +5,54 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	@if (Request::is('inicio'))
 		<title>Quintamarcha - Inicio</title>
+	@elseif (Request::is('usuarios'))
+		<title>Quintamarcha - Usuarios</title>
 	@elseif (Request::is('crearusuario'))
-		<title>Quintamarcha - Registrar Usuario</title>
-	@elseif (Request::is('crearusuario/*'))
+		<title>Quintamarcha - Añadir Usuario</title>
+	@elseif (Request::is('editarusuario/*'))
 		<title>Quintamarcha - Editar Usuario</title>
+	@elseif (Request::is('servicios'))
+		<title>Quintamarcha - Servicios</title>
+	@elseif (Request::is('crearservicio'))
+		<title>Quintamarcha - Añadir Servicio</title>
+	@elseif (Request::is('editarservicio/*'))
+		<title>Quintamarcha - Editar Servicio</title>
+	@elseif (Request::is('pagos'))
+		<title>Quintamarcha - Pagos</title>
+	@elseif (Request::is('crearpago'))
+		<title>Quintamarcha - Añadir Pago</title>
+	@elseif (Request::is('editarpago/*'))
+		<title>Quintamarcha - Editar Pago</title>
+	@elseif (Request::is('encuestas'))
+		<title>Quintamarcha - Encuestas</title>
+	@elseif (Request::is('crearencuesta'))
+		<title>Quintamarcha - Añadir encuesta</title>
+	@elseif (Request::is('crearencuesta/*'))
+		<title>Quintamarcha - Editar encuesta</title>
 	@elseif (Request::is('crearpreguntasencuesta/*'))
-		<title>Quintamarcha - Crear preguntas encuesta</title>
+		<title>Quintamarcha - Añadir preguntas encuesta</title>
 	@elseif (Request::is('permisos'))
 		<title>Quintamarcha - Permisos</title>
 	@elseif (Request::is('permisos/*'))
-		<title>Quintamarcha - Crear permiso</title>
+		<title>Quintamarcha - Añadir permiso</title>
 	@elseif (Request::is('clasespracticas'))
 		<title>Quintamarcha - Clases</title>
 	@elseif (Request::is('clases/*'))
-		<title>Quintamarcha - Crear clase</title>
+		<title>Quintamarcha - Añadir clase</title>
 	@elseif (Request::is('encuesta/*'))
 		<title>Quintamarcha - @if (isset($encuesta)){{ $encuesta->titulo }}@endif</title>
+	@elseif (Request::is('fotos'))
+		<title>Quintamarcha - Fotos</title>
+	@elseif (Request::is('crearfoto'))
+		<title>Quintamarcha - Añadir foto</title>
+	@elseif (Request::is('editarfoto/*'))
+		<title>Quintamarcha - Editar foto</title>
+	@elseif (Request::is('preguntasencuestas/*'))
+		<title>Quintamarcha - Preguntas encuesta</title>
+	@elseif (Request::is('editarfoto/*'))
+		<title>Quintamarcha - Editar foto</title>
+	@elseif (Request::is('crearpreguntaencuesta/*'))
+		<title>Quintamarcha - Crear pregunta encuesta</title>
 	@endif
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

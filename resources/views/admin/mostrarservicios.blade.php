@@ -70,7 +70,7 @@
                                                         No
                                                     @endif
                                                 </td>
-                                                <td>{{ $servicio->created_at->formatLocalized(' %d %B %H:%M') }}</td>
+                                                <td>{{ $servicio->updated_at->formatLocalized(' %d %B %H:%M') }}</td>
                                                 <td>
                                                     <a href="{{ route('admin.editarservicio.editar', $servicio ) }}" class="btn color wow fadeInLeft mb-10"><i class="icofont icofont-edit-alt"></i></a>
                                                 </td>

@@ -36,7 +36,11 @@
                                     @else
                                         <li>
                                     @endif
-                                            <input class="form-check-input" type="radio" name="pregunta{{ $respuesta->id_pregunta }}" value="{{ $respuesta->id }}" required>  
+                                        <input class="form-check-input" type="radio" name="pregunta{{ $respuesta->id_pregunta }}" value="{{ $respuesta->id }}" @if (session()->has('error'.$respuesta->id))
+                                            checked
+                                        @elseif(session()->has('buena'.$respuesta->id))
+                                            checked
+                                        @endif required>  
                                             <label class="form-check-label" for="pregunta{{ $respuesta->id_pregunta }}">
                                                 {{ $respuesta->respuesta }}
                                             </label>   

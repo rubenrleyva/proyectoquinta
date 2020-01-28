@@ -271,7 +271,8 @@
                 previewFoto(this);
             });
             @if (isset($usuario->foto->url_foto))
-                borrarFoto('{{route('admin.borrarfoto.borrar', $usuario)}}');
+                //borrarFoto('{{ route('admin.borrarfoto.borrar', $usuario->id_foto) }}');
+                borrarFoto('{{ URL::to('/borrarfoto/'.$usuario->id_foto)  }}');
             @endif
         });
     </script>
