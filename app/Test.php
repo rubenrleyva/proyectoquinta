@@ -16,5 +16,13 @@ class Test extends Model
         return $this->hasMany('App\PreguntaTest', 'id_test');
     }
 
+    /**
+     * Una encuesta puede tener muchas preguntas.
+     */
+    public function respuestasTest()
+    {
+        return $this->hasMany('App\RespuestasTestUsuario', 'n_test');
+    }
+
     
 }

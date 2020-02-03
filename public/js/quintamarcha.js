@@ -307,8 +307,8 @@ function infoPermisos() {
             $(".excerpt.servicio").text('Permisos B, A.M. y A1/A2.').fadeIn("slow");
 
             $(".permisos-profesionales").hide();
-            $(".permisos-titulaciones").hide();
-            $(".permisos-cursos").hide();
+            $(".titulaciones").hide();
+            $(".cursos").hide();
             $(".permisos-basicos").fadeIn("slow");
   
         // Para el uso de los permisos profesionales.
@@ -320,8 +320,8 @@ function infoPermisos() {
             $(".excerpt.servicio").text('Permisos C, C1, D, D1 y E.').fadeIn("slow");
 
             $(".permisos-basicos").hide();
-            $(".permisos-titulaciones").hide();
-            $(".permisos-cursos").hide();
+            $(".titulaciones").hide();
+            $(".cursos").hide();
             $(".permisos-profesionales").fadeIn("slow");
 
         // Para el uso de los cursos
@@ -334,8 +334,8 @@ function infoPermisos() {
 
             $(".permisos-basicos").hide();
             $(".permisos-profesionales").hide();
-            $(".permisos-titulaciones").hide();
-            $(".permisos-cursos").fadeIn("slow");
+            $(".titulaciones").hide();
+            $(".cursos").fadeIn("slow");
 
         // Para el uso de las titulaciones.
         }else if ($("h4", this).first().text() == 'titulaciones') {
@@ -347,8 +347,8 @@ function infoPermisos() {
 
             $(".permisos-basicos").hide();
             $(".permisos-profesionales").hide();
-            $(".permisos-cursos").hide();
-            $(".permisos-titulaciones").fadeIn("slow");
+            $(".cursos").hide();
+            $(".titulaciones").fadeIn("slow");
         }
     });
 

@@ -31,7 +31,7 @@
 					@elseif (Request::is('editartest/*'))
 						<h3 class="heading">Estas editando el test @if (isset($test)){{ $test->servicio }}@endif</h3>
 					@elseif (Request::is('test/*'))
-						<h3 class="heading">Estas realizando el test @if (isset($test)){{ $test->titulo }}@endif</h3>
+						<h3 class="heading">Estas realizando el @if (isset($test)){{ $test->titulo }}@endif</h3>
 					@elseif (Request::is('crearfoto'))
 						<h3 class="heading">Estas añadiendo una nueva foto</h3>
 					@elseif (Request::is('editarfoto/*'))
@@ -46,6 +46,20 @@
 						<h3 class="heading">Pregunta encuesta</h3>
 					@elseif (Request::is('encuesta/*'))
 						<h3 class="heading">@if (isset($encuesta)){{ $encuesta->titulo }}@endif</h3>
+					@elseif (Request::is('preguntastests/*'))
+						<h3 class="heading">Preguntas test</h3>
+					@elseif (Request::is('crearpreguntatests/*'))
+						<h3 class="heading">Pregunta encuesta</h3>
+					@elseif (Request::is('misdatos'))
+						<h3 class="heading">Mis datos</h3>
+					@elseif (Request::is('misclases'))
+						<h3 class="heading">Mis clases</h3>
+					@elseif (Request::is('mispagos'))
+						<h3 class="heading">Mis pagos</h3>
+					@elseif (Request::is('mistest'))
+						<h3 class="heading">Mis test</h3>
+					@elseif (Request::is('test-resultado/*'))
+						<h3 class="heading">Estas viendo el resultado del @if (isset($test)){{ $test->titulo }}@endif</h3>
 					@endif
 					<div class="excerpt">
 						@if (Request::is('inicio'))
@@ -92,6 +106,20 @@
 							<p>Aquí puedes ver todas las preguntas de la encuesta elegida.</p>
 						@elseif (Request::is('crearpreguntaencuesta/*'))
 							<p>Rellena los datos necesarios para añadir una nueva pregunta.</p>
+						@elseif (Request::is('preguntastests/*'))
+							<p>Aquí puedes ver todas las preguntas del test elegido.</p>
+						@elseif (Request::is('crearpreguntatest/*'))
+							<p>Rellena los datos necesarios para añadir una nueva pregunta.</p>
+						@elseif (Request::is('misdatos'))
+							<p>Aquí podrás ver tus datos.</p>
+						@elseif (Request::is('misclases'))
+							<p>Aquí podrás ver las clases realizadas.</p>
+						@elseif (Request::is('mispagos'))
+							<p>Aquí podrás ver los pagos realizados.</p>
+						@elseif (Request::is('mistest'))
+							<p>Aquí podrás ver los test que tienes a tu disposición.</p>
+						@elseif (Request::is('test-resultado/*'))
+							<p>Aquí podrás ver el resultado de tu test.</p>
 						@endif
 					</div>
 					<i class="icofont icofont-traffic-light"></i>
@@ -123,17 +151,16 @@
 		@elseif(!Request::is('login') && auth()->user()->tipousuario != 1)
 			<div class="row">
 				<div class="text-center col-12 mb-20">
-					@if (Request::is('usuarios') || Request::is('inicio')
-					|| Request::is('servicios')
-					|| Request::is('encuestas')
-					|| Request::is('clasespracticas')
-					|| Request::is('pagos')
-					|| Request::is('fotos')
-					|| Request::is('tests'))
+					@if (Request::is('inicio')
+					|| Request::is('misdatos')
+					|| Request::is('mistest')
+					|| Request::is('mispagos')
+					|| Request::is('misclases'))
 					<div class="gallery-filter-quintamarcha text-center">
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.misdatos') }}">mis datos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mispagos') }}">mis pagos</a>
+						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.misclases') }}">mis clases</a>
 						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mistest') }}">mis test</a>
-						<a class="btn color wow fadeInLeft botones-menu mb-10" href="{{ route('admin.mistest') }}">mis clases</a>
 					</div>
 					@endif
 				</div>

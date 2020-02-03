@@ -17,6 +17,7 @@ class CreateTestsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('numero');
             $table->string('tipo');
+            $table->string('descripcion');
             $table->string('permiso');
             $table->string('titulo');
             $table->string('uuid')->unique();

@@ -19,6 +19,7 @@ class CreateRespuestasTestUsuariosTable extends Migration
             $table->integer('n_votacion')->default(0);
             $table->integer('id_pregunta')->nullable();
             $table->integer('id_respuesta')->nullable();
+            $table->integer('id_usuario')->nullable();
             $table->timestamps();
         });
     }

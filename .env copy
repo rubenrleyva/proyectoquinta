@@ -1,17 +1,18 @@
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=
+APP_KEY=base64:JLPDEh0D2qjhOBIvL8uvHkZiBOnpIgxtW/5KsukuO1g=
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://autoescuelaquintamarcha.com
 
 LOG_CHANNEL=stack
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=proyectoquinta
-DB_USERNAME=rubenrl
-DB_PASSWORD=rubenrl
+DB_DATABASE=rubevdrt_quintamarcha_pruebas
+DB_USERNAME=rubevdrt_quintamarcha
+DB_PASSWORD=Xpw538R3rVqxtmJ
+
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file

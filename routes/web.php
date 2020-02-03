@@ -19,9 +19,15 @@ Route::get('/info-servicios', 'PaginaController@servicios');
 
 Route::middleware(['auth'])->group(function () {
 
-   Route::get('/inicio', 'PaginaController@inicio');
-   Route::get('misdatos', 'PaginaController@inicio')->name('admin.misdatos');
-   Route::get('mistest', 'PaginaController@usuariotest')->name('admin.mistest');
+    Route::get('/inicio', 'PaginaController@inicio');
+    Route::get('misdatos', 'PaginaController@inicio')->name('admin.misdatos');
+    Route::get('mispagos', 'PaginaController@usuariotest')->name('admin.mispagos');
+    Route::get('misclases', 'PaginaController@usuariotest')->name('admin.misclases');
+    Route::get('mistest', 'PaginaController@usuariotest')->name('admin.mistest');
+    Route::post('respondertest/{test?}', 'RespuestasTestUsuarioController@update')->name('admin.respondertest.guardar');
+
+    Route::get('test/{slug?}', ['as' => 'test', 'uses' => 'TestController@show']);
+    Route::get('test-resultado/{slug}/{vez}', ['as' => 'test.resultado', 'uses' => 'TestController@show_see']);
 
 });
 
@@ -85,15 +91,13 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::get('preguntastests/{test?}', 'PreguntaTestController@index')->name('admin.mostrarpreguntastests');
     Route::get('crearpreguntatest/{test?}', 'PreguntaTestController@create')->name('admin.crearpreguntatest');
     Route::post('guardarpreguntastest/{test?}', 'PreguntaTestController@store')->name('admin.guardarpreguntatest.guardar');
-    //Route::get('editarpreguntatest/{test?}', 'PreguntaTestController@edit')->name('admin.editarpreguntatest.editar');
+    Route::get('editarpreguntatest/{test?}', 'PreguntaTestController@edit')->name('admin.editarpreguntatest.editar');
     Route::post('guardarpreguntaeditadatest/{pregunta?}', 'PreguntaTestController@update')->name('admin.guardarpreguntaeditadatest.editar');
     Route::delete('borrarpreguntatest/{pregunta?}', 'PreguntaTestController@destroy')->name('admin.borrarpreguntatest.borrar');
 
-    Route::post('editarpreguntatest/{test?}', 'RespuestasTestUsuarioController@update')->name('admin.editarrespuestatest.guardar');
-
+    //Route::post('editarpreguntatest/{test?}', 'RespuestasTestUsuarioController@update')->name('admin.editarrespuestatest.guardar');
+    
 });
-
-
 
 
 /* Rutas correspondientes a las encuestas I
@@ -119,8 +123,7 @@ Route::post('responderencuesta/{respuestas?}', 'RespuestaEncuestasController@upd
 // Rutas correspondientes a las encuestas II
 Route::get('encuesta/{slug?}', ['as' => 'encuesta', 'uses' => 'EncuestaController@show']);
 
-// Rutas correspondientes a los test II
-Route::get('test/{slug?}', ['as' => 'test', 'uses' => 'TestController@show']);
+
 //Route::get('encuesta/{encuesta?}', 'EncuestaController@show')->name('admin.encuesta')->middleware('auth');
 
 

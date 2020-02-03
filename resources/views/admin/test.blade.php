@@ -10,7 +10,7 @@
                 {{ session('respuesta') }}
             </div>
             @endif
-            <form name="respondertest" method="POST" action="{{ route('admin.editarrespuestatest.guardar', $test) }}">
+            <form name="respondertest" method="POST" action="{{ route('admin.respondertest.guardar', $test) }}">
                 @csrf
                 @foreach ($preguntasTest as $clave => $pregunta)
                 <section class="row">
@@ -23,18 +23,18 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <div class="form-check required">
+                            <div class="form-check test required">
                                 <div class="row mb-1">
                                     <h4>{{ $clave + 1 }} .- {{ $preguntasTest[$clave]->pregunta }}</h4>
                                 </div>
-                                <ul>
+                                <dl>
                                     @foreach ($pregunta->respuesta as $respuesta)
                                     @if (session()->has('error'.$respuesta->id))
-                                        <li class='{{ session('error'.$respuesta->id) }}'>
+                                        <dd class='{{ session('error'.$respuesta->id) }}'>
                                     @elseif(session()->has('buena'.$respuesta->id))
-                                        <li class='{{ session('buena'.$respuesta->id) }}'>
+                                        <dd class='{{ session('buena'.$respuesta->id) }}'>
                                     @else
-                                        <li>
+                                        <dd class="ml-4">
                                     @endif
                                         <input class="form-check-input" type="radio" name="pregunta{{ $respuesta->id_pregunta }}" value="{{ $respuesta->id }}" @if (session()->has('error'.$respuesta->id))
                                             checked
@@ -44,9 +44,9 @@
                                             <label class="form-check-label" for="pregunta{{ $respuesta->id_pregunta }}">
                                                 {{ $respuesta->respuesta }}
                                             </label>   
-                                        </li>   
+                                        </dd>   
                                     @endforeach           
-                                </ul>
+                                </dl>
                             </div>
                         </div>  
                     </div>
@@ -62,17 +62,25 @@
                         {{ session('puntuacion-suspenso') }}
                     </div>
                 @endif
-                <div class="form-row col mb-2 mt-3">
-                    <div class="form-group col-sm-4 col-md-4 text-center">
-                        <button type="submit" class="btn color wow fadeInLeft">
-                            {{ __('Finalizar') }}
-                        </button>
-                    </div>
-                    <div class="form-group col-sm-4 col-md-4 text-center">
-                        <a href="" onclick="window.location.reload();"  class="btn color wow fadeInLeft">Reiniciar</a>
-                    </div>
-                    <div class="form-group col-sm-4 col-md-4 text-center">
-                        <a href="../tests" class="btn color wow fadeInLeft">Volver</a>
+                <div class="container">
+                    <div class="row justify-content-center text-center">
+                        @if ((Request::is('test-resultado/*')))
+                            <div class="form-group col-12">
+                                <a href="/mistest" class="btn color wow fadeInLeft">Volver</a>
+                            </div>
+                        @else
+                            <div class="form-group col-4">
+                            <button type="submit" class="btn color wow fadeInLeft">
+                                {{ __('Finalizar') }}
+                            </button>
+                            </div>
+                            <div class="form-group col-4">
+                                <a href="" onclick="window.location.reload();"  class="btn color wow fadeInLeft">Reiniciar</a>
+                            </div>
+                            <div class="form-group col-4">
+                                <a href="/mistest" class="btn color wow fadeInLeft">Volver</a>
+                            </div>
+                        @endif  
                     </div>
                 </div>
                 {{-- <div class="form-group row col-md-offset-1 mt-5">

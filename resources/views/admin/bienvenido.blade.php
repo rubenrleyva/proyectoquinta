@@ -7,6 +7,8 @@
 		<title>Quintamarcha - Inicio</title>
 	@elseif (Request::is('usuarios'))
 		<title>Quintamarcha - Usuarios</title>
+	@elseif (Request::is('login'))
+		<title>Quintamarcha - Conectarse</title>
 	@elseif (Request::is('crearusuario'))
 		<title>Quintamarcha - Añadir Usuario</title>
 	@elseif (Request::is('editarusuario/*'))
@@ -53,6 +55,26 @@
 		<title>Quintamarcha - Editar foto</title>
 	@elseif (Request::is('crearpreguntaencuesta/*'))
 		<title>Quintamarcha - Crear pregunta encuesta</title>
+	@elseif (Request::is('preguntastests/*'))
+		<title>Quintamarcha - Preguntas test</title>
+	@elseif (Request::is('crearpreguntatest/*'))
+		<title>Quintamarcha - Crear pregunta test</title>
+	@elseif (Request::is('tests'))
+		<title>Quintamarcha - Test</title>
+	@elseif (Request::is('creartest'))
+		<title>Quintamarcha - Crear test</title>
+	@elseif (Request::is('misdatos'))
+		<title>Quintamarcha - Mis datos</title>
+	@elseif (Request::is('misclases'))
+		<title>Quintamarcha - Mis clases</title>
+	@elseif (Request::is('mispagos'))
+		<title>Quintamarcha - Mis pagos</title>
+	@elseif (Request::is('mistest'))
+		<title>Quintamarcha - Mis test</title>
+	@elseif (Request::is('test/*'))
+		<title>Quintamarcha - @if (isset($test)){{ $test->titulo }}@endif</title>
+	@elseif (Request::is('test-resultado/*'))
+		<title>Quintamarcha - Resultado del @if (isset($test)){{ $test->titulo }}@endif</title>
 	@endif
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

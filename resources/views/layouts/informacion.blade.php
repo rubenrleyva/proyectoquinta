@@ -226,7 +226,7 @@
 								</div>
 								<div class="card-footer servicio">
 									<p>Precio sin IVA: {{ $servicio->precio }}€</p>
-									<p class="text-danger">PRECIO TOTAL: {{ $servicio->precioiva }}€</p>
+									<p class="text-danger">PRECIO TOTAL: {{ (int) $servicio->precioiva }}€</p>
 								</div>
 							</div>
 						</div>
